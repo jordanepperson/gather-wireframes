@@ -106,6 +106,19 @@
     padding-block: 0.3rem;
   }
   .nav-menu-group a:hover { color: var(--color-bright-blue); }
+
+  .footer-bleed {
+    width: 100%;
+    padding-block: var(--space-6);
+    text-align: center;
+    overflow: hidden;
+  }
+  .footer-bleed .accent {
+    display: block;
+    font-size: clamp(2.5rem, 9vw, 7rem);
+    line-height: 1;
+    white-space: nowrap;
+  }
 </style>
 </head>
 <body data-page="gather-everywhere">
@@ -113,7 +126,7 @@
 <header class="pairing-01">
   <nav class="site-nav container">
     <a href="index.html"><img class="logo" src="assets/gather-dark.svg" alt="Gather"></a>
-    <div style="display:flex; align-items:center; gap: var(--space-2);">
+    <div style="display:flex; align-items:center; gap: 0.5rem;">
       <a class="btn" href="#cta">Give</a>
       <div class="nav-menu">
         <button type="button" class="nav-menu-toggle" id="nav-menu-toggle" aria-expanded="false" aria-controls="nav-menu-panel" aria-label="Open menu">
@@ -300,6 +313,10 @@
     </div>
   </div>
 </footer>
+
+<div class="footer-bleed pairing-02">
+  <span class="accent">Everybody. Everywhere.</span>
+</div>
 
 <a href="index.html" class="back-to-index-fab" aria-label="Back to index">
   <span class="icon">←</span>
