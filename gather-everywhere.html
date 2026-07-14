@@ -109,15 +109,19 @@
 
   .footer-bleed {
     width: 100%;
-    padding-block: var(--space-6);
+    background: var(--color-off-white);
+    padding-top: var(--space-6);
+    padding-bottom: 0;
     text-align: center;
     overflow: hidden;
   }
   .footer-bleed .accent {
     display: block;
-    font-size: clamp(2.5rem, 9vw, 7rem);
-    line-height: 1;
+    color: var(--color-light-blue);
+    font-size: 15vw;
+    line-height: 0.85;
     white-space: nowrap;
+    margin: 0;
   }
 </style>
 </head>
@@ -314,7 +318,7 @@
   </div>
 </footer>
 
-<div class="footer-bleed pairing-02">
+<div class="footer-bleed">
   <span class="accent">Everybody. Everywhere.</span>
 </div>
 
