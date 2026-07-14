@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IF:Gathering — Wireframe</title>
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/review-mode.css">
+<style>
+  body { background: var(--color-off-white); }
+  .utility-nav {
+    display:flex; justify-content:flex-end; gap: var(--space-3);
+    font-size: 0.75rem; padding-block: 0.4rem;
+    background: var(--color-light-blue);
+  }
+  .utility-nav a { color: var(--color-dark-blue); text-decoration:none; }
+  .serif-heading { font-family: var(--font-secondary); font-style: normal; font-weight:400; }
+  .leader-card { text-align:center; }
+  .leader-card .avatar {
+    width: 88px; height: 88px; border-radius:50%;
+    background: linear-gradient(160deg, var(--color-bright-blue), var(--color-light-blue));
+    margin: 0 auto var(--space-2);
+  }
+  .story-tile { background: var(--color-light-blue); border-radius:1rem; padding: var(--space-3); }
+  .faq-item { border-bottom: 1px solid rgba(18,22,29,0.12); padding-block: var(--space-2); }
+  .faq-item summary { cursor:pointer; font-weight:600; }
+</style>
+</head>
+<body data-page="if-gathering">
+
+<div class="utility-nav">
+  <div class="container" style="display:flex; justify-content:flex-end; gap: var(--space-3);">
+    <a href="#">My Account</a>
+    <a href="#give">Give</a>
+  </div>
+</div>
+
+<header>
+  <nav class="site-nav container">
+    <a href="gather-everywhere.html" class="back-to-gather">← part of Gather</a>
+    <ul class="links">
+      <li><a href="#story">Who We Are</a></li>
+      <li><a href="#">On Demand</a></li>
+      <li><a href="#">IF:Table</a></li>
+      <li><a href="#">Free Resources</a></li>
+    </ul>
+    <a class="btn" href="#get-involved">Host an IF:Local</a>
+  </nav>
+</header>
+
+<main>
+
+  <section id="hero" class="pairing-04">
+    <div class="container" style="text-align:center; padding-block: var(--space-6);">
+      <h1 class="serif-heading" style="max-width:20ch; margin-inline:auto; font-size: var(--h1-size);">Same Heart. Same Community.</h1>
+      <p style="max-width:50ch; margin-inline:auto; font-size:1.1rem;">Find your people.</p>
+      <p style="font-size:0.9rem; opacity:0.7;">October 1–2, 2027 · Two-day event, back to the original format</p>
+      <a class="btn" href="#get-involved" style="margin-top: var(--space-2);">Host an IF:Local</a>
+    </div>
+  </section>
+
+  <section id="story">
+    <div class="container grid grid-2" style="align-items:center;">
+      <div class="motif-thought-bubble" style="max-width:260px;"><span class="mark"></span></div>
+      <div>
+        <h2 class="serif-heading">Our story</h2>
+        <p>What started as a gathering for women is now a global movement of people gathering for the sake of the gospel. Twelve years in, IF:Gathering remains discipleship-first — life-on-life, in living rooms, in local churches, studying God's Word together.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="what-it-is" style="background: var(--color-light-blue);">
+    <div class="container" style="text-align:center;">
+      <h2 class="serif-heading">What IF:Gathering is</h2>
+      <p style="margin-inline:auto;">IF:Gathering empowers women to disciple in their own context — making disciples who make disciples, wherever they are. The broader IF family also draws men and children into the wider Gather ecosystem.</p>
+    </div>
+  </section>
+
+  <section id="get-involved">
+    <div class="container grid grid-2">
+      <div class="card" style="background: rgba(189,216,231,0.4);">
+        <h3>Attend or watch</h3>
+        <p>Join in person or via simulcast on October 1–2.</p>
+        <a class="btn btn-outline" href="#" style="margin-top:var(--space-2);">Attend or Watch</a>
+      </div>
+      <div class="card" style="background: rgba(42,94,216,0.1); border-color: var(--color-bright-blue);">
+        <h3>Host an IF:Local</h3>
+        <p>Start an IF:Local group in your church, city, or living room. Join 35,000 groups already meeting year-round.</p>
+        <a class="btn" href="#" style="margin-top:var(--space-2);">Host an IF:Local</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="leaders">
+    <div class="container">
+      <h2 class="serif-heading" style="text-align:center;">Leading the way</h2>
+      <div class="grid grid-4" style="margin-top: var(--space-4);">
+        <div class="leader-card"><div class="avatar"></div><h4>Jennie Allen</h4><p style="font-size:0.85rem;">Founder</p></div>
+        <div class="leader-card"><div class="avatar"></div><h4>Speaker Name</h4><p style="font-size:0.85rem;">IF:Local Leader</p></div>
+        <div class="leader-card"><div class="avatar"></div><h4>Speaker Name</h4><p style="font-size:0.85rem;">IF:Local Leader</p></div>
+        <div class="leader-card"><div class="avatar"></div><h4>Speaker Name</h4><p style="font-size:0.85rem;">IF:Local Leader</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="proof" style="background: var(--color-light-blue);">
+    <div class="container">
+      <h2 class="serif-heading" style="text-align:center; max-width:26ch; margin-inline:auto;">Stoking <span class="accent">revival fires</span>, one table at a time</h2>
+      <div class="grid grid-3" style="margin-top: var(--space-4);">
+        <div class="story-tile"><p>"I finally feel so seen. These are my people."</p></div>
+        <div class="story-tile"><p>"What are you learning about God and yourself right now? That question changed my group."</p></div>
+        <div class="story-tile"><p>"Life-on-life discipleship, over coffee, changed how I read Scripture."</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="give">
+    <div class="container" style="max-width:480px; text-align:center;">
+      <div class="card" style="background: rgba(189,216,231,0.4);">
+        <h3>Give</h3>
+        <p>Support IF:Gathering's discipleship work — a secondary way to partner, alongside hosting.</p>
+        <a class="btn btn-outline" href="#" style="margin-top:var(--space-2);">Give</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="container" style="max-width:70ch;">
+      <h2 class="serif-heading" style="text-align:center;">FAQ</h2>
+      <details class="faq-item"><summary>Why is IF:Gathering two days again?</summary><p>We're returning to the original two-day format for 2027, after 2026's one-night event — more room for teaching, worship, and community.</p></details>
+      <details class="faq-item"><summary>What is an IF:Local?</summary><p>A small group — as few as 5 people — gathering year-round to study Scripture and disciple one another.</p></details>
+      <details class="faq-item"><summary>Do I need to be part of a church to attend?</summary><p>No — first-timers are welcome in person or online.</p></details>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container" style="padding-block: var(--space-4); font-size:0.85rem; opacity:0.6;">
+    IF:Gathering · Wireframe · <a href="gather-everywhere.html" style="color:inherit;">Part of Gather</a>
+  </div>
+</footer>
+
+<script src="js/sections-manifest.js"></script>
+<script src="js/review-mode.js"></script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Instrument+Serif:ital@0;1&display=swap');
+
+/*
+  Gather design tokens — from "Gather - Interactive Wireframe Build Context"
+  (Brand Guide 2026, p.46). Spacing/grid/breakpoints are NOT specified in the
+  brand guide (flagged gap) — 8px base unit + 1200px container picked here
+  per the doc's own recommendation; revisit if the client provides a system.
+*/
+:root {
+  /* Core palette */
+  --color-off-white: #FFFAF0;
+  --color-bright-blue: #2A5ED8;
+  --color-dark-blue: #12161D;
+  --color-light-blue: #BDD8E7;
+
+  /* Typography */
+  --font-primary: 'Plus Jakarta Sans', sans-serif;
+  --font-secondary: 'Instrument Serif', serif;
+
+  /* Web type scale */
+  --h1-size: 3rem;    --h1-weight: 300; --h1-line-height: 1.1;
+  --h2-size: 2.4rem;  --h2-weight: 300; --h2-line-height: 1.1;
+  --h3-size: 2rem;    --h3-weight: 300; --h3-line-height: 1.1;
+  --h4-size: 1.5rem;  --h4-weight: 400; --h4-line-height: 1.2;
+  --body-size: 1rem;  --body-weight: 400; --body-line-height: 1.4;
+  --button-size: 1rem; --button-weight: 500;
+
+  /* Mobile type scale (undefined by brand guide — scaled down proportionally) */
+  --h1-size-mobile: 2.1rem;
+  --h2-size-mobile: 1.75rem;
+  --h3-size-mobile: 1.5rem;
+  --h4-size-mobile: 1.25rem;
+
+  /* Logo */
+  --logo-min-size-web: 130px;
+
+  /* Motif */
+  --circle-stroke-width: 4px;
+
+  /* Spacing (8px base unit — not brand-guide-specified, see gap flag above) */
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2rem;
+  --space-5: 3rem;
+  --space-6: 4rem;
+  --space-7: 6rem;
+  --space-8: 8rem;
+
+  /* Layout */
+  --container-max: 1200px;
+  --container-pad: var(--space-3);
+
+  /* Interaction states (not brand-guide-specified, see gap flag) */
+  --hover-darken: brightness(0.9);
+  --focus-ring: 0 0 0 3px var(--color-bright-blue);
+}
+
+/* ---- Color pairing utility classes (Section 3 of build-context doc) ---- */
+
+/* Pairing 01 — primary, majority of surfaces */
+.pairing-01 {
+  --bg: var(--color-off-white);
+  --logo: var(--color-bright-blue);
+  --heading: var(--color-dark-blue);
+  --accent: var(--color-bright-blue);
+  --body: var(--color-dark-blue);
+  --btn-bg: var(--color-bright-blue);
+  --btn-text: var(--color-off-white);
+}
+
+/* Pairing 02 — secondary, second-most */
+.pairing-02 {
+  --bg: var(--color-bright-blue);
+  --logo: var(--color-off-white);
+  --heading: var(--color-dark-blue);
+  --accent: var(--color-off-white);
+  --body: var(--color-off-white);
+  --btn-bg: var(--color-dark-blue);
+  --btn-text: var(--color-off-white);
+}
+
+/* Pairing 03 — sparing, Gather Global dominant */
+.pairing-03 {
+  --bg: var(--color-dark-blue);
+  --logo: var(--color-bright-blue);
+  --heading: var(--color-bright-blue);
+  --accent: var(--color-off-white);
+  --body: var(--color-off-white);
+  --btn-bg: var(--color-bright-blue);
+  --btn-text: var(--color-off-white);
+}
+
+/* Pairing 04 — sparing */
+.pairing-04 {
+  --bg: var(--color-light-blue);
+  --logo: var(--color-dark-blue);
+  --heading: var(--color-dark-blue);
+  --accent: var(--color-bright-blue);
+  --body: var(--color-dark-blue);
+  --btn-bg: var(--color-bright-blue);
+  --btn-text: var(--color-off-white);
+}
+
+[class^="pairing-"], [class*=" pairing-"] {
+  background: var(--bg);
+  color: var(--body);
+}

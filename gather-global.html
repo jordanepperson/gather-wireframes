@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gather Global (Gather27) — Wireframe</title>
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/review-mode.css">
+<style>
+  body { background: var(--color-dark-blue); }
+  .sticky-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(6px);
+    background: rgba(18,22,29,0.9);
+    border-bottom: 1px solid rgba(255,250,240,0.1);
+  }
+  .pillar-icon {
+    width: 56px; height: 56px; border-radius: 50%;
+    border: var(--circle-stroke-width) solid var(--color-bright-blue);
+    display:flex; align-items:center; justify-content:center;
+    font-family: var(--font-secondary); font-style:italic; color: var(--color-bright-blue);
+    margin-bottom: var(--space-2);
+  }
+  .stat-strip { display:flex; gap: var(--space-6); flex-wrap:wrap; justify-content:center; }
+  .stat-strip .stat { text-align:center; }
+  .stat-strip .stat .num { font-size:2.4rem; font-weight:300; color: var(--color-bright-blue); font-family: var(--font-primary); }
+  .city-list { display:flex; gap: var(--space-2); flex-wrap:wrap; justify-content:center; }
+  .city-list span {
+    border: 1px solid rgba(255,250,240,0.3);
+    border-radius: 999px;
+    padding: 0.4rem 1rem;
+    font-size: 0.85rem;
+  }
+  .leader-card { text-align:center; }
+  .leader-card .avatar {
+    width: 88px; height: 88px; border-radius:50%;
+    background: linear-gradient(160deg, var(--color-bright-blue), var(--color-light-blue));
+    margin: 0 auto var(--space-2);
+  }
+  .faq-item { border-bottom: 1px solid rgba(255,250,240,0.15); padding-block: var(--space-2); }
+  .faq-item summary { cursor:pointer; font-weight:600; }
+</style>
+</head>
+<body data-page="gather-global">
+
+<header class="sticky-nav">
+  <nav class="site-nav container" style="color: var(--color-off-white);">
+    <a href="gather-everywhere.html" class="back-to-gather" style="color: var(--color-off-white);">← part of Gather</a>
+    <ul class="links" style="color: var(--color-off-white);">
+      <li><a href="#why-now" style="color:var(--color-off-white);">About</a></li>
+      <li><a href="#get-involved" style="color:var(--color-off-white);">Get Involved</a></li>
+      <li><a href="#leaders" style="color:var(--color-off-white);">Leaders</a></li>
+      <li><a href="#faq" style="color:var(--color-off-white);">FAQ</a></li>
+    </ul>
+    <a class="btn" href="#get-involved">Host a Watch Party</a>
+  </nav>
+</header>
+
+<main>
+
+  <section id="hero" class="pairing-03">
+    <div class="container grid grid-2" style="align-items:center; padding-block: var(--space-6);">
+      <div>
+        <p class="accent" style="font-size:1.1rem;">Gather Global — 2027</p>
+        <h1>The Global Church, Gathering Together Like Never Before</h1>
+        <p>Every believer. Every continent. Together across 24 hours.</p>
+        <p style="font-size:0.9rem; opacity:0.7;">March 5–6, 2027 · 24-hour global broadcast</p>
+        <a class="btn" href="#get-involved" style="margin-top: var(--space-2);">Host a Watch Party</a>
+      </div>
+      <div class="motif-ripple"><span class="core"></span></div>
+    </div>
+  </section>
+
+  <section id="why-now" class="pairing-03">
+    <div class="container" style="text-align:center;">
+      <h2 style="max-width:26ch; margin-inline:auto;">Every continent. Every believer. Together.</h2>
+      <p style="margin-inline:auto;">The global Church, by the global Church. Jesus followers in churches, campuses, arenas, and living rooms — from every continent and denomination — join together across every time zone for one broadcast, free to everyone, everywhere.</p>
+    </div>
+  </section>
+
+  <section id="what-it-is" class="pairing-03">
+    <div class="container">
+      <h2 style="text-align:center;">What Gather Global is</h2>
+      <p style="text-align:center; margin-inline:auto; max-width:70ch;">A relay broadcast that moves across regions and time zones — regional hubs each contributing their own teaching, prayer, and worship moments, structured around four movements the whole global Church moves through together.</p>
+      <div class="grid grid-4" style="margin-top: var(--space-4); text-align:center;">
+        <div><div class="pillar-icon" style="margin-inline:auto;">1</div><h4>Pray</h4></div>
+        <div><div class="pillar-icon" style="margin-inline:auto;">2</div><h4>Worship</h4></div>
+        <div><div class="pillar-icon" style="margin-inline:auto;">3</div><h4>Repent</h4></div>
+        <div><div class="pillar-icon" style="margin-inline:auto;">4</div><h4>Commission</h4></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="proof" class="pairing-03">
+    <div class="container">
+      <h2 style="text-align:center;">Global proof</h2>
+      <div class="stat-strip" style="margin-block: var(--space-4);">
+        <div class="stat"><div class="num">7M</div><div>people reached in 2025</div></div>
+        <div class="stat"><div class="num">225</div><div>countries &amp; territories</div></div>
+        <div class="stat"><div class="num">24</div><div>hours, one broadcast</div></div>
+      </div>
+      <div class="city-list">
+        <span>New York</span><span>Peru</span><span>Barcelona</span><span>Durban</span><span>Jaipur</span><span>Tokyo</span><span>Sydney</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="get-involved" class="pairing-03">
+    <div class="container grid grid-2">
+      <div class="card" style="background: rgba(42,94,216,0.15); border-color: rgba(255,250,240,0.15);">
+        <h3 style="color:var(--color-off-white);">Host a Watch Party</h3>
+        <p style="color:var(--color-off-white);">Gather your church, campus, or living room around the broadcast. We give you everything you need to host.</p>
+        <a class="btn" href="#" style="margin-top:var(--space-2);">Host a Watch Party</a>
+      </div>
+      <div class="card" style="background: rgba(255,250,240,0.06); border-color: rgba(255,250,240,0.15);">
+        <h3 style="color:var(--color-off-white);">Find a Gathering</h3>
+        <p style="color:var(--color-off-white);">Find a nearby gathering by church name and location.</p>
+        <a class="btn btn-outline" href="#" style="margin-top:var(--space-2); color:var(--color-off-white);">Find a Gathering</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="leaders" class="pairing-03">
+    <div class="container">
+      <h2 style="text-align:center;">Leaders &amp; broadcast locations</h2>
+      <div class="grid grid-4" style="margin-top: var(--space-4);">
+        <div class="leader-card"><div class="avatar"></div><h4>Jennie Allen</h4><p style="font-size:0.85rem;">USA</p></div>
+        <div class="leader-card"><div class="avatar"></div><h4>Christine Caine</h4><p style="font-size:0.85rem;">Australia</p></div>
+        <div class="leader-card"><div class="avatar"></div><h4>Francis Chan</h4><p style="font-size:0.85rem;">USA</p></div>
+        <div class="leader-card">
+          <div class="motif-constellation" style="min-height:88px;">
+            <span style="width:8px;height:8px;top:20%;left:30%;"></span>
+            <span style="width:6px;height:6px;top:55%;left:10%;"></span>
+            <span style="width:10px;height:10px;top:65%;left:50%;"></span>
+            <span style="width:6px;height:6px;top:15%;left:70%;"></span>
+          </div>
+          <p style="font-size:0.85rem;">+ every host location</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="pairing-03">
+    <div class="container" style="max-width:70ch;">
+      <h2 style="text-align:center;">FAQ</h2>
+      <details class="faq-item"><summary>What does hosting a watch party require?</summary><p>A space, a screen, and a few volunteers — we provide the broadcast, a host guide, and promotional materials.</p></details>
+      <details class="faq-item"><summary>How long is the broadcast?</summary><p>24 hours, relayed across regional hubs so every time zone has a moment built for them.</p></details>
+      <details class="faq-item"><summary>Is there a cost to host?</summary><p>No — hosting a watch party is free. Optional add-ons are available for larger gatherings.</p></details>
+      <details class="faq-item"><summary>What happens after the broadcast?</summary><p>You'll receive a simple next-step guide for your specific gathering. Details in your host toolkit.</p></details>
+    </div>
+  </section>
+
+</main>
+
+<footer class="pairing-03">
+  <div class="container" style="padding-block: var(--space-4); font-size:0.85rem; opacity:0.6;">
+    Gather Global (Gather27) · Wireframe · <a href="gather-everywhere.html" style="color:inherit;">Part of Gather</a>
+  </div>
+</footer>
+
+<script src="js/sections-manifest.js"></script>
+<script src="js/review-mode.js"></script>
+</body>
+</html>

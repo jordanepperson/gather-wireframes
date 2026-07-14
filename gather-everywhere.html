@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gather Everywhere — Wireframe</title>
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/review-mode.css">
+<style>
+  .expr-card { border-radius: 1rem; padding: var(--space-4); }
+  .expr-card h3 { margin-bottom: var(--space-1); }
+  .flywheel-step {
+    text-align: center;
+    padding: var(--space-3);
+  }
+  .flywheel-step .num {
+    font-family: var(--font-secondary);
+    font-style: italic;
+    font-size: 2rem;
+    color: var(--color-bright-blue);
+  }
+  .story-tile {
+    border-radius: 1rem;
+    overflow: hidden;
+    background: var(--color-light-blue);
+  }
+  .story-tile .photo {
+    aspect-ratio: 4/3;
+    background: linear-gradient(135deg, var(--color-bright-blue), var(--color-dark-blue));
+    border-radius: 50% / 40%;
+    margin: var(--space-3);
+  }
+  .story-tile p { padding: 0 var(--space-3) var(--space-3); font-size: 0.9rem; }
+  .donate-amounts { display: flex; gap: var(--space-1); flex-wrap: wrap; margin-block: var(--space-2); }
+  .donate-amounts button {
+    border-radius: 999px;
+    border: 1px solid rgba(255,250,240,0.4);
+    background: transparent;
+    color: inherit;
+    padding: 0.5rem 1.1rem;
+    font-family: var(--font-primary);
+    cursor: pointer;
+  }
+  .donate-amounts button.selected { background: var(--color-off-white); color: var(--color-bright-blue); }
+  .partner-logos {
+    display: flex;
+    gap: var(--space-4);
+    align-items: center;
+    flex-wrap: wrap;
+    opacity: 0.5;
+  }
+  .partner-logos div {
+    width: 110px;
+    height: 40px;
+    background: currentColor;
+    opacity: 0.25;
+    border-radius: 0.4rem;
+  }
+</style>
+</head>
+<body data-page="gather-everywhere">
+
+<header class="pairing-01">
+  <nav class="site-nav container">
+    <a href="index.html"><img class="logo" src="assets/logo-dark.svg" alt="Gather"></a>
+    <ul class="links">
+      <li><a href="gather-global.html">Gather Global</a></li>
+      <li><a href="gather-cities.html">Gather Cities</a></li>
+      <li><a href="if-gathering.html">IF:Gathering</a></li>
+      <li><a href="#founder">Our Story</a></li>
+      <li><a href="#partners">Partners</a></li>
+    </ul>
+    <a class="btn" href="#cta">Give</a>
+  </nav>
+</header>
+
+<main>
+
+  <section id="hero" class="pairing-01">
+    <div class="container" style="padding-block: var(--space-6); text-align:center;">
+      <p class="accent" style="font-size:1.25rem; margin-bottom: var(--space-2);">Everybody. Everywhere.</p>
+      <h1 style="max-width: 18ch; margin-inline:auto;">The world needs the hope of Jesus now.</h1>
+      <p style="max-width:60ch; margin-inline:auto; font-size:1.15rem;">Gather creates moments where the global Church can see what God is doing — and respond together.</p>
+      <div style="margin-top: var(--space-4);">
+        <a class="btn" href="#expressions">Find Your Way In</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="why-now" class="pairing-04">
+    <div class="container grid grid-2" style="align-items:center;">
+      <div class="motif-ripple" style="max-width:280px;"><span class="core"></span></div>
+      <div>
+        <h2>Why now</h2>
+        <p>There are 5.5 billion people who don't yet know Jesus. For the first time in history, believers everywhere can gather, pray, and mobilize together in real time — across every continent, every time zone. Hearts are turning toward God in homes, cities, and nations. The Church was not meant to stand still in the middle of it.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="flywheel" class="pairing-01">
+    <div class="container">
+      <h2 style="text-align:center; max-width:22ch; margin-inline:auto;">What Gather does</h2>
+      <p style="text-align:center; margin-inline:auto;">Gather convenes; our partners equip and send. We don't replace the local church or discipleship organizations — we connect them.</p>
+      <div class="grid grid-4" style="margin-top: var(--space-4);">
+        <div class="flywheel-step card">
+          <div class="num">01</div>
+          <h4>Reach</h4>
+          <p style="font-size:0.9rem;">Someone discovers Gather through books, podcasts, a pastor, a partner, or word of mouth.</p>
+        </div>
+        <div class="flywheel-step card">
+          <div class="num">02</div>
+          <h4>Gather</h4>
+          <p style="font-size:0.9rem;">They encounter vision and inspiration for how to be part of what God is doing.</p>
+        </div>
+        <div class="flywheel-step card">
+          <div class="num">03</div>
+          <h4>Mobilize</h4>
+          <p style="font-size:0.9rem;">They're equipped with tools, training, and a clear next step to go and act.</p>
+        </div>
+        <div class="flywheel-step card">
+          <div class="num">04</div>
+          <h4>Connect</h4>
+          <p style="font-size:0.9rem;">They're linked to partners already doing the work on the ground, in their context.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="expressions" class="pairing-04">
+    <div class="container">
+      <h2 style="text-align:center;">Three ways to gather</h2>
+      <p style="text-align:center; margin-inline:auto;">Choose the expression that fits where you are.</p>
+      <div class="grid grid-3" style="margin-top: var(--space-4);">
+        <a class="expr-card pairing-04" style="text-decoration:none; display:block; border:1px solid rgba(18,22,29,0.15);" href="if-gathering.html">
+          <div class="motif-thought-bubble" style="width:64px; margin-bottom: var(--space-2);"><span class="mark"></span></div>
+          <h3>IF:Gathering</h3>
+          <p>For women leading where they are.</p>
+          <span class="btn btn-outline" style="margin-top:var(--space-2); font-size:0.85rem; padding:0.5rem 1rem;">Learn about IF:Gathering</span>
+        </a>
+        <a class="expr-card pairing-03" style="text-decoration:none; display:block;" href="gather-global.html">
+          <div class="motif-constellation" style="min-height:64px; width:100%; margin-bottom: var(--space-2);">
+            <span style="width:8px;height:8px;top:10%;left:20%;"></span>
+            <span style="width:6px;height:6px;top:40%;left:5%;"></span>
+            <span style="width:10px;height:10px;top:60%;left:35%;"></span>
+            <span style="width:6px;height:6px;top:20%;left:70%;"></span>
+            <span style="width:8px;height:8px;top:55%;left:80%;"></span>
+          </div>
+          <h3 style="color:var(--color-bright-blue);">Gather Global</h3>
+          <p style="color:var(--color-off-white);">The global Church, together for 24 hours.</p>
+          <span class="btn" style="margin-top:var(--space-2); font-size:0.85rem; padding:0.5rem 1rem;">Host a Watch Party</span>
+        </a>
+        <a class="expr-card" style="text-decoration:none; display:block; background: var(--color-bright-blue);" href="gather-cities.html">
+          <div class="motif-dot-globe" style="width:64px; margin-bottom: var(--space-2);">
+            <span style="width:6px;height:6px;top:20%;left:25%;"></span>
+            <span style="width:5px;height:5px;top:55%;left:60%;"></span>
+            <span style="width:5px;height:5px;top:65%;left:20%;"></span>
+          </div>
+          <h3 style="color:var(--color-off-white);">Gather Cities</h3>
+          <p style="color:var(--color-off-white);">Bring Gather to your city.</p>
+          <span class="btn btn-outline" style="margin-top:var(--space-2); font-size:0.85rem; padding:0.5rem 1rem; color:var(--color-off-white);">Partner With Us</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="founder" class="pairing-01">
+    <div class="container grid grid-2" style="align-items:center;">
+      <div class="motif-circle" style="background: linear-gradient(160deg, var(--color-light-blue), var(--color-bright-blue)); max-width:280px;"></div>
+      <div>
+        <h2>It started with a question</h2>
+        <p>It started with a question Jennie Allen couldn't shake: if Jesus came back tomorrow, then what? In 2014, she and a small team began gathering people to live like the answer matters. Jennie is Gather's Chief Storyteller — the reach engine for this movement, not its destination.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="proof" class="pairing-01">
+    <div class="container">
+      <h2 style="text-align:center; max-width:26ch; margin-inline:auto;">Stoking <span class="accent">revival fires</span> that reawaken the global Church</h2>
+      <p style="text-align:center; margin-inline:auto;">In 2025, our first global broadcast brought together more than 7 million people across 225 countries and territories to pray, worship, and respond. It was only the beginning.</p>
+      <div class="grid grid-4" style="margin-top: var(--space-4);">
+        <div class="story-tile"><div class="photo"></div><p><strong>USA</strong> — a campus watch party turned into a weekly prayer group.</p></div>
+        <div class="story-tile"><div class="photo"></div><p><strong>Rwanda</strong> — churches gathered by the hundreds to broadcast together.</p></div>
+        <div class="story-tile"><div class="photo"></div><p><strong>Ukraine</strong> — believers prayed together across active conflict zones.</p></div>
+        <div class="story-tile"><div class="photo"></div><p><strong>Malaysia</strong> — a living room gathering grew into a citywide network.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="partners" class="pairing-04">
+    <div class="container" style="text-align:center;">
+      <h2>Gather convenes. Our partners equip and send.</h2>
+      <div class="partner-logos" style="justify-content:center; margin-top: var(--space-3);">
+        <div></div><div></div><div></div><div></div><div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="cta" class="pairing-02">
+    <div class="container grid grid-2" style="align-items:center;">
+      <div>
+        <h2>Become a partner</h2>
+        <p>Join the organizations already equipping and sending what Gather convenes.</p>
+        <a class="btn btn-outline" style="margin-top:var(--space-2);">Become a Partner</a>
+      </div>
+      <div class="card" style="background: rgba(255,250,240,0.08); border-color: rgba(255,250,240,0.2);">
+        <h3 style="color:var(--color-off-white);">Give</h3>
+        <p style="color:var(--color-off-white);">Support the movement.</p>
+        <div class="donate-amounts">
+          <button type="button">$35</button>
+          <button type="button" class="selected">$50</button>
+          <button type="button">$100</button>
+          <button type="button">Custom</button>
+        </div>
+        <a class="btn" href="#">Give Now</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="pairing-01">
+  <div class="container" style="padding-block: var(--space-4); font-size:0.85rem; opacity:0.6;">
+    Gather Everywhere · Wireframe · Whiteboard
+  </div>
+</footer>
+
+<script src="js/sections-manifest.js"></script>
+<script src="js/review-mode.js"></script>
+</body>
+</html>

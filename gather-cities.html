@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gather Cities — Wireframe</title>
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/review-mode.css">
+<style>
+  body { background: var(--color-bright-blue); color: var(--color-off-white); }
+  .cities-nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(42,94,216,0.92);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid rgba(255,250,240,0.2);
+  }
+  .cities-nav a { color: var(--color-off-white); }
+  .step-card { text-align:center; }
+  .step-card .step-num {
+    width:48px; height:48px; border-radius:50%;
+    background: rgba(255,250,240,0.15);
+    display:flex; align-items:center; justify-content:center;
+    margin: 0 auto var(--space-2);
+    font-weight:600;
+  }
+  .provisional-tag {
+    display:inline-block; font-size:0.75rem; font-weight:600;
+    background: rgba(255,250,240,0.15); border-radius:999px; padding:0.3rem 0.8rem;
+    margin-bottom: var(--space-2);
+  }
+  .event-card {
+    background: rgba(255,250,240,0.1);
+    border-radius: 1rem;
+    padding: var(--space-3);
+    font-family: var(--font-primary);
+    max-width: 320px;
+    margin-inline: auto;
+  }
+  .faq-item { border-bottom: 1px solid rgba(255,250,240,0.2); padding-block: var(--space-2); }
+  .faq-item summary { cursor:pointer; font-weight:600; }
+  input, textarea {
+    width:100%; padding:0.7rem 0.9rem; border-radius:0.6rem; border:1px solid rgba(255,250,240,0.4);
+    background: rgba(255,250,240,0.08); color: var(--color-off-white); font-family: var(--font-primary);
+    margin-bottom: var(--space-2);
+  }
+  ::placeholder { color: rgba(255,250,240,0.6); }
+</style>
+</head>
+<body data-page="gather-cities">
+
+<header class="cities-nav">
+  <nav class="site-nav container">
+    <a href="gather-everywhere.html" class="back-to-gather" style="color:var(--color-off-white);">← part of Gather</a>
+    <ul class="links">
+      <li><a href="#what-it-is">What It Is</a></li>
+      <li><a href="#how-it-works">How It Works</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <a class="btn" style="background: var(--color-dark-blue);" href="#cta">Help Host an Event</a>
+  </nav>
+</header>
+
+<main>
+
+  <section id="hero">
+    <div class="container" style="text-align:center; padding-block: var(--space-6);">
+      <div class="motif-dot-globe" style="width:72px; margin:0 auto var(--space-3);">
+        <span style="width:8px;height:8px;top:20%;left:25%;"></span>
+        <span style="width:6px;height:6px;top:55%;left:60%;"></span>
+        <span style="width:6px;height:6px;top:65%;left:20%;"></span>
+        <span style="width:5px;height:5px;top:30%;left:65%;"></span>
+      </div>
+      <h1 style="max-width:20ch; margin-inline:auto; color: var(--color-off-white);">It's just the beginning.</h1>
+      <p style="max-width:55ch; margin-inline:auto; color: var(--color-off-white); font-size:1.1rem;">Across homes, cities, and continents, hearts are turning toward God.</p>
+    </div>
+  </section>
+
+  <section id="what-it-is">
+    <div class="container grid grid-2" style="align-items:center;">
+      <div>
+        <h2 style="color:var(--color-off-white);">What Gather Cities is</h2>
+        <p style="color:var(--color-off-white);">A Gather Cities event is pastor-led and local-church-led — your church runs 80–90% of it. Gather provides the remaining light support: playbooks, promotional assets, and a point of contact. We don't run the event for you; we help you run it well.</p>
+      </div>
+      <div class="card" style="background: rgba(255,250,240,0.1); border-color: rgba(255,250,240,0.2);">
+        <div class="grid" style="grid-template-columns: 1fr 1fr; text-align:center;">
+          <div><div style="font-size:2rem; color:var(--color-off-white);">85%</div><p style="color:var(--color-off-white); font-size:0.85rem;">Led by your church</p></div>
+          <div><div style="font-size:2rem; color:var(--color-off-white);">15%</div><p style="color:var(--color-off-white); font-size:0.85rem;">Supported by Gather</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="why">
+    <div class="container" style="text-align:center;">
+      <h2 style="color:var(--color-off-white); max-width:28ch; margin-inline:auto;">Through global events, local initiatives, and digital platforms</h2>
+      <p style="margin-inline:auto; color:var(--color-off-white);">Gather brings together the global Church, mobilizes believers, and amplifies stories of God moving around the world. Bringing Gather to your city is momentum — the on-ramp toward hosting Gather27, not a one-off event on its own.</p>
+    </div>
+  </section>
+
+  <section id="how-it-works">
+    <div class="container">
+      <h2 style="text-align:center; color:var(--color-off-white);">How it works</h2>
+      <div class="grid grid-3" style="margin-top: var(--space-4);">
+        <div class="step-card">
+          <div class="step-num">1</div>
+          <h4 style="color:var(--color-off-white);">Inquire</h4>
+          <p style="color:var(--color-off-white); font-size:0.9rem;">Tell us about your church and your city.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">2</div>
+          <h4 style="color:var(--color-off-white);">Get vetted &amp; equipped</h4>
+          <p style="color:var(--color-off-white); font-size:0.9rem;">We confirm fit and hand you the local-activation playbook.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">3</div>
+          <h4 style="color:var(--color-off-white);">Host</h4>
+          <p style="color:var(--color-off-white); font-size:0.9rem;">Your church leads the gathering, with Gather's light support.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="proof">
+    <div class="container" style="text-align:center;">
+      <span class="provisional-tag">Coming this fall</span>
+      <h2 style="color:var(--color-off-white);">Proof — a Gather Cities activation</h2>
+      <div class="event-card" style="margin-top: var(--space-3);">
+        <p style="color:var(--color-off-white); margin:0;"><strong>Brooklyn</strong> / New York City<br>September 12 / 4 PM</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="cta">
+    <div class="container" style="max-width:560px;">
+      <h2 style="text-align:center; color:var(--color-off-white);">Partner with us</h2>
+      <p style="text-align:center; color:var(--color-off-white);">Bring Gather to your city.</p>
+      <form style="margin-top: var(--space-3);">
+        <input type="text" placeholder="Church name">
+        <input type="text" placeholder="City">
+        <input type="email" placeholder="Email">
+        <button type="button" class="btn" style="background: var(--color-dark-blue); width:100%;">Help Host an Event</button>
+      </form>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="container" style="max-width:70ch;">
+      <h2 style="text-align:center; color:var(--color-off-white);">FAQ</h2>
+      <details class="faq-item"><summary style="color:var(--color-off-white);">What's the timeline?</summary><p style="color:var(--color-off-white);">Gather Cities is building toward 1,000 activated cities by 2030.</p></details>
+      <details class="faq-item"><summary style="color:var(--color-off-white);">What does my church commit to?</summary><p style="color:var(--color-off-white);">Leading 80–90% of the event — space, people, and promotion — with Gather providing playbooks and light support.</p></details>
+      <details class="faq-item"><summary style="color:var(--color-off-white);">Is there a cost?</summary><p style="color:var(--color-off-white);">No fee to partner. Your church covers its own local event costs.</p></details>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container" style="padding-block: var(--space-4); font-size:0.85rem; color:var(--color-off-white); opacity:0.7;">
+    Gather Cities · Wireframe · <a href="gather-everywhere.html" style="color:inherit;">Part of Gather</a>
+  </div>
+</footer>
+
+<script src="js/sections-manifest.js"></script>
+<script src="js/review-mode.js"></script>
+</body>
+</html>

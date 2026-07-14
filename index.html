@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gather — Wireframe Index</title>
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<style>
+  body { background: var(--color-off-white); }
+  .index-hero {
+    text-align: center;
+    padding-top: var(--space-8);
+    padding-bottom: var(--space-6);
+  }
+  .index-hero img { margin: 0 auto var(--space-4); width: 220px; }
+  .index-hero p.eyebrow {
+    font-family: var(--font-primary);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--color-bright-blue);
+    margin-bottom: var(--space-2);
+  }
+  .page-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-4);
+    padding-bottom: var(--space-8);
+  }
+  @media (max-width: 700px) {
+    .page-grid { grid-template-columns: 1fr; }
+  }
+  .page-card {
+    display: block;
+    text-decoration: none;
+    border-radius: 1.25rem;
+    padding: var(--space-5) var(--space-4);
+    position: relative;
+    overflow: hidden;
+    min-height: 220px;
+    transition: transform 0.15s ease;
+  }
+  .page-card:hover { transform: translateY(-4px); }
+  .page-card h2 { margin-bottom: var(--space-1); }
+  .page-card p { color: inherit; opacity: 0.85; max-width: 42ch; }
+  .page-card .tag {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0.7;
+    margin-bottom: var(--space-2);
+  }
+  footer.index-footer {
+    text-align: center;
+    padding-block: var(--space-5);
+    font-size: 0.8rem;
+    opacity: 0.6;
+  }
+</style>
+</head>
+<body data-page="index">
+
+<div class="container index-hero">
+  <img src="assets/logo-dark.svg" alt="Gather">
+  <p class="eyebrow">Whiteboard · Interactive Wireframes</p>
+  <h1 style="max-width: 20ch; margin-inline: auto;">Gather Ecosystem — Wireframe Index</h1>
+  <p style="margin-inline: auto; opacity: 0.75;">Four coded, interactive wireframes for the Gather ecosystem landing pages. Open a page below, then use <strong>Leave Feedback</strong> in the top-right corner to leave section-by-section notes.</p>
+</div>
+
+<div class="container page-grid">
+  <a class="page-card pairing-01" href="gather-everywhere.html">
+    <span class="tag">Parent Hub</span>
+    <h2>Gather Everywhere</h2>
+    <p>The router. Triages six audiences into the right next step across the three expressions.</p>
+  </a>
+  <a class="page-card pairing-03" href="gather-global.html">
+    <span class="tag">The Feature Film</span>
+    <h2>Gather Global <span style="opacity:0.6; font-weight:400;">(Gather27)</span></h2>
+    <p>Cinematic, expansive. The 24-hour global broadcast, March 5–6, 2027.</p>
+  </a>
+  <a class="page-card" style="background: var(--color-bright-blue); color: var(--color-off-white);" href="gather-cities.html">
+    <span class="tag" style="color: var(--color-off-white);">The Documentary</span>
+    <h2 style="color: var(--color-off-white);">Gather Cities</h2>
+    <p style="color: var(--color-off-white);">Grassroots, local-church-led. The on-ramp toward hosting Gather27.</p>
+  </a>
+  <a class="page-card pairing-04" href="if-gathering.html">
+    <span class="tag">The Vlog</span>
+    <h2>IF:Gathering</h2>
+    <p>12 years of equity. Relational, intimate — find your people. Oct 1–2, 2027.</p>
+  </a>
+</div>
+
+<footer class="index-footer">
+  Gather Ecosystem Wireframes · Whiteboard · built from the July 14, 2026 build-context brief
+</footer>
+
+<script src="js/sections-manifest.js"></script>
+</body>
+</html>
