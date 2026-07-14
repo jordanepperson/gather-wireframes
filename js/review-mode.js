@@ -1,6 +1,9 @@
 // Review Mode — Section 9 of "Gather - Interactive Wireframe Build Context".
 // Standalone project, browser storage only (no backend), per the brief.
+// Disabled for now (feedback is going through chat instead) — flip ENABLED
+// back to true to bring the in-page Review Mode UI back.
 (function () {
+  var ENABLED = false;
   var STORAGE_NOTES = 'gather-review-notes';
   var STORAGE_ACTIVE = 'gather-review-mode-active';
   var manifest = window.GATHER_SECTIONS || {};
@@ -197,9 +200,11 @@
     setActive(wasActive);
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
+  if (ENABLED) {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
   }
 })();
