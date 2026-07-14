@@ -11,11 +11,11 @@
   body { background: var(--color-bright-blue); color: var(--color-off-white); }
   .cities-nav {
     position: sticky; top: 0; z-index: 100;
-    background: rgba(42,94,216,0.92);
+    background: rgba(255,250,240,0.96);
     backdrop-filter: blur(6px);
-    border-bottom: 1px solid rgba(255,250,240,0.2);
+    border-bottom: 1px solid rgba(18,22,29,0.1);
   }
-  .cities-nav a { color: var(--color-off-white); }
+  .cities-nav a { color: var(--color-dark-blue); }
   .step-card { text-align:center; }
   .step-card .step-num {
     width:48px; height:48px; border-radius:50%;
@@ -51,13 +51,16 @@
 
 <header class="cities-nav">
   <nav class="site-nav container">
-    <a href="gather-everywhere.html" class="back-to-gather" style="color:var(--color-off-white);">← part of Gather</a>
+    <div style="display:flex; align-items:center; gap: var(--space-3);">
+      <img src="assets/gather-cities.svg" alt="Gather Cities" style="height:24px; width:auto;">
+      <a href="gather-everywhere.html" class="back-to-gather" style="color:var(--color-dark-blue);">← part of Gather</a>
+    </div>
     <ul class="links">
       <li><a href="#what-it-is">What It Is</a></li>
       <li><a href="#how-it-works">How It Works</a></li>
       <li><a href="#faq">FAQ</a></li>
     </ul>
-    <a class="btn" style="background: var(--color-dark-blue);" href="#cta">Help Host an Event</a>
+    <a class="btn" href="#cta">Help Host an Event</a>
   </nav>
 </header>
 
