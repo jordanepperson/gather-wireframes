@@ -91,6 +91,13 @@
     opacity: 0.75;
   }
   .hero-info-detail-value { font-size: 0.9rem; font-weight: 600; }
+  .hero-countdown-box {
+    display: flex;
+    align-items: center;
+    background: var(--color-dark-blue);
+    border-radius: 1rem;
+    padding: 0.6rem 1.25rem;
+  }
   .hero-countdown { display: flex; gap: var(--space-3); }
   .countdown-unit { text-align: center; min-width: 48px; }
   .countdown-num {
@@ -104,7 +111,7 @@
   .countdown-label { font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.75; }
   @media (max-width: 800px) {
     .hero-info-bar-inner { flex-direction: column; align-items: flex-start; }
-    .hero-countdown { align-self: center; }
+    .hero-countdown-box { align-self: center; }
   }
 
   /* About section media */
@@ -433,16 +440,59 @@
   }
 
   /* Global Stories */
-  .story-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-3); margin-top: var(--space-4); }
-  @media (max-width: 900px) { .story-grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 600px) { .story-grid { grid-template-columns: 1fr; } }
-  .story-card { display: flex; flex-direction: column; border-radius: 1rem; overflow: hidden; background: var(--color-off-white); border: 1px solid rgba(18,22,29,0.08); }
-  .story-card .photo { aspect-ratio: 4/3; background: linear-gradient(135deg, var(--color-bright-blue), var(--color-dark-blue)); }
-  .story-card .tags { display: flex; gap: 0.4rem; flex-wrap: wrap; padding: var(--space-3) var(--space-3) 0; }
-  .story-card .tag-pill { font-family: var(--font-primary); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; padding: 0.25rem 0.6rem; border-radius: 999px; }
-  .story-card .tag-pill.brand { background: var(--color-bright-blue); color: var(--color-off-white); }
-  .story-card .tag-pill.country { background: var(--color-light-blue); color: var(--color-dark-blue); }
-  .story-card h3 { font-family: var(--font-secondary); font-style: normal; font-weight: 400; font-size: 1.4rem; line-height: 1.2; margin: var(--space-2) 0 var(--space-3); padding-inline: var(--space-3); color: var(--color-dark-blue); }
+  /* Global Stories, styled as vertical-video "Moments" (passion2027.com pattern):
+     a horizontally-scrollable row of 9:16 reel-shaped cards with a centered play button. */
+  .moments-row {
+    display: flex;
+    gap: var(--space-3);
+    overflow-x: auto;
+    margin-top: var(--space-4);
+    padding-bottom: var(--space-2);
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+  }
+  .moments-row::-webkit-scrollbar { display: none; }
+  .moment-card {
+    position: relative;
+    flex: 0 0 auto;
+    width: 220px;
+    aspect-ratio: 9 / 16;
+    border-radius: 1.25rem;
+    overflow: hidden;
+    scroll-snap-align: start;
+  }
+  .moment-media {
+    position: absolute; inset: 0;
+    display: flex;
+    align-items: flex-start;
+    padding: var(--space-2);
+    background: linear-gradient(160deg, var(--color-bright-blue), var(--color-dark-blue));
+  }
+  .moment-media .content-note { max-width: 100%; }
+  .moment-card:nth-child(2) .moment-media { background: linear-gradient(160deg, var(--color-light-blue), var(--color-bright-blue) 70%); }
+  .moment-card:nth-child(3) .moment-media { background: linear-gradient(200deg, var(--color-dark-blue), var(--color-bright-blue) 130%); }
+  .moment-card:nth-child(5) .moment-media { background: linear-gradient(160deg, var(--color-light-blue), var(--color-bright-blue) 70%); }
+  .moment-card:nth-child(6) .moment-media { background: linear-gradient(200deg, var(--color-dark-blue), var(--color-bright-blue) 130%); }
+  .moment-play {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 3rem; height: 3rem;
+    border-radius: 50%;
+    background: rgba(255,250,240,0.92);
+    color: var(--color-bright-blue);
+    display: flex; align-items: center; justify-content: center;
+    padding-left: 2px;
+  }
+  .moment-caption {
+    position: absolute; left: 0; right: 0; bottom: 0; z-index: 2;
+    padding: var(--space-3);
+    background: linear-gradient(to top, rgba(18,22,29,0.9) 30%, transparent);
+  }
+  .moment-caption .tags { display: flex; gap: 0.35rem; flex-wrap: wrap; margin-bottom: 0.5rem; }
+  .moment-caption .tag-pill { font-family: var(--font-primary); font-size: 0.65rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; padding: 0.22rem 0.55rem; border-radius: 999px; }
+  .moment-caption .tag-pill.brand { background: var(--color-bright-blue); color: var(--color-off-white); }
+  .moment-caption .tag-pill.country { background: var(--color-light-blue); color: var(--color-dark-blue); }
+  .moment-caption h3 { font-family: var(--font-secondary); font-style: normal; font-weight: 400; font-size: 1rem; line-height: 1.25; margin: 0; color: var(--color-off-white); }
+  @media (max-width: 700px) { .moment-card { width: 170px; } }
 
   .faq-item { border-bottom: 1px solid rgba(255,250,240,0.15); padding-block: var(--space-2); }
   .faq-item summary { cursor:pointer; font-weight:600; }
@@ -527,11 +577,13 @@
             <span class="hero-info-detail-value">7 regions, one relay</span>
           </div>
         </div>
-        <div class="hero-countdown" id="hero-countdown" aria-live="polite">
-          <div class="countdown-unit"><span class="countdown-num" data-unit="days">--</span><span class="countdown-label">Days</span></div>
-          <div class="countdown-unit"><span class="countdown-num" data-unit="hours">--</span><span class="countdown-label">Hrs</span></div>
-          <div class="countdown-unit"><span class="countdown-num" data-unit="minutes">--</span><span class="countdown-label">Min</span></div>
-          <div class="countdown-unit"><span class="countdown-num" data-unit="seconds">--</span><span class="countdown-label">Sec</span></div>
+        <div class="hero-countdown-box">
+          <div class="hero-countdown" id="hero-countdown" aria-live="polite">
+            <div class="countdown-unit"><span class="countdown-num" data-unit="days">--</span><span class="countdown-label">Days</span></div>
+            <div class="countdown-unit"><span class="countdown-num" data-unit="hours">--</span><span class="countdown-label">Hrs</span></div>
+            <div class="countdown-unit"><span class="countdown-num" data-unit="minutes">--</span><span class="countdown-label">Min</span></div>
+            <div class="countdown-unit"><span class="countdown-num" data-unit="seconds">--</span><span class="countdown-label">Sec</span></div>
+          </div>
         </div>
         <a class="btn" href="#get-involved" style="background:var(--color-dark-blue);">Host a Watch Party</a>
       </div>
@@ -765,36 +817,54 @@
     <div class="container">
       <p class="eyebrow-label" style="text-align:center; margin-inline:auto;">Global Stories</p>
       <h2 style="text-align:center; max-width:24ch; margin-inline:auto;">Stories from the Global Church</h2>
-      <div class="story-grid">
-        <div class="story-card">
-          <div class="photo"></div>
-          <div class="tags"><span class="tag-pill brand">Gather Global</span><span class="tag-pill country">USA</span></div>
-          <h3>Outpouring in the next generation.</h3>
+      <div class="moments-row">
+        <div class="moment-card">
+          <div class="moment-media"><p class="content-note">Content note: vertical clip, a campus watch party that became a weekly prayer group.</p></div>
+          <div class="moment-play" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></div>
+          <div class="moment-caption">
+            <div class="tags"><span class="tag-pill brand">Gather Global</span><span class="tag-pill country">USA</span></div>
+            <h3>Outpouring in the next generation.</h3>
+          </div>
         </div>
-        <div class="story-card">
-          <div class="photo"></div>
-          <div class="tags"><span class="tag-pill brand">Gather Global</span><span class="tag-pill country">South Asia</span></div>
-          <h3>A ripple of faith spreading region to region.</h3>
+        <div class="moment-card">
+          <div class="moment-media"><p class="content-note">Content note: vertical clip following a story of faith moving between neighboring cities.</p></div>
+          <div class="moment-play" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></div>
+          <div class="moment-caption">
+            <div class="tags"><span class="tag-pill brand">Gather Global</span><span class="tag-pill country">South Asia</span></div>
+            <h3>A ripple of faith spreading region to region.</h3>
+          </div>
         </div>
-        <div class="story-card">
-          <div class="photo"></div>
-          <div class="tags"><span class="tag-pill brand">Gather Global</span><span class="tag-pill country">New Zealand</span></div>
-          <h3>Revival breaking out among Gen Z.</h3>
+        <div class="moment-card">
+          <div class="moment-media"><p class="content-note">Content note: vertical clip of a Gen Z-led worship night.</p></div>
+          <div class="moment-play" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></div>
+          <div class="moment-caption">
+            <div class="tags"><span class="tag-pill brand">Gather Global</span><span class="tag-pill country">New Zealand</span></div>
+            <h3>Revival breaking out among Gen Z.</h3>
+          </div>
         </div>
-        <div class="story-card">
-          <div class="photo"></div>
-          <div class="tags"><span class="tag-pill brand">Gather Global</span><span class="tag-pill country">Malaysia</span></div>
-          <h3>Revival reaching the remote jungles of Asia.</h3>
+        <div class="moment-card">
+          <div class="moment-media"><p class="content-note">Content note: vertical clip from a remote village gathering.</p></div>
+          <div class="moment-play" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></div>
+          <div class="moment-caption">
+            <div class="tags"><span class="tag-pill brand">Gather Global</span><span class="tag-pill country">Malaysia</span></div>
+            <h3>Revival reaching the remote jungles of Asia.</h3>
+          </div>
         </div>
-        <div class="story-card">
-          <div class="photo"></div>
-          <div class="tags"><span class="tag-pill brand">Gather Global</span><span class="tag-pill country">Ukraine</span></div>
-          <h3>A war that couldn't stop the Church.</h3>
+        <div class="moment-card">
+          <div class="moment-media"><p class="content-note">Content note: vertical clip of believers gathering to pray despite conflict.</p></div>
+          <div class="moment-play" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></div>
+          <div class="moment-caption">
+            <div class="tags"><span class="tag-pill brand">Gather Global</span><span class="tag-pill country">Ukraine</span></div>
+            <h3>A war that couldn't stop the Church.</h3>
+          </div>
         </div>
-        <div class="story-card">
-          <div class="photo"></div>
-          <div class="tags"><span class="tag-pill brand">Gather Global</span><span class="tag-pill country">Rwanda</span></div>
-          <h3>A nation finding reconciliation together.</h3>
+        <div class="moment-card">
+          <div class="moment-media"><p class="content-note">Content note: vertical clip of a reconciliation gathering between communities.</p></div>
+          <div class="moment-play" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></div>
+          <div class="moment-caption">
+            <div class="tags"><span class="tag-pill brand">Gather Global</span><span class="tag-pill country">Rwanda</span></div>
+            <h3>A nation finding reconciliation together.</h3>
+          </div>
         </div>
       </div>
     </div>
