@@ -20,12 +20,14 @@ window.GATHER_SECTIONS = {
     file: 'gather-global.html',
     sections: [
       { id: 'hero', label: 'Hero' },
-      { id: 'why-now', label: 'Why Now' },
-      { id: 'what-it-is', label: 'What It Is' },
+      { id: 'about', label: 'About' },
+      { id: 'what-it-is', label: 'The Event' },
+      { id: 'leaders', label: 'Leaders / Locations' },
       { id: 'proof', label: 'Global Proof' },
       { id: 'get-involved', label: 'Get Involved' },
-      { id: 'leaders', label: 'Leaders / Locations' },
       { id: 'faq', label: 'FAQ' },
+      { id: 'partners', label: 'Partners' },
+      { id: 'stories', label: 'Global Stories' },
     ],
   },
   'gather-cities': {
