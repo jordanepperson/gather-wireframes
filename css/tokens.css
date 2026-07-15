@@ -84,7 +84,7 @@
 .pairing-03 {
   --bg: var(--color-dark-blue);
   --logo: var(--color-bright-blue);
-  --heading: var(--color-bright-blue);
+  --heading: var(--color-off-white);
   --accent: var(--color-off-white);
   --body: var(--color-off-white);
   --btn-bg: var(--color-bright-blue);

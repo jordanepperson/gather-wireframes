@@ -126,6 +126,10 @@
     .about-media-tile.large { min-height: 200px; }
     .about-media-tile { min-height: 110px; }
   }
+  .about-theme-list { display: flex; flex-direction: column; gap: var(--space-3); margin-top: var(--space-3); }
+  .about-theme { border-left: 3px solid var(--color-bright-blue); padding-left: var(--space-3); }
+  .about-theme h4 { margin-bottom: 0.35rem; }
+  .about-theme p { margin: 0; }
 
   /* Pillar cards (Pray / Worship / Repent / Commission) */
   .pillar-card-grid {
@@ -165,8 +169,10 @@
   }
   .pillar-card-media .content-note { align-self: flex-start; max-width: 260px; }
   .pillar-card-body { padding: var(--space-4); display: flex; flex-direction: column; gap: var(--space-1); flex-grow: 1; }
+  .pillar-card-body h3 { color: var(--color-dark-blue); }
   .pillar-card-body p { color: var(--color-dark-blue); flex-grow: 1; }
   .pillar-card-body .btn, .pillar-card-body .btn-outline { align-self: flex-start; margin-top: var(--space-2); }
+  .pillar-card-body .btn-outline { color: var(--color-bright-blue); border-color: var(--color-bright-blue); }
 
   /* Modals */
   .modal-overlay {
@@ -211,8 +217,8 @@
   .globe {
     position: absolute; inset: 0;
     border-radius: 50%; overflow: hidden;
-    background: var(--color-off-white);
-    border: 1px solid rgba(42,94,216,0.15);
+    background: var(--color-dark-blue);
+    border: 1px solid rgba(42,94,216,0.4);
   }
   .globe-svg { width: 100%; height: 100%; display: block; }
   .globe-country { fill: none; stroke: var(--color-bright-blue); stroke-width: 0.6; opacity: 0.65; }
@@ -238,18 +244,32 @@
     .globe-stat-label { font-size: 0.7rem; }
   }
 
-  /* Watch-party ticker */
+  /* Watch-party ticker — floating rounded bar, inset from the viewport edges */
   .ticker-wrap {
     overflow: hidden;
-    margin-top: var(--space-4);
-    border-top: 1px solid rgba(255,250,240,0.15);
-    border-bottom: 1px solid rgba(255,250,240,0.15);
+    margin: var(--space-4) auto 0;
+    max-width: 1100px;
+    border-radius: 1.5rem;
+    background: rgba(255,250,240,0.05);
+    border: 1px solid rgba(255,250,240,0.12);
     padding-block: var(--space-3);
   }
-  .ticker-track { display: flex; gap: var(--space-5); width: max-content; animation: ticker-scroll 45s linear infinite; }
-  .ticker-item { display: flex; align-items: baseline; gap: 0.5rem; white-space: nowrap; font-size: 0.85rem; opacity: 0.85; }
+  .ticker-track { display: flex; gap: var(--space-3); width: max-content; animation: ticker-scroll 90s linear infinite; }
+  .ticker-item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    white-space: nowrap;
+    font-size: 0.82rem;
+    background: rgba(255,250,240,0.05);
+    border: 1px solid rgba(255,250,240,0.1);
+    border-radius: 999px;
+    padding: 0.5rem 1rem;
+  }
   .ticker-item .city { font-weight: 700; text-transform: uppercase; letter-spacing: 0.03em; font-size: 0.72rem; color: var(--color-bright-blue); }
-  .ticker-item .stat-highlight { color: var(--color-bright-blue); font-weight: 700; font-size: 1rem; }
+  .ticker-item .text { opacity: 0.85; }
+  .ticker-item.is-stat { background: rgba(42,94,216,0.15); border-color: rgba(42,94,216,0.3); }
+  .ticker-item .stat-highlight { color: var(--color-bright-blue); font-weight: 700; font-size: 1.05rem; }
   @keyframes ticker-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
   @media (prefers-reduced-motion: reduce) { .ticker-track { animation: none; overflow-x: auto; } }
 
@@ -265,6 +285,18 @@
     flex-direction: column;
     justify-content: center;
   }
+  .how-step { text-align: center; }
+  .how-step-number {
+    display: flex; align-items: center; justify-content: center;
+    width: 2.25rem; height: 2.25rem;
+    margin: 0 auto var(--space-2);
+    border-radius: 50%;
+    background: var(--color-bright-blue);
+    color: var(--color-off-white);
+    font-weight: 700;
+    font-family: var(--font-primary);
+  }
+  .how-step p { margin-inline: auto; }
 
   .leader-card { text-align:center; }
   .leader-card .avatar {
@@ -405,7 +437,20 @@
       <div>
         <p class="eyebrow-label">About Gather Global</p>
         <h2>An epic gathering and celebration of God's work</h2>
-        <p>In 2025, more than seven million believers across 225 countries came together for Gather25 — a single day that reminded us what's possible when the global Church moves as one. We don't take credit for what God did that day; we simply want to keep making room for it. Gathering regularly, across every continent and language, isn't just a nice idea — it's how the Church has always stayed anchored: sharing what God is doing, encouraging each other back to faith, and witnessing, together, the same transformative power of Jesus that changed us in the first place.</p>
+        <div class="about-theme-list">
+          <div class="about-theme">
+            <h4>Not our doing</h4>
+            <p>In 2025, seven million believers in 225 countries gathered for Gather25. We don't take credit for what God did that day.</p>
+          </div>
+          <div class="about-theme">
+            <h4>A rhythm, not a moment</h4>
+            <p>Gathering regularly, across every continent and language, is how the Church has always stayed anchored.</p>
+          </div>
+          <div class="about-theme">
+            <h4>Together, again</h4>
+            <p>Gather27 is our next chance to share what God is doing, encourage each other, and witness Jesus' transformative power — together.</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -413,7 +458,7 @@
   <section id="what-it-is" class="pairing-03">
     <div class="container">
       <p class="eyebrow-label" style="text-align:center; margin-inline:auto;">The Event</p>
-      <h2 style="text-align:center;">Four Movements. One Global Church.</h2>
+      <h2 style="text-align:center;">Come Together, to Reach the World</h2>
       <p style="text-align:center; margin-inline:auto; max-width:70ch;">Gather27 is a relay broadcast that moves across regions and time zones — regional hubs each contributing their own teaching, prayer, and worship moments, structured around four movements the whole global Church moves through together.</p>
 
       <div class="pillar-card-grid">
@@ -475,22 +520,22 @@
         <div class="leader-card"><div class="avatar"></div><h4>Jennie Allen</h4><p style="font-size:0.85rem;">USA</p></div>
         <div class="leader-card"><div class="avatar"></div><h4>Christine Caine</h4><p style="font-size:0.85rem;">Australia</p></div>
         <div class="leader-card"><div class="avatar"></div><h4>Francis Chan</h4><p style="font-size:0.85rem;">USA</p></div>
-        <div class="leader-card">
-          <div class="motif-constellation" style="min-height:88px;">
-            <span style="width:8px;height:8px;top:20%;left:30%;"></span>
-            <span style="width:6px;height:6px;top:55%;left:10%;"></span>
-            <span style="width:10px;height:10px;top:65%;left:50%;"></span>
-            <span style="width:6px;height:6px;top:15%;left:70%;"></span>
-          </div>
-          <p style="font-size:0.85rem;">+ every host location</p>
-        </div>
+        <div class="leader-card"><div class="avatar"></div><h4>Priscilla Shirer</h4><p style="font-size:0.85rem;">USA</p></div>
+        <div class="leader-card"><div class="avatar"></div><h4>Louie Giglio</h4><p style="font-size:0.85rem;">USA</p></div>
+        <div class="leader-card"><div class="avatar"></div><h4>Matt Redman</h4><p style="font-size:0.85rem;">United Kingdom</p></div>
+        <div class="leader-card"><div class="avatar"></div><h4>Sadie Robertson Huff</h4><p style="font-size:0.85rem;">USA</p></div>
+        <div class="leader-card"><div class="avatar"></div><h4>Rick Warren</h4><p style="font-size:0.85rem;">USA</p></div>
+        <div class="leader-card"><div class="avatar"></div><h4>David Platt</h4><p style="font-size:0.85rem;">USA</p></div>
+        <div class="leader-card"><div class="avatar"></div><h4>Sinach</h4><p style="font-size:0.85rem;">Nigeria</p></div>
+        <div class="leader-card"><div class="avatar"></div><h4>Dr. Charles Mugisha</h4><p style="font-size:0.85rem;">Rwanda</p></div>
+        <div class="leader-card"><div class="avatar"></div><h4>Sergio Hornung</h4><p style="font-size:0.85rem;">Peru</p></div>
       </div>
     </div>
   </section>
 
   <section id="proof" class="pairing-03">
     <div class="container">
-      <p class="eyebrow-label" style="text-align:center; margin-inline:auto;">Global Proof</p>
+      <p class="eyebrow-label" style="text-align:center; margin-inline:auto;">By the Numbers</p>
       <h2 style="text-align:center;">A Growing Movement</h2>
       <div class="stat-strip" style="margin-block: var(--space-4);">
         <div class="stat"><div class="num">7M</div><div>people reached in 2025</div></div>
@@ -526,39 +571,38 @@
   <section id="get-involved" class="pairing-03">
     <div class="container">
       <h2 style="text-align:center;">The Global Church, in One Room.</h2>
-      <div class="grid grid-2" style="margin-top: var(--space-4);">
+      <p style="text-align:center; margin-inline:auto; max-width:60ch;">You don't have to watch alone. Whether it's a sanctuary, a living room, or a coffee shop, a watch party turns the broadcast into something you experience together — worship, teaching, and people to talk it through with afterward.</p>
+
+      <div class="grid grid-3 how-it-works" style="margin-top: var(--space-4);">
+        <div class="how-step">
+          <span class="how-step-number">1</span>
+          <h4>Find your spot</h4>
+          <p>Search the map for a watch party already gathering near you.</p>
+        </div>
+        <div class="how-step">
+          <span class="how-step-number">2</span>
+          <h4>Reserve your seat</h4>
+          <p>Sign up in under a minute — your host will reach out with details before the broadcast.</p>
+        </div>
+        <div class="how-step">
+          <span class="how-step-number">3</span>
+          <h4>Show up together</h4>
+          <p>Expect worship, the broadcast, and time afterward to pray and talk it through with others.</p>
+        </div>
+      </div>
+
+      <div class="grid grid-2" style="margin-top: var(--space-5);">
         <div class="card get-involved-card" style="background: rgba(42,94,216,0.15); border-color: rgba(255,250,240,0.15);">
           <h3 style="color:var(--color-off-white);">Host a Watch Party</h3>
-          <p style="color:var(--color-off-white);">Gather your church, campus, or living room around the broadcast. We give you everything you need to host — a guide, promotional materials, and a spot on the map.</p>
+          <p style="color:var(--color-off-white);">Gather your church, campus, or living room around the broadcast — in a sanctuary, a coffee shop, or your own living room. We give you everything you need to host: a simple guide, promotional materials, and a spot on the map so people can find you.</p>
           <a class="btn" href="#" style="margin-top:var(--space-2);">Host a Watch Party</a>
         </div>
         <div class="card get-involved-card" style="background: rgba(255,250,240,0.06); border-color: rgba(255,250,240,0.15);">
           <h3 style="color:var(--color-off-white);">Find a Gathering</h3>
-          <p style="color:var(--color-off-white);">Find a nearby gathering by church name and location, and join the global Church already gathering near you.</p>
+          <p style="color:var(--color-off-white);">You don't have to do this alone. Find a nearby watch party by church name or location, and join believers already gathering for worship, prayer, and the broadcast together.</p>
           <a class="btn btn-outline" href="#" style="margin-top:var(--space-2); color:var(--color-off-white);">Find a Gathering</a>
         </div>
       </div>
-    </div>
-  </section>
-
-  <section id="faq" class="pairing-03">
-    <div class="container" style="max-width:70ch;">
-      <h2 style="text-align:center;">FAQ</h2>
-      <details class="faq-item"><summary>What does hosting a watch party require?</summary><p>A space, a screen, and a few volunteers — we provide the broadcast, a host guide, and promotional materials.</p></details>
-      <details class="faq-item"><summary>How long is the broadcast?</summary><p>24 hours, relayed across regional hubs so every time zone has a moment built for them.</p></details>
-      <details class="faq-item"><summary>Is there a cost to host?</summary><p>No — hosting a watch party is free. Optional add-ons are available for larger gatherings.</p></details>
-      <details class="faq-item"><summary>What happens after the broadcast?</summary><p>You'll receive a simple next-step guide for your specific gathering. Details in your host toolkit.</p></details>
-
-      <details class="faq-item"><summary>Who is Gather27 for?</summary><p>Gather27 is for every man, woman, and child on Earth who follows Jesus — every denomination, every continent, every generation. There's no ticket, application, or membership required.</p></details>
-      <details class="faq-item"><summary>What happens during the 24 hours?</summary><p>Through live-streaming technology, the global Church gathers for prayer, worship, repentance, and commissioning. Regional hubs each host a session in turn, relaying the broadcast around the world as it follows the sun.</p></details>
-      <details class="faq-item"><summary>Where are the Gather27 broadcast sites?</summary><p>Regional hubs currently include Dallas (North America), Auckland (Oceania), Kuala Lumpur (Asia), Cluj (Eastern Europe), Kigali (Africa), London (Western Europe), and Lima (South America), alongside undisclosed sites serving the persecuted Church.</p></details>
-      <details class="faq-item"><summary>What is a Gather Group?</summary><p>A Gather Group is a local gathering — in a church, a living room, on a campus, anywhere — organized by a host to bring their community into the broadcast together. Gather25 saw over 21,000 registered worldwide.</p></details>
-      <details class="faq-item"><summary>Who are the partners behind Gather27?</summary><p>A growing list of global Christian organizations — including IF:Gathering, YouVersion, Cru, Alpha, and dozens more — are collaborating to make Gather27 possible. See the full list in the Partners section below.</p></details>
-
-      <details class="faq-item"><summary>When is Gather27?</summary><p>Gather27 is a 24-hour global broadcast taking place March 5–6, 2027, moving continuously from region to region as it follows the sun across time zones.</p></details>
-      <details class="faq-item"><summary>Is Gather27 free to watch?</summary><p>Yes. Gather27 is completely free, everywhere — the broadcast, host guides, and promotional materials all come at no cost.</p></details>
-      <details class="faq-item"><summary>How is Gather27 different from Gather25?</summary><p>Gather25 was the first 25-hour global broadcast, held in March 2025. Gather27 is the next iteration two years later — same spirit of prayer, worship, repentance, and commissioning, expanded to reach even more of the global Church.</p></details>
-      <details class="faq-item"><summary>How do I watch Gather27 online?</summary><p>The broadcast streams free from this site and through partner platforms; register to host a watch party to get early access to streaming details as they're announced.</p></details>
     </div>
   </section>
 
@@ -610,6 +654,27 @@
           <h3>A nation finding reconciliation together.</h3>
         </div>
       </div>
+    </div>
+  </section>
+
+  <section id="faq" class="pairing-03">
+    <div class="container" style="max-width:70ch;">
+      <h2 style="text-align:center;">FAQ</h2>
+      <details class="faq-item"><summary>What does hosting a watch party require?</summary><p>A space, a screen, and a few volunteers — we provide the broadcast, a host guide, and promotional materials.</p></details>
+      <details class="faq-item"><summary>How long is the broadcast?</summary><p>24 hours, relayed across regional hubs so every time zone has a moment built for them.</p></details>
+      <details class="faq-item"><summary>Is there a cost to host?</summary><p>No — hosting a watch party is free. Optional add-ons are available for larger gatherings.</p></details>
+      <details class="faq-item"><summary>What happens after the broadcast?</summary><p>You'll receive a simple next-step guide for your specific gathering. Details in your host toolkit.</p></details>
+
+      <details class="faq-item"><summary>Who is Gather27 for?</summary><p>Gather27 is for every man, woman, and child on Earth who follows Jesus — every denomination, every continent, every generation. There's no ticket, application, or membership required.</p></details>
+      <details class="faq-item"><summary>What happens during the 24 hours?</summary><p>Through live-streaming technology, the global Church gathers for prayer, worship, repentance, and commissioning. Regional hubs each host a session in turn, relaying the broadcast around the world as it follows the sun.</p></details>
+      <details class="faq-item"><summary>Where are the Gather27 broadcast sites?</summary><p>Regional hubs currently include Dallas (North America), Auckland (Oceania), Kuala Lumpur (Asia), Cluj (Eastern Europe), Kigali (Africa), London (Western Europe), and Lima (South America), alongside undisclosed sites serving the persecuted Church.</p></details>
+      <details class="faq-item"><summary>What is a Gather Group?</summary><p>A Gather Group is a local gathering — in a church, a living room, on a campus, anywhere — organized by a host to bring their community into the broadcast together. Gather25 saw over 21,000 registered worldwide.</p></details>
+      <details class="faq-item"><summary>Who are the partners behind Gather27?</summary><p>A growing list of global Christian organizations — including IF:Gathering, YouVersion, Cru, Alpha, and dozens more — are collaborating to make Gather27 possible. See the full list in the Partners section above.</p></details>
+
+      <details class="faq-item"><summary>When is Gather27?</summary><p>Gather27 is a 24-hour global broadcast taking place March 5–6, 2027, moving continuously from region to region as it follows the sun across time zones.</p></details>
+      <details class="faq-item"><summary>Is Gather27 free to watch?</summary><p>Yes. Gather27 is completely free, everywhere — the broadcast, host guides, and promotional materials all come at no cost.</p></details>
+      <details class="faq-item"><summary>How is Gather27 different from Gather25?</summary><p>Gather25 was the first 25-hour global broadcast, held in March 2025. Gather27 is the next iteration two years later — same spirit of prayer, worship, repentance, and commissioning, expanded to reach even more of the global Church.</p></details>
+      <details class="faq-item"><summary>How do I watch Gather27 online?</summary><p>The broadcast streams free from this site and through partner platforms; register to host a watch party to get early access to streaming details as they're announced.</p></details>
     </div>
   </section>
 
@@ -756,10 +821,10 @@
     ];
     function renderItem(d) {
       var span = document.createElement('span');
-      span.className = 'ticker-item';
+      span.className = d.stat ? 'ticker-item is-stat' : 'ticker-item';
       span.innerHTML = d.stat
-        ? '<span class="stat-highlight">' + d.stat + '</span><span>' + d.text + '</span>'
-        : '<span class="city">' + d.city + '</span><span>' + d.text + '</span>';
+        ? '<span class="stat-highlight">' + d.stat + '</span><span class="text">' + d.text + '</span>'
+        : '<span class="city">' + d.city + '</span><span class="text">' + d.text + '</span>';
       return span;
     }
     ITEMS.concat(ITEMS).forEach(function (d) { track.appendChild(renderItem(d)); });

@@ -25,9 +25,9 @@ window.GATHER_SECTIONS = {
       { id: 'leaders', label: 'Leaders / Locations' },
       { id: 'proof', label: 'Global Proof' },
       { id: 'get-involved', label: 'Get Involved' },
-      { id: 'faq', label: 'FAQ' },
       { id: 'partners', label: 'Partners' },
       { id: 'stories', label: 'Global Stories' },
+      { id: 'faq', label: 'FAQ' },
     ],
   },
   'gather-cities': {
