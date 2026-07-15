@@ -64,11 +64,13 @@
   }
   .sticky-nav .site-nav { border-bottom: 1px solid rgba(255,250,240,0.1); }
 
-  /* Hero info bar */
+  /* Hero info bar — floating, inset from the viewport edge */
   .hero-info-bar {
-    width: 100vw;
-    margin-left: calc(50% - 50vw);
+    width: calc(100vw - 2rem);
+    margin-left: calc(50% - 50vw + 1rem);
     background: var(--color-bright-blue);
+    border-radius: 1.25rem;
+    overflow: hidden;
   }
   .hero-info-bar-inner {
     display: flex;
@@ -126,10 +128,10 @@
     .about-media-tile.large { min-height: 200px; }
     .about-media-tile { min-height: 110px; }
   }
-  .about-theme-list { display: flex; flex-direction: column; gap: var(--space-3); margin-top: var(--space-3); }
-  .about-theme { border-left: 3px solid var(--color-bright-blue); padding-left: var(--space-3); }
-  .about-theme h4 { margin-bottom: 0.35rem; }
-  .about-theme p { margin: 0; }
+  .about-theme-list { display: flex; flex-direction: column; gap: 1.3rem; margin-top: var(--space-3); }
+  .about-theme { border-left: 3px solid var(--color-bright-blue); padding-left: 1.3rem; }
+  .about-theme h4 { margin-bottom: 0.3rem; font-size: 1.3rem; }
+  .about-theme p { margin: 0; font-size: 0.88rem; }
 
   /* Pillar cards (Pray / Worship / Repent / Commission) */
   .pillar-card-grid {
@@ -222,7 +224,7 @@
   }
   .globe-svg { width: 100%; height: 100%; display: block; }
   .globe-country { fill: none; stroke: var(--color-bright-blue); stroke-width: 0.6; opacity: 0.65; }
-  .globe-dot { fill: var(--color-bright-blue); stroke: var(--color-off-white); stroke-width: 1.5; }
+  .globe-dot { fill: var(--color-off-white); stroke: none; cursor: pointer; }
   .globe-rings { position: absolute; inset: -10%; display: flex; align-items: center; justify-content: center; pointer-events: none; }
   .globe-ring { position: absolute; border-radius: 50%; border: 2px solid var(--color-bright-blue); }
   .globe-ring.r1 { inset: 6%; opacity: 0.5; }
@@ -278,13 +280,40 @@
   .stat-strip .stat .num { font-size:2.4rem; font-weight:300; color: var(--color-bright-blue); font-family: var(--font-primary); }
 
   /* Get Involved */
-  .get-involved-card {
-    padding: var(--space-6) var(--space-4);
-    min-height: 380px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  .host-card {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    align-items: stretch;
+    background: rgba(42,94,216,0.15);
+    border: 1px solid rgba(255,250,240,0.15);
+    border-radius: 1.5rem;
+    overflow: hidden;
   }
+  .host-card-media {
+    position: relative;
+    min-height: 280px;
+    display: flex;
+    align-items: flex-end;
+    padding: var(--space-3);
+    background: linear-gradient(135deg, var(--color-bright-blue), var(--color-dark-blue));
+  }
+  .host-card-body { padding: var(--space-5); display: flex; flex-direction: column; justify-content: center; }
+  @media (max-width: 700px) {
+    .host-card { grid-template-columns: 1fr; }
+    .host-card-media { min-height: 180px; }
+  }
+  .find-banner {
+    margin-top: var(--space-3);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+    padding-block: var(--space-3);
+    border-top: 1px solid rgba(255,250,240,0.15);
+  }
+  .find-banner h3 { margin-bottom: 0.25rem; }
+  .find-banner p { margin: 0; }
   .how-step { text-align: center; }
   .how-step-number {
     display: flex; align-items: center; justify-content: center;
@@ -298,23 +327,80 @@
   }
   .how-step p { margin-inline: auto; }
 
-  .leader-card { text-align:center; }
+  .leader-card {
+    text-align:center;
+    background: none;
+    border: none;
+    font: inherit;
+    color: inherit;
+    padding: 0;
+    cursor: pointer;
+  }
   .leader-card .avatar {
     width: 88px; height: 88px; border-radius:50%;
     background: linear-gradient(160deg, var(--color-bright-blue), var(--color-light-blue));
     margin: 0 auto var(--space-2);
   }
+  .leader-card[data-location="Persecuted Church"] .avatar { background: linear-gradient(160deg, var(--color-dark-blue), var(--color-bright-blue)); }
+  .leader-grid { display: grid; }
+  .leader-grid > .leader-card.is-hidden { display: none; }
 
-  /* Partners */
-  .partner-logos { display: flex; gap: var(--space-3); align-items: center; flex-wrap: wrap; }
+  .leader-pagination { display: flex; align-items: center; justify-content: center; gap: var(--space-3); margin-top: var(--space-5); }
+  .leader-page-btn {
+    width: 2.25rem; height: 2.25rem;
+    border-radius: 50%;
+    border: 1px solid rgba(255,250,240,0.3);
+    background: transparent;
+    color: var(--color-off-white);
+    font-size: 1.1rem;
+    cursor: pointer;
+  }
+  .leader-page-btn:disabled { opacity: 0.3; cursor: default; }
+  .leader-page-dots { display: flex; gap: 0.5rem; }
+  .leader-page-dot { width: 0.55rem; height: 0.55rem; border-radius: 50%; background: rgba(255,250,240,0.3); border: none; padding: 0; cursor: pointer; }
+  .leader-page-dot.active { background: var(--color-bright-blue); }
+
+  .leader-modal-box { text-align: center; }
+  .leader-modal-photo {
+    width: 96px; height: 96px; border-radius: 50%;
+    margin: 0 auto var(--space-3);
+    background: linear-gradient(160deg, var(--color-bright-blue), var(--color-light-blue));
+  }
+  .leader-modal-location {
+    color: var(--color-bright-blue);
+    font-weight: 700;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: var(--space-2);
+  }
+  .leader-modal-socials { display: flex; gap: 0.75rem; justify-content: center; margin-top: var(--space-2); font-size: 0.85rem; }
+  .leader-modal-socials a { color: var(--color-bright-blue); text-decoration: none; }
+  .leader-modal-socials .none { opacity: 0.6; font-style: italic; }
+
+  /* Partners — sticky intro column, logos scroll past on the right */
+  .partners-columns { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: var(--space-5); align-items: start; }
+  .partners-sticky { position: sticky; top: 6rem; }
+  .partner-logos { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-3); align-content: start; }
   .partner-logos div {
-    padding: 0.8rem 1.1rem;
-    background: rgba(18,22,29,0.05);
-    border: 1px dashed rgba(18,22,29,0.25);
+    padding: 0.9rem 1.1rem;
+    background: rgba(255,250,240,0.05);
+    border: 1px dashed rgba(255,250,240,0.25);
     border-radius: 0.5rem;
     font-size: 0.75rem;
-    color: rgba(18,22,29,0.55);
+    color: var(--color-off-white);
+    opacity: 0.7;
     font-family: var(--font-primary);
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 64px;
+  }
+  @media (max-width: 900px) {
+    .partners-columns { grid-template-columns: 1fr; }
+    .partners-sticky { position: static; }
+    .partner-logos { grid-template-columns: repeat(2, 1fr); }
   }
 
   /* Global Stories */
@@ -331,6 +417,10 @@
 
   .faq-item { border-bottom: 1px solid rgba(255,250,240,0.15); padding-block: var(--space-2); }
   .faq-item summary { cursor:pointer; font-weight:600; }
+
+  /* Bright-blue backgrounds need an off-white ripple, or it disappears into the bg */
+  .motif-ripple-inverse::before, .motif-ripple-inverse::after { border-color: var(--color-off-white); }
+  .motif-ripple-inverse .core { background: var(--color-off-white); }
 
   .btn-goto-tooltip {
     position: fixed; top: 0; left: 0; z-index: 1000;
@@ -385,7 +475,7 @@
       <div class="grid grid-2" style="align-items:center;">
         <div>
           <p class="accent" style="font-size:1.1rem;">Gather Global — 2027</p>
-          <h1>The Global Church, Gathering Like Never Before</h1>
+          <h1 style="color: var(--color-bright-blue);">The Global Church, Gathering Like Never Before</h1>
           <p>Every believer. Every continent. Together across 24 hours.</p>
         </div>
         <div class="motif-ripple"><span class="core"></span></div>
@@ -396,15 +486,15 @@
       <div class="container hero-info-bar-inner">
         <div class="hero-info-detail">
           <div class="hero-info-detail-item">
-            <span class="hero-info-detail-label">Dates</span>
+            <span class="hero-info-detail-label">When</span>
             <span class="hero-info-detail-value">March 5–6, 2027</span>
           </div>
           <div class="hero-info-detail-item">
-            <span class="hero-info-detail-label">Format</span>
+            <span class="hero-info-detail-label">What</span>
             <span class="hero-info-detail-value">24-hour global broadcast</span>
           </div>
           <div class="hero-info-detail-item">
-            <span class="hero-info-detail-label">Hubs</span>
+            <span class="hero-info-detail-label">Where</span>
             <span class="hero-info-detail-value">7 regions, one relay</span>
           </div>
         </div>
@@ -439,11 +529,11 @@
         <h2>An epic gathering and celebration of God's work</h2>
         <div class="about-theme-list">
           <div class="about-theme">
-            <h4>Not our doing</h4>
-            <p>In 2025, seven million believers in 225 countries gathered for Gather25. We don't take credit for what God did that day.</p>
+            <h4>What we witnessed</h4>
+            <p>In 2025, seven million believers across 225 countries gathered for Gather25, and watched a fresh hunger for revival ripple across generations and borders.</p>
           </div>
           <div class="about-theme">
-            <h4>A rhythm, not a moment</h4>
+            <h4>A steady rhythm</h4>
             <p>Gathering regularly, across every continent and language, is how the Church has always stayed anchored.</p>
           </div>
           <div class="about-theme">
@@ -459,7 +549,7 @@
     <div class="container">
       <p class="eyebrow-label" style="text-align:center; margin-inline:auto;">The Event</p>
       <h2 style="text-align:center;">Come Together, to Reach the World</h2>
-      <p style="text-align:center; margin-inline:auto; max-width:70ch;">Gather27 is a relay broadcast that moves across regions and time zones — regional hubs each contributing their own teaching, prayer, and worship moments, structured around four movements the whole global Church moves through together.</p>
+      <p style="text-align:center; margin-inline:auto; max-width:70ch;">Gather27 is a relay broadcast that moves across regions and time zones, with regional hubs each contributing their own teaching, prayer, and worship. The whole global Church moves through four movements together.</p>
 
       <div class="pillar-card-grid">
         <div class="pillar-card">
@@ -481,7 +571,7 @@
           </div>
           <div class="pillar-card-body">
             <h3>Worship</h3>
-            <p>A sound bigger than any one church or country — worship leaders from every region join in one continuous song.</p>
+            <p>Worship leaders from every region join together in one continuous song, a sound bigger than any single church or country.</p>
             <button type="button" class="btn btn-outline" data-modal-open="modal-worship">Worship Highlights</button>
           </div>
         </div>
@@ -493,7 +583,7 @@
           </div>
           <div class="pillar-card-body">
             <h3>Repent</h3>
-            <p>Before we go out, we pause — the global Church turning back to God together in humility, not performance.</p>
+            <p>As one global Church, we pause to turn back to God together in humility and honesty.</p>
             <button type="button" class="btn btn-outline" data-modal-open="modal-repent">Why We Repent Together</button>
           </div>
         </div>
@@ -505,7 +595,7 @@
           </div>
           <div class="pillar-card-body">
             <h3>Commission</h3>
-            <p>2.5 billion believers, sent to reach the 5.5 billion who don't yet know Jesus. Gather27 ends with a clear next step, not just a broadcast.</p>
+            <p>2.5 billion believers are sent to reach the 5.5 billion who don't yet know Jesus. Gather27 sends every watch party out with a clear next step.</p>
             <a class="btn" href="#get-involved">Host a Watch Party</a>
           </div>
         </div>
@@ -515,20 +605,27 @@
 
   <section id="leaders" class="pairing-03">
     <div class="container">
-      <h2 style="text-align:center;">Leaders &amp; broadcast locations</h2>
-      <div class="grid grid-4" style="margin-top: var(--space-4);">
-        <div class="leader-card"><div class="avatar"></div><h4>Jennie Allen</h4><p style="font-size:0.85rem;">USA</p></div>
-        <div class="leader-card"><div class="avatar"></div><h4>Christine Caine</h4><p style="font-size:0.85rem;">Australia</p></div>
-        <div class="leader-card"><div class="avatar"></div><h4>Francis Chan</h4><p style="font-size:0.85rem;">USA</p></div>
-        <div class="leader-card"><div class="avatar"></div><h4>Priscilla Shirer</h4><p style="font-size:0.85rem;">USA</p></div>
-        <div class="leader-card"><div class="avatar"></div><h4>Louie Giglio</h4><p style="font-size:0.85rem;">USA</p></div>
-        <div class="leader-card"><div class="avatar"></div><h4>Matt Redman</h4><p style="font-size:0.85rem;">United Kingdom</p></div>
-        <div class="leader-card"><div class="avatar"></div><h4>Sadie Robertson Huff</h4><p style="font-size:0.85rem;">USA</p></div>
-        <div class="leader-card"><div class="avatar"></div><h4>Rick Warren</h4><p style="font-size:0.85rem;">USA</p></div>
-        <div class="leader-card"><div class="avatar"></div><h4>David Platt</h4><p style="font-size:0.85rem;">USA</p></div>
-        <div class="leader-card"><div class="avatar"></div><h4>Sinach</h4><p style="font-size:0.85rem;">Nigeria</p></div>
-        <div class="leader-card"><div class="avatar"></div><h4>Dr. Charles Mugisha</h4><p style="font-size:0.85rem;">Rwanda</p></div>
-        <div class="leader-card"><div class="avatar"></div><h4>Sergio Hornung</h4><p style="font-size:0.85rem;">Peru</p></div>
+      <p class="eyebrow-label" style="text-align:center; margin-inline:auto;">Leaders</p>
+      <h2 style="text-align:center; max-width:26ch; margin-inline:auto;">Join Leaders, Teachers, Storytellers, and Prayer Guides Worldwide</h2>
+      <div class="grid grid-4 leader-grid" id="leader-grid" style="margin-top: var(--space-4);">
+        <button type="button" class="leader-card" data-name="Jennie Allen" data-location="USA" data-bio="Founder of IF:Gathering and the visionary behind Gather25 and Gather27." data-social="instagram,website"><div class="avatar"></div><h4>Jennie Allen</h4><p style="font-size:0.85rem;">USA</p></button>
+        <button type="button" class="leader-card" data-name="Christine Caine" data-location="Australia" data-bio="Founder of A21 and Propel Women, known for her teaching on freedom and calling." data-social="instagram,website"><div class="avatar"></div><h4>Christine Caine</h4><p style="font-size:0.85rem;">Australia</p></button>
+        <button type="button" class="leader-card" data-name="Francis Chan" data-location="USA" data-bio="Pastor and author known for calling the Church back to radical, wholehearted faith." data-social="instagram,website"><div class="avatar"></div><h4>Francis Chan</h4><p style="font-size:0.85rem;">USA</p></button>
+        <button type="button" class="leader-card" data-name="Priscilla Shirer" data-location="USA" data-bio="Bible teacher and author helping believers hear from God through Scripture." data-social="instagram,website"><div class="avatar"></div><h4>Priscilla Shirer</h4><p style="font-size:0.85rem;">USA</p></button>
+        <button type="button" class="leader-card" data-name="Louie Giglio" data-location="USA" data-bio="Pastor of Passion City Church and founder of the Passion movement." data-social="instagram,website"><div class="avatar"></div><h4>Louie Giglio</h4><p style="font-size:0.85rem;">USA</p></button>
+        <button type="button" class="leader-card" data-name="Matt Redman" data-location="United Kingdom" data-bio="Worship leader and songwriter behind some of the Church's best-loved anthems." data-social="instagram,website"><div class="avatar"></div><h4>Matt Redman</h4><p style="font-size:0.85rem;">United Kingdom</p></button>
+        <button type="button" class="leader-card" data-name="Sadie Robertson Huff" data-location="USA" data-bio="Author and speaker encouraging the next generation to live out their faith boldly." data-social="instagram,website"><div class="avatar"></div><h4>Sadie Robertson Huff</h4><p style="font-size:0.85rem;">USA</p></button>
+        <button type="button" class="leader-card" data-name="Rick Warren" data-location="USA" data-bio="Pastor and author of The Purpose Driven Life, a voice for global missions." data-social="instagram,website"><div class="avatar"></div><h4>Rick Warren</h4><p style="font-size:0.85rem;">USA</p></button>
+        <button type="button" class="leader-card" data-name="David Platt" data-location="USA" data-bio="Pastor and author known for his call to radical, sacrificial discipleship." data-social="instagram,website"><div class="avatar"></div><h4>David Platt</h4><p style="font-size:0.85rem;">USA</p></button>
+        <button type="button" class="leader-card" data-name="Sinach" data-location="Nigeria" data-bio="Worship leader and songwriter whose music is sung in churches around the world." data-social="instagram,website"><div class="avatar"></div><h4>Sinach</h4><p style="font-size:0.85rem;">Nigeria</p></button>
+        <button type="button" class="leader-card" data-name="Dr. Charles Mugisha" data-location="Rwanda" data-bio="Pastor leading reconciliation and discipleship ministry across East Africa." data-social="instagram,website"><div class="avatar"></div><h4>Dr. Charles Mugisha</h4><p style="font-size:0.85rem;">Rwanda</p></button>
+        <button type="button" class="leader-card" data-name="Sergio Hornung" data-location="Peru" data-bio="Pastor mobilizing the Church across South America for prayer and mission." data-social="instagram,website"><div class="avatar"></div><h4>Sergio Hornung</h4><p style="font-size:0.85rem;">Peru</p></button>
+        <button type="button" class="leader-card" data-name="Ashok" data-location="Persecuted Church" data-bio="A pastor serving the underground Church. Full name withheld for his safety." data-social="none"><div class="avatar"></div><h4>Ashok</h4><p style="font-size:0.85rem;">Persecuted Church</p></button>
+      </div>
+      <div class="leader-pagination" id="leader-pagination">
+        <button type="button" class="leader-page-btn" data-page-nav="prev" aria-label="Previous leaders">‹</button>
+        <div class="leader-page-dots" id="leader-page-dots"></div>
+        <button type="button" class="leader-page-btn" data-page-nav="next" aria-label="Next leaders">›</button>
       </div>
     </div>
   </section>
@@ -562,6 +659,7 @@
     </div>
 
     <div class="container">
+      <p style="text-align:center; margin-inline:auto; font-size:0.8rem; opacity:0.6;">Hover a dot to see each hub. Plus the persecuted Church, hosting from locations kept undisclosed for safety.</p>
       <div class="ticker-wrap" aria-label="Recent watch-party registrations">
         <div class="ticker-track" id="ticker-track"></div>
       </div>
@@ -570,8 +668,9 @@
 
   <section id="get-involved" class="pairing-03">
     <div class="container">
+      <p class="eyebrow-label" style="text-align:center; margin-inline:auto;">Take Part</p>
       <h2 style="text-align:center;">The Global Church, in One Room.</h2>
-      <p style="text-align:center; margin-inline:auto; max-width:60ch;">You don't have to watch alone. Whether it's a sanctuary, a living room, or a coffee shop, a watch party turns the broadcast into something you experience together — worship, teaching, and people to talk it through with afterward.</p>
+      <p style="text-align:center; margin-inline:auto; max-width:52ch;">Gather with others right where you are — a sanctuary, a living room, a campus, a coffee shop.</p>
 
       <div class="grid grid-3 how-it-works" style="margin-top: var(--space-4);">
         <div class="how-step">
@@ -591,30 +690,47 @@
         </div>
       </div>
 
-      <div class="grid grid-2" style="margin-top: var(--space-5);">
-        <div class="card get-involved-card" style="background: rgba(42,94,216,0.15); border-color: rgba(255,250,240,0.15);">
+      <div class="host-card" style="margin-top: var(--space-5);">
+        <div class="host-card-media">
+          <p class="content-note">Content note: a host welcoming people in at the door of a watch party, warm and candid.</p>
+        </div>
+        <div class="host-card-body">
           <h3 style="color:var(--color-off-white);">Host a Watch Party</h3>
-          <p style="color:var(--color-off-white);">Gather your church, campus, or living room around the broadcast — in a sanctuary, a coffee shop, or your own living room. We give you everything you need to host: a simple guide, promotional materials, and a spot on the map so people can find you.</p>
+          <p style="color:var(--color-off-white);">Gather your church, campus, or living room around the broadcast. We give you everything you need to host: a simple guide, promotional materials, and a spot on the map so people can find you.</p>
           <a class="btn" href="#" style="margin-top:var(--space-2);">Host a Watch Party</a>
         </div>
-        <div class="card get-involved-card" style="background: rgba(255,250,240,0.06); border-color: rgba(255,250,240,0.15);">
-          <h3 style="color:var(--color-off-white);">Find a Gathering</h3>
-          <p style="color:var(--color-off-white);">You don't have to do this alone. Find a nearby watch party by church name or location, and join believers already gathering for worship, prayer, and the broadcast together.</p>
-          <a class="btn btn-outline" href="#" style="margin-top:var(--space-2); color:var(--color-off-white);">Find a Gathering</a>
+      </div>
+
+      <div class="find-banner">
+        <div>
+          <h3>Find a Gathering</h3>
+          <p>Gatherings are happening everywhere. Find people near you and be part of it.</p>
         </div>
+        <a class="btn btn-outline" href="#" style="color:var(--color-off-white);">Find a Gathering</a>
       </div>
     </div>
   </section>
 
-  <section id="partners" class="pairing-04">
-    <div class="container" style="text-align:center;">
-      <p class="eyebrow-label" style="text-align:center; margin-inline:auto;">Partners</p>
-      <h2>Our Partners in Gathering the Global Church</h2>
-      <p style="margin-inline:auto; max-width:60ch;">Behind Gather27 is a collaboration of ministries, partners, and leaders united around one vision: to gather the entire global Church for a day of prayer, worship, repentance, and commissioning.</p>
-      <div class="partner-logos" style="justify-content:center; margin-top: var(--space-3);">
-        <div>IF:Gathering</div><div>YouVersion</div><div>Cru</div><div>Alpha</div><div>illumiNations</div><div>Jesus Film Project</div><div>24-7 Prayer</div><div>RightNow Media</div><div>World Evangelical Alliance</div><div>The Bible Project</div><div>Luis Palau Association</div><div>Wycliffe</div>
+  <section id="partners" class="pairing-03">
+    <div class="container">
+      <div class="partners-columns">
+        <div class="partners-sticky">
+          <p class="eyebrow-label">Partners</p>
+          <h2>Our Partners in Gathering the Global Church</h2>
+          <p>Behind Gather27 is a collaboration of ministries, partners, and leaders united around one vision: to gather the entire global Church for a day of prayer, worship, repentance, and commissioning.</p>
+          <a class="btn" href="#get-involved" style="margin-top: var(--space-2);">Become a Partner</a>
+        </div>
+        <div class="partner-logos">
+          <div>IF:Gathering</div><div>YouVersion</div><div>Cru</div>
+          <div>Alpha</div><div>illumiNations</div><div>Jesus Film Project</div>
+          <div>24-7 Prayer</div><div>RightNow Media</div><div>World Evangelical Alliance</div>
+          <div>The Bible Project</div><div>Luis Palau Association</div><div>Wycliffe</div>
+          <div>Trinity Broadcasting Network</div><div>Convoy of Hope</div><div>Operation Mobilization</div>
+          <div>Arise Asia</div><div>Africa New Life</div><div>Living Water International</div>
+          <div>Tearfund</div><div>American Bible Society</div><div>Biblica</div>
+          <div>SIL</div><div>World Relief</div><div>Global Advance</div>
+        </div>
       </div>
-      <a class="btn" href="#get-involved" style="margin-top: var(--space-4);">Become a Partner</a>
     </div>
   </section>
 
@@ -678,6 +794,17 @@
     </div>
   </section>
 
+  <section id="join-cta" class="pairing-02" style="min-height: 100vh; display: flex; align-items: center;">
+    <div class="container" style="text-align:center;">
+      <div class="motif-ripple motif-ripple-inverse" style="width:180px; margin:0 auto var(--space-5);"><span class="core"></span></div>
+      <h2 style="max-width:16ch; margin-inline:auto;">This Is the Moment.</h2>
+      <p style="max-width:48ch; margin-inline:auto; font-size:1.15rem;">Gather your church, your campus, your living room. Be part of the day the whole global Church gathers as one.</p>
+      <div style="margin-top:var(--space-4);">
+        <a class="btn" href="#get-involved" style="background:var(--color-dark-blue);">Host a Watch Party</a>
+      </div>
+    </div>
+  </section>
+
 </main>
 
 <footer class="pairing-03">
@@ -710,10 +837,10 @@
     <h3 id="modal-pray-title">What We're Praying For</h3>
     <p>Across every regional hub, the same requests keep surfacing. Wherever you're watching from, you're invited to pray these with us:</p>
     <ul>
-      <li>Revival among the next generation — that Gen Z would lead, not just inherit, the awakening.</li>
+      <li>Revival among the next generation, as Gen Z steps into leading what God is doing.</li>
       <li>Protection and boldness for the persecuted Church, wherever the cost of following Jesus is highest.</li>
-      <li>Unity across denominations, cultures, and continents — one Church, undivided.</li>
-      <li>Laborers for the harvest — more people willing to go, teach, and translate.</li>
+      <li>Unity across denominations, cultures, and continents, one undivided Church.</li>
+      <li>Laborers for the harvest, more people willing to go, teach, and translate.</li>
       <li>Reconciliation, in homes, in nations, and between the Church and the communities it has failed.</li>
     </ul>
   </div>
@@ -724,14 +851,15 @@
     <button type="button" class="modal-close" data-modal-close aria-label="Close">&times;</button>
     <p class="eyebrow-label">Worship</p>
     <h3 id="modal-worship-title">Worship Highlights</h3>
-    <p>It started with one "yes" — a calling to bring artists together for a sound bigger than any one church or country. One step of obedience became 20 worship leaders, 10 nations, and 8 languages, singing as one.</p>
+    <p>It started with one "yes," a calling to bring artists together for a sound bigger than any single church or country. That step of obedience grew into 20 worship leaders from 10 nations, singing together in 8 languages.</p>
     <ul>
-      <li><strong>Revival Generation</strong> — ft. Lindy Cofer &amp; Josh Aaron</li>
-      <li><strong>Spirit and Bride</strong> — ft. Tasha Cobbs Leonard &amp; Pambio</li>
-      <li><strong>The Image</strong> — ft. Matt Redman &amp; kaestrings</li>
-      <li><strong>No Not One</strong> — ft. Elevation Rhythm &amp; Pambio</li>
+      <li><strong>Revival Generation</strong>, with Lindy Cofer &amp; Josh Aaron</li>
+      <li><strong>Spirit and Bride</strong>, with Tasha Cobbs Leonard &amp; Pambio</li>
+      <li><strong>The Image</strong>, with Matt Redman &amp; kaestrings</li>
+      <li><strong>No Not One</strong>, with Elevation Rhythm &amp; Pambio</li>
     </ul>
     <p style="font-size:0.85rem; opacity:0.7;">Full song list, lyrics, and multitracks available in the host toolkit.</p>
+    <a class="btn btn-outline" href="https://www.gather25.com/worship" target="_blank" rel="noopener" style="margin-top:var(--space-2); color:var(--color-bright-blue); border-color:var(--color-bright-blue);">Explore Gather Worship</a>
   </div>
 </div>
 
@@ -740,8 +868,19 @@
     <button type="button" class="modal-close" data-modal-close aria-label="Close">&times;</button>
     <p class="eyebrow-label">Repent</p>
     <h3 id="modal-repent-title">Why We Repent Together</h3>
-    <p>Repentance at Gather27 isn't about airing individual sin on a broadcast — it's a shared posture. Before the global Church commissions itself to go out, we pause together to turn back to God: acknowledging where we've settled for comfort over mission, division over unity, and silence over witness.</p>
-    <p>It's the hinge point of the four movements — the moment prayer and worship turn into something we're actually willing to change.</p>
+    <p>Gather27 sets aside time for the global Church to repent together. This is a shared posture, not a public confession of individual sin. We're asking God to search our hearts as one body, to show us where we've grown comfortable, divided, or silent, and to renew us for what He's calling us to next.</p>
+    <p>Repentance connects our prayer and worship to action. It's how we prepare to be sent.</p>
+  </div>
+</div>
+
+<div class="modal-overlay" id="leader-modal" role="dialog" aria-modal="true" aria-labelledby="leader-modal-name">
+  <div class="modal-box leader-modal-box">
+    <button type="button" class="modal-close" data-modal-close aria-label="Close">&times;</button>
+    <div class="leader-modal-photo" id="leader-modal-photo"></div>
+    <h3 id="leader-modal-name">Name</h3>
+    <p class="leader-modal-location" id="leader-modal-location">Location</p>
+    <p id="leader-modal-bio">Bio</p>
+    <div class="leader-modal-socials" id="leader-modal-socials"></div>
   </div>
 </div>
 
@@ -867,11 +1006,12 @@
         .attr('class', 'globe-country')
         .attr('d', path);
 
-      dotsLayer.selectAll('circle')
+      var dotEls = dotsLayer.selectAll('circle')
         .data(DOTS)
         .enter().append('circle')
         .attr('class', 'globe-dot')
         .attr('r', 4);
+      dotEls.append('title').text(function (d) { return d.name; });
 
       function isVisible(coords) {
         var r = projection.rotate();
@@ -900,6 +1040,82 @@
           requestAnimationFrame(tick);
         })();
       }
+    });
+  })();
+</script>
+<script>
+  // Leader cards: shared modal (populated per-card) + pagination
+  (function () {
+    var grid = document.getElementById('leader-grid');
+    var cards = grid ? Array.from(grid.querySelectorAll('.leader-card')) : [];
+    var pageSize = 4;
+    var pageCount = Math.ceil(cards.length / pageSize);
+    var currentPage = 0;
+
+    var dotsWrap = document.getElementById('leader-page-dots');
+    var prevBtn = document.querySelector('[data-page-nav="prev"]');
+    var nextBtn = document.querySelector('[data-page-nav="next"]');
+
+    var dots = [];
+    for (var i = 0; i < pageCount; i++) {
+      var dot = document.createElement('button');
+      dot.type = 'button';
+      dot.className = 'leader-page-dot';
+      dot.setAttribute('aria-label', 'Page ' + (i + 1));
+      (function (pageIndex) {
+        dot.addEventListener('click', function () { goToPage(pageIndex); });
+      })(i);
+      dotsWrap.appendChild(dot);
+      dots.push(dot);
+    }
+
+    function render() {
+      cards.forEach(function (card, index) {
+        var onPage = Math.floor(index / pageSize) === currentPage;
+        card.classList.toggle('is-hidden', !onPage);
+      });
+      dots.forEach(function (dot, index) { dot.classList.toggle('active', index === currentPage); });
+      if (prevBtn) prevBtn.disabled = currentPage === 0;
+      if (nextBtn) nextBtn.disabled = currentPage === pageCount - 1;
+    }
+    function goToPage(index) {
+      currentPage = Math.max(0, Math.min(pageCount - 1, index));
+      render();
+    }
+    if (prevBtn) prevBtn.addEventListener('click', function () { goToPage(currentPage - 1); });
+    if (nextBtn) nextBtn.addEventListener('click', function () { goToPage(currentPage + 1); });
+    render();
+
+    var modal = document.getElementById('leader-modal');
+    var modalName = document.getElementById('leader-modal-name');
+    var modalLocation = document.getElementById('leader-modal-location');
+    var modalBio = document.getElementById('leader-modal-bio');
+    var modalSocials = document.getElementById('leader-modal-socials');
+
+    var SOCIAL_LABELS = { instagram: 'Instagram', website: 'Website' };
+
+    cards.forEach(function (card) {
+      card.addEventListener('click', function () {
+        modalName.textContent = card.getAttribute('data-name');
+        modalLocation.textContent = card.getAttribute('data-location');
+        modalBio.textContent = card.getAttribute('data-bio');
+        modalSocials.innerHTML = '';
+        var social = card.getAttribute('data-social');
+        if (!social || social === 'none') {
+          var note = document.createElement('span');
+          note.className = 'none';
+          note.textContent = 'Social links withheld for security';
+          modalSocials.appendChild(note);
+        } else {
+          social.split(',').forEach(function (key) {
+            var a = document.createElement('a');
+            a.href = '#';
+            a.textContent = SOCIAL_LABELS[key] || key;
+            modalSocials.appendChild(a);
+          });
+        }
+        modal.classList.add('open');
+      });
     });
   })();
 </script>

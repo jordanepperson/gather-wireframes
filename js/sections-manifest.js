@@ -28,6 +28,7 @@ window.GATHER_SECTIONS = {
       { id: 'partners', label: 'Partners' },
       { id: 'stories', label: 'Global Stories' },
       { id: 'faq', label: 'FAQ' },
+      { id: 'join-cta', label: 'Closing CTA' },
     ],
   },
   'gather-cities': {
