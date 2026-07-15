@@ -58,6 +58,25 @@
     opacity: 0.7;
     margin-bottom: var(--space-2);
   }
+  .page-card.is-disabled {
+    background: rgba(255,250,240,0.05);
+    border: 1px solid rgba(255,250,240,0.15);
+    cursor: default;
+  }
+  .page-card.is-disabled:hover { transform: none; }
+  .coming-soon-badge {
+    position: absolute;
+    top: var(--space-3);
+    right: var(--space-3);
+    background: var(--color-bright-blue);
+    color: var(--color-off-white);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.7rem;
+    border-radius: 999px;
+  }
   footer.index-footer {
     text-align: center;
     padding-block: var(--space-5);
@@ -88,16 +107,18 @@
     <h2>Gather Global</h2>
     <p>The cinematic, expansive 24-hour global event.</p>
   </a>
-  <a class="page-card" href="gather-cities.html">
+  <div class="page-card is-disabled" aria-disabled="true">
+    <span class="coming-soon-badge">Coming Soon</span>
     <span class="tag">Local Activation</span>
     <h2>Gather Cities</h2>
     <p>Local gatherings happening everywhere.</p>
-  </a>
-  <a class="page-card" href="if-gathering.html">
+  </div>
+  <div class="page-card is-disabled" aria-disabled="true">
+    <span class="coming-soon-badge">Coming Soon</span>
     <span class="tag">Women's Conference</span>
     <h2>IF:Gathering</h2>
     <p>The flagship event equipping women.</p>
-  </a>
+  </div>
 </div>
 
 <footer class="index-footer">
