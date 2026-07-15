@@ -216,6 +216,7 @@
   }
   .event-tab-name { font-weight: 600; font-size: 0.95rem; }
   .event-tab-date { font-size: 0.75rem; opacity: 0.7; }
+  .event-tab-desc { font-size: 0.75rem; opacity: 0.6; margin-top: 0.15rem; line-height: 1.3; }
   .event-tab.active { background: var(--color-bright-blue); border-color: var(--color-bright-blue); }
   .event-panel { display: none; }
   .event-panel.active { display: block; }
@@ -346,6 +347,26 @@
     white-space: nowrap;
     margin: 0;
   }
+
+  .btn-goto-tooltip {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    background: var(--color-dark-blue);
+    color: var(--color-off-white);
+    font-family: var(--font-primary);
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.4rem 0.75rem;
+    border-radius: 999px;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 0.12s ease, transform 0.12s ease;
+  }
+  .btn-goto-tooltip.visible { opacity: 1; transform: translateY(0); }
 </style>
 </head>
 <body data-page="gather-everywhere">
@@ -453,7 +474,7 @@
     <div class="container">
       <div style="text-align:center;">
         <p class="eyebrow-label" style="text-align:center; margin-inline:auto;">Gather Everywhere</p>
-        <h2>Happening Around the World</h2>
+        <h2 style="color: var(--color-off-white);">Happening Around the World</h2>
       </div>
 
       <div class="events-tabs" style="margin-top: var(--space-4);">
@@ -461,20 +482,28 @@
           <button type="button" class="event-tab active" data-tab-target="0" role="tab" aria-selected="true">
             <span class="event-tab-name">Revival Prayer Calls</span>
             <span class="event-tab-date">Every Tuesday, 8 AM CST</span>
+            <span class="event-tab-desc">A weekly call to pray for revival together.</span>
           </button>
           <button type="button" class="event-tab" data-tab-target="1" role="tab" aria-selected="false">
             <span class="event-tab-name">Gather27</span>
             <span class="event-tab-date">March 5-6, 2027</span>
+            <span class="event-tab-desc">The 24-hour global broadcast event.</span>
           </button>
           <button type="button" class="event-tab" data-tab-target="2" role="tab" aria-selected="false">
+            <span class="event-tab-name">Gather Cities</span>
+            <span class="event-tab-date">September 12, 2026</span>
+            <span class="event-tab-desc">A local activation bringing Gather to your city.</span>
+          </button>
+          <button type="button" class="event-tab" data-tab-target="3" role="tab" aria-selected="false">
             <span class="event-tab-name">IF:Gathering</span>
             <span class="event-tab-date">October 1-2, 2027</span>
+            <span class="event-tab-desc">Women gathering to worship and grow together.</span>
           </button>
         </div>
 
         <div class="event-panel active" data-tab-panel="0">
           <div class="event-panel-card">
-            <span class="event-counter">1/3</span>
+            <span class="event-counter">1/4</span>
             <div>
               <img class="event-logo" src="assets/gather-dark.svg" alt="Gather">
               <div class="event-meta">
@@ -490,7 +519,7 @@
 
         <div class="event-panel" data-tab-panel="1">
           <div class="event-panel-card">
-            <span class="event-counter">2/3</span>
+            <span class="event-counter">2/4</span>
             <div>
               <img class="event-logo" src="assets/gather-27-dark.svg" alt="Gather27">
               <div class="event-meta">
@@ -506,7 +535,23 @@
 
         <div class="event-panel" data-tab-panel="2">
           <div class="event-panel-card">
-            <span class="event-counter">3/3</span>
+            <span class="event-counter">3/4</span>
+            <div>
+              <img class="event-logo" src="assets/gather-cities.svg" alt="Gather Cities">
+              <div class="event-meta">
+                <div><span class="event-meta-label">Dates</span><span class="event-meta-value">September 12, 2026</span></div>
+                <div><span class="event-meta-label">Details</span><span class="event-meta-value">In-Person</span><span class="event-meta-value">Dallas, TX</span></div>
+              </div>
+              <p>Local churches across Dallas are gathering for a night of worship, prayer, and vision for what God is doing in our city — a taste of the momentum building toward Gather27.</p>
+              <a class="btn" href="gather-cities.html" style="margin-top:var(--space-2);">Partner With Us</a>
+            </div>
+            <div class="event-photo"></div>
+          </div>
+        </div>
+
+        <div class="event-panel" data-tab-panel="3">
+          <div class="event-panel-card">
+            <span class="event-counter">4/4</span>
             <div>
               <img class="event-logo" src="assets/if-gathering-dark.svg" alt="IF:Gathering">
               <div class="event-meta">
@@ -587,9 +632,9 @@
 
   <section id="cta" class="pairing-02">
     <div class="container" style="text-align:center; padding-block: var(--space-7);">
-      <div class="motif-ripple motif-ripple-inverse" style="width:180px; margin:0 auto var(--space-4);"><span class="core"></span></div>
+      <div class="motif-ripple motif-ripple-inverse" style="width:180px; margin:0 auto var(--space-6);"><span class="core"></span></div>
       <h2 style="max-width:20ch; margin-inline:auto;">Get involved</h2>
-      <p style="max-width:50ch; margin-inline:auto; font-size:1.15rem;">Join the organizations already equipping and sending what Gather convenes — or give directly to support the movement.</p>
+      <p style="max-width:50ch; margin-inline:auto; font-size:1.15rem;">When you give, you take part in bringing the global Church together to take the gospel everywhere.</p>
       <div style="margin-top:var(--space-4);">
         <a class="btn" href="#" style="background:var(--color-dark-blue);">Give</a>
       </div>
@@ -643,6 +688,41 @@
         panels.forEach(function (p) {
           p.classList.toggle('active', p.getAttribute('data-tab-panel') === target);
         });
+      });
+    });
+  })();
+</script>
+<script>
+  // "Goes to: X" cursor tooltip for real navigation buttons
+  (function () {
+    var DESTINATIONS = {
+      '#cta': 'Get Involved',
+      '#expressions': 'Happening Around the World',
+      'gather-global.html': 'Gather Global',
+      'gather-cities.html': 'Gather Cities',
+      'if-gathering.html': 'IF:Gathering',
+      'https://www.jennieallen.com/': 'Jennie Allen'
+    };
+
+    var tooltip = document.createElement('div');
+    tooltip.className = 'btn-goto-tooltip';
+    document.body.appendChild(tooltip);
+
+    document.querySelectorAll('a.btn').forEach(function (btn) {
+      var href = btn.getAttribute('href');
+      var label = DESTINATIONS[href];
+      if (!label) return; // skip placeholders like "#" with no real destination
+
+      btn.addEventListener('mouseenter', function () {
+        tooltip.textContent = 'Goes to: ' + label;
+        tooltip.classList.add('visible');
+      });
+      btn.addEventListener('mousemove', function (e) {
+        tooltip.style.left = (e.clientX + 16) + 'px';
+        tooltip.style.top = (e.clientY + 16) + 'px';
+      });
+      btn.addEventListener('mouseleave', function () {
+        tooltip.classList.remove('visible');
       });
     });
   })();
