@@ -92,13 +92,18 @@
   }
   .hero-info-detail-value { font-size: 0.9rem; font-weight: 600; }
   .hero-countdown-box {
+    align-self: stretch;
     display: flex;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
     background: var(--color-dark-blue);
     border-radius: 1rem;
-    padding: 0.6rem 1.25rem;
+    padding: 0.5rem 1.5rem;
   }
-  .hero-countdown { display: flex; gap: var(--space-3); }
+  .hero-countdown-box .hero-info-detail-label { margin: 0; }
+  .hero-countdown { display: flex; justify-content: center; gap: var(--space-3); }
   .countdown-unit { text-align: center; min-width: 48px; }
   .countdown-num {
     display: block;
@@ -109,9 +114,17 @@
     font-variant-numeric: tabular-nums;
   }
   .countdown-label { font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.75; }
+  .hero-info-bar-cta {
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 0.9rem 1rem;
+    border-radius: 0;
+    text-align: center;
+    background: var(--color-dark-blue);
+  }
   @media (max-width: 800px) {
-    .hero-info-bar-inner { flex-direction: column; align-items: flex-start; }
-    .hero-countdown-box { align-self: center; }
+    .hero-info-bar-inner { flex-direction: column; align-items: stretch; }
   }
 
   /* About section media */
@@ -494,6 +507,29 @@
   .moment-caption h3 { font-family: var(--font-secondary); font-style: normal; font-weight: 400; font-size: 1rem; line-height: 1.25; margin: 0; color: var(--color-off-white); }
   @media (max-width: 700px) { .moment-card { width: 170px; } }
 
+  .moments-wrap { position: relative; }
+  .moments-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 2.5rem; height: 2.5rem;
+    border-radius: 50%;
+    border: none;
+    background: var(--color-bright-blue);
+    color: var(--color-off-white);
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 14px rgba(18,22,29,0.35);
+    z-index: 5;
+  }
+  .moments-nav.prev { left: -0.75rem; }
+  .moments-nav.next { right: -0.75rem; }
+  @media (max-width: 700px) {
+    .moments-nav { width: 2.1rem; height: 2.1rem; }
+    .moments-nav.prev { left: 0.25rem; }
+    .moments-nav.next { right: 0.25rem; }
+  }
+
   .faq-item { border-bottom: 1px solid rgba(255,250,240,0.15); padding-block: var(--space-2); }
   .faq-item summary { cursor:pointer; font-weight:600; }
 
@@ -539,11 +575,11 @@
       <img src="assets/gather-27-blue.svg" alt="Gather Global" style="height:26px; width:auto;">
     </a>
     <ul class="links" style="color: var(--color-off-white);">
-      <li><a href="#about" style="color:var(--color-off-white);">About</a></li>
-      <li><a href="#what-it-is" style="color:var(--color-off-white);">Event</a></li>
-      <li><a href="#faq" style="color:var(--color-off-white);">FAQ</a></li>
+      <li><a href="#" data-tooltip="#about" style="color:var(--color-off-white);">About</a></li>
+      <li><a href="#" data-tooltip="#the-event" style="color:var(--color-off-white);">Event</a></li>
+      <li><a href="#" data-tooltip="#faq" style="color:var(--color-off-white);">FAQ</a></li>
     </ul>
-    <a class="btn" href="#get-involved">Host a Watch Party</a>
+    <a class="btn" href="#" data-tooltip="/host">Host a Watch Party</a>
   </nav>
 </header>
 
@@ -578,6 +614,7 @@
           </div>
         </div>
         <div class="hero-countdown-box">
+          <span class="hero-info-detail-label">We Gather In</span>
           <div class="hero-countdown" id="hero-countdown" aria-live="polite">
             <div class="countdown-unit"><span class="countdown-num" data-unit="days">--</span><span class="countdown-label">Days</span></div>
             <div class="countdown-unit"><span class="countdown-num" data-unit="hours">--</span><span class="countdown-label">Hrs</span></div>
@@ -585,8 +622,8 @@
             <div class="countdown-unit"><span class="countdown-num" data-unit="seconds">--</span><span class="countdown-label">Sec</span></div>
           </div>
         </div>
-        <a class="btn" href="#get-involved" style="background:var(--color-dark-blue);">Host a Watch Party</a>
       </div>
+      <a class="btn hero-info-bar-cta" href="#" data-tooltip="/host">Host a Watch Party</a>
     </div>
   </section>
 
@@ -776,7 +813,7 @@
         <div class="host-card-body">
           <h3 style="color:var(--color-off-white);">Host a Watch Party</h3>
           <p style="color:var(--color-off-white);">Gather your church, campus, or living room around the broadcast. We give you everything you need to host: a simple guide, promotional materials, and a spot on the map so people can find you.</p>
-          <a class="btn" href="#" style="margin-top:var(--space-2);">Host a Watch Party</a>
+          <a class="btn" href="#" data-tooltip="/host" style="margin-top:var(--space-2);">Host a Watch Party</a>
         </div>
       </div>
 
@@ -785,7 +822,7 @@
           <h3>Find a Gathering</h3>
           <p>Gatherings are happening everywhere. Find people near you and be part of it.</p>
         </div>
-        <a class="btn btn-outline" href="#" style="color:var(--color-off-white);">Find a Gathering</a>
+        <a class="btn btn-outline" href="#" data-tooltip="/join" style="color:var(--color-off-white);">Find a Gathering</a>
       </div>
     </div>
   </section>
@@ -797,7 +834,7 @@
           <p class="eyebrow-label">Partners</p>
           <h2>Our Partners in Gathering the Global Church</h2>
           <p>Behind Gather27 is a collaboration of ministries, partners, and leaders united around one vision: to gather the entire global Church for a day of prayer, worship, repentance, and commissioning.</p>
-          <a class="btn" href="#get-involved" style="margin-top: var(--space-2);">Become a Partner</a>
+          <a class="btn" href="#" data-tooltip="/partner" style="margin-top: var(--space-2);">Become a Partner</a>
         </div>
         <div class="partner-logos">
           <div>IF:Gathering</div><div>YouVersion</div><div>Cru</div>
@@ -817,7 +854,11 @@
     <div class="container">
       <p class="eyebrow-label" style="text-align:center; margin-inline:auto;">Global Stories</p>
       <h2 style="text-align:center; max-width:24ch; margin-inline:auto;">Stories from the Global Church</h2>
-      <div class="moments-row">
+      <div class="moments-wrap">
+      <button type="button" class="moments-nav prev" id="moments-prev" aria-label="Previous moments">
+        <svg viewBox="0 0 24 24" width="18" height="18"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="moments-row" id="moments-row">
         <div class="moment-card">
           <div class="moment-media"><p class="content-note">Content note: vertical clip, a campus watch party that became a weekly prayer group.</p></div>
           <div class="moment-play" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></div>
@@ -867,6 +908,10 @@
           </div>
         </div>
       </div>
+      <button type="button" class="moments-nav next" id="moments-next" aria-label="Next moments">
+        <svg viewBox="0 0 24 24" width="18" height="18"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      </div>
     </div>
   </section>
 
@@ -897,7 +942,7 @@
       <h2 style="max-width:16ch; margin-inline:auto;">This Is the Moment.</h2>
       <p style="max-width:48ch; margin-inline:auto; font-size:1.15rem;">Gather your church, your campus, your living room. Be part of the day the whole global Church gathers as one.</p>
       <div style="margin-top:var(--space-4);">
-        <a class="btn" href="#get-involved" style="background:var(--color-dark-blue);">Host a Watch Party</a>
+        <a class="btn" href="#" data-tooltip="/host" style="background:var(--color-dark-blue);">Host a Watch Party</a>
       </div>
     </div>
   </section>
@@ -907,15 +952,15 @@
 <footer class="pairing-03">
   <div class="container" style="padding-block: var(--space-5); display:flex; flex-wrap:wrap; justify-content:space-between; gap: var(--space-3); font-size:0.85rem;">
     <div style="display:flex; gap: var(--space-4); flex-wrap:wrap;">
-      <a href="#get-involved" style="color:inherit; text-decoration:none;">Host</a>
-      <a href="#get-involved" style="color:inherit; text-decoration:none;">Join</a>
-      <a href="#" style="color:inherit; text-decoration:none;">Careers</a>
+      <a href="#" data-tooltip="/host" style="color:inherit; text-decoration:none;">Host</a>
+      <a href="#" data-tooltip="/join" style="color:inherit; text-decoration:none;">Join</a>
+      <a href="#" data-tooltip="/careers" style="color:inherit; text-decoration:none;">Careers</a>
     </div>
     <div style="display:flex; gap: var(--space-4); flex-wrap:wrap; opacity:0.75;">
-      <a href="#" style="color:inherit; text-decoration:none;">YouVersion</a>
-      <a href="#" style="color:inherit; text-decoration:none;">TikTok</a>
-      <a href="#" style="color:inherit; text-decoration:none;">Instagram</a>
-      <a href="#" style="color:inherit; text-decoration:none;">YouTube</a>
+      <a href="#" data-tooltip="YouVersion" style="color:inherit; text-decoration:none;">YouVersion</a>
+      <a href="#" data-tooltip="@gatherglobal" style="color:inherit; text-decoration:none;">TikTok</a>
+      <a href="#" data-tooltip="@gatherglobal" style="color:inherit; text-decoration:none;">Instagram</a>
+      <a href="#" data-tooltip="@gatherglobal" style="color:inherit; text-decoration:none;">YouTube</a>
     </div>
   </div>
   <div class="container" style="padding-bottom: var(--space-2); display:flex; justify-content:center; gap:var(--space-3); font-size:0.75rem; opacity:0.6;">
@@ -923,7 +968,7 @@
     <a href="#" style="color:inherit; text-decoration:none;">Terms</a>
   </div>
   <div class="container" style="padding-bottom: var(--space-4); font-size:0.8rem; opacity:0.7; text-align:center;">
-    Gather27 and Gather Global are part of <a href="gather-everywhere.html" style="color:inherit;">Gather</a>, a movement founded by <a href="https://www.jennieallen.com/" target="_blank" rel="noopener" style="color:inherit;">Jennie Allen</a>.
+    Gather27 and Gather Global are part of <a href="#" data-tooltip="Gather Everywhere Website" style="color:inherit;">Gather</a>, a movement founded by <a href="#" data-tooltip="Jennie Allen Website" style="color:inherit;">Jennie Allen</a>.
   </div>
 </footer>
 
@@ -956,7 +1001,7 @@
       <li><strong>No Not One</strong>, with Elevation Rhythm &amp; Pambio</li>
     </ul>
     <p style="font-size:0.85rem; opacity:0.7;">Full song list, lyrics, and multitracks available in the host toolkit.</p>
-    <a class="btn btn-outline" href="https://www.gather25.com/worship" target="_blank" rel="noopener" style="margin-top:var(--space-2); color:var(--color-bright-blue); border-color:var(--color-bright-blue);">Explore Gather Worship</a>
+    <a class="btn btn-outline" href="#" data-tooltip="Gather Worship Page" style="margin-top:var(--space-2); color:var(--color-bright-blue); border-color:var(--color-bright-blue);">Listen</a>
   </div>
 </div>
 
@@ -1031,6 +1076,22 @@
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') closeAll();
     });
+  })();
+</script>
+<script>
+  // Left/right arrows for the Moments reel
+  (function () {
+    var row = document.getElementById('moments-row');
+    var prev = document.getElementById('moments-prev');
+    var next = document.getElementById('moments-next');
+    if (!row) return;
+    function step(dir) {
+      var card = row.querySelector('.moment-card');
+      var amount = card ? card.getBoundingClientRect().width + 24 : 240;
+      row.scrollBy({ left: dir * amount, behavior: 'auto' });
+    }
+    if (prev) prev.addEventListener('click', function () { step(-1); });
+    if (next) next.addEventListener('click', function () { step(1); });
   })();
 </script>
 <script>
@@ -1234,23 +1295,17 @@
   })();
 </script>
 <script>
-  // "Goes to: X" cursor tooltip for real navigation buttons
+  // "Goes to: X" cursor tooltip, driven by a data-tooltip attribute.
+  // These buttons are annotations of intended future routing only — none of
+  // them navigate anywhere; the tooltip is the whole point.
   (function () {
-    var DESTINATIONS = {
-      '#get-involved': 'Get Involved',
-      '#about': 'About',
-      '#what-it-is': 'The Event',
-      '#faq': 'FAQ'
-    };
-
     var tooltip = document.createElement('div');
     tooltip.className = 'btn-goto-tooltip';
     document.body.appendChild(tooltip);
 
-    document.querySelectorAll('a.btn').forEach(function (btn) {
-      var href = btn.getAttribute('href');
-      var label = DESTINATIONS[href];
-      if (!label) return; // skip placeholders like "#" with no real destination
+    document.querySelectorAll('[data-tooltip]').forEach(function (btn) {
+      var label = btn.getAttribute('data-tooltip');
+      if (!label) return;
 
       btn.addEventListener('mouseenter', function () {
         tooltip.textContent = 'Goes to: ' + label;
