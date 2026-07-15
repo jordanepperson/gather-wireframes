@@ -175,16 +175,20 @@
   .hero-image {
     width: calc(100vw - 3rem);
     margin-left: calc(50% - 50vw + 1.5rem);
-    aspect-ratio: 21 / 8;
+    min-height: 560px;
     border-radius: 1.5rem;
-    margin-top: var(--space-5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
     background:
       linear-gradient(135deg, rgba(42,94,216,0.55), rgba(18,22,29,0.75)),
       linear-gradient(135deg, var(--color-bright-blue), var(--color-light-blue));
     background-blend-mode: multiply;
   }
+  .hero-content { padding-block: var(--space-6); }
   @media (max-width: 700px) {
-    .hero-image { aspect-ratio: 4/5; }
+    .hero-image { min-height: 460px; }
   }
 
   /* Upcoming events tabs */
@@ -381,14 +385,15 @@
 
 <main>
 
-  <section id="hero" class="pairing-01">
-    <div class="container" style="padding-block: var(--space-6); text-align:center;">
-      <h1 style="max-width: 18ch; margin-inline:auto;">God is moving.<br>Move with Him.</h1>
-      <p style="max-width:60ch; margin-inline:auto; font-size:1.15rem;">Gather is a global movement that brings together the global Church to see, celebrate, and participate in what God is doing - until every nation knows Jesus.</p>
-      <div style="margin-top: var(--space-4);">
-        <a class="btn" href="#expressions">Gather With Us</a>
+  <section id="hero" class="pairing-01" style="padding-block: var(--space-4);">
+    <div class="hero-image">
+      <div class="container hero-content" style="text-align:center;">
+        <h1 style="max-width: 18ch; margin-inline:auto; color: var(--color-off-white);">God is moving.<br>Move with Him.</h1>
+        <p style="max-width:60ch; margin-inline:auto; font-size:1.15rem; color: var(--color-off-white);">Gather is a global movement that brings together the global Church to see, celebrate, and participate in what God is doing - until every nation knows Jesus.</p>
+        <div style="margin-top: var(--space-4);">
+          <a class="btn" href="#expressions" style="background: var(--color-off-white); color: var(--color-dark-blue);">Gather With Us</a>
+        </div>
       </div>
-      <div class="hero-image"></div>
     </div>
   </section>
 
