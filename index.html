@@ -84,6 +84,32 @@
     color: var(--color-off-white);
     opacity: 0.6;
   }
+  .existing-properties { text-align: center; padding-bottom: var(--space-6); }
+  .existing-properties p.eyebrow {
+    font-family: var(--font-primary);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-off-white);
+    opacity: 0.5;
+    margin-bottom: var(--space-2);
+    margin-inline: auto;
+  }
+  .existing-properties .links {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+    font-size: 0.85rem;
+  }
+  .existing-properties a {
+    color: var(--color-off-white);
+    opacity: 0.7;
+    text-decoration: none;
+    transition: opacity 0.15s ease;
+  }
+  .existing-properties a:hover { opacity: 1; text-decoration: underline; }
 </style>
 </head>
 <body data-page="index">
@@ -118,6 +144,15 @@
     <span class="tag">Women's Conference</span>
     <h2>IF:Gathering</h2>
     <p>The flagship event equipping women.</p>
+  </div>
+</div>
+
+<div class="container existing-properties">
+  <p class="eyebrow">Existing Properties</p>
+  <div class="links">
+    <a href="https://www.gathereverywhere.com/" target="_blank" rel="noopener">gathereverywhere.com</a>
+    <a href="https://www.ifgathering.com/" target="_blank" rel="noopener">ifgathering.com</a>
+    <a href="https://www.gather25.com/" target="_blank" rel="noopener">gather25.com</a>
   </div>
 </div>
 
