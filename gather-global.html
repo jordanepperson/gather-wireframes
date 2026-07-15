@@ -70,6 +70,7 @@
     margin-left: calc(50% - 50vw + 1rem);
     background: var(--color-bright-blue);
     border-radius: 1.25rem;
+    border: 1px solid rgba(189,216,231,0.5);
     overflow: hidden;
   }
   .hero-info-bar-inner {
@@ -148,9 +149,16 @@
     .about-media-tile.large { min-height: 200px; }
     .about-media-tile { min-height: 110px; }
   }
-  .about-theme-list { display: flex; flex-direction: column; gap: 1.3rem; margin-top: var(--space-3); }
-  .about-theme { border-left: 3px solid var(--color-bright-blue); padding-left: 1.3rem; }
-  .about-theme h4 { margin-bottom: 0.3rem; font-size: 1.3rem; }
+  .about-theme-list { display: flex; flex-direction: column; gap: 0.9rem; margin-top: var(--space-3); }
+  .about-theme { border-left: 3px solid var(--color-bright-blue); padding-left: 1.3rem; padding-block: 0.2rem; }
+  .about-theme summary {
+    cursor: pointer;
+    font-family: var(--font-primary);
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--color-off-white);
+  }
+  .about-theme[open] summary { margin-bottom: 0.3rem; }
   .about-theme p { margin: 0; font-size: 0.88rem; }
 
   /* Pillar cards (Pray / Worship / Repent / Commission) */
@@ -646,18 +654,18 @@
         <p class="eyebrow-label">About Gather Global</p>
         <h2>An epic gathering and celebration of God's work</h2>
         <div class="about-theme-list">
-          <div class="about-theme">
-            <h4>2025 was the beginning</h4>
+          <details class="about-theme">
+            <summary>2025 was the beginning</summary>
             <p>In 2025, seven million believers across 225 countries gathered for Gather25, and watched a fresh hunger for revival ripple across generations and borders.</p>
-          </div>
-          <div class="about-theme">
-            <h4>We're starting a steady rhythm</h4>
+          </details>
+          <details class="about-theme">
+            <summary>We're starting a steady rhythm</summary>
             <p>We see a Global Church, connected and anchored by gatherings across the world.</p>
-          </div>
-          <div class="about-theme">
-            <h4>2027 is the next gathering</h4>
+          </details>
+          <details class="about-theme">
+            <summary>2027 is the next gathering</summary>
             <p>Gather27 is our next chance to share what God is doing, encourage each other, and witness Jesus' transformative power together.</p>
-          </div>
+          </details>
         </div>
       </div>
     </div>
@@ -940,7 +948,7 @@
     <div class="container" style="text-align:center;">
       <div class="motif-ripple motif-ripple-inverse" style="width:180px; margin:0 auto var(--space-5);"><span class="core"></span></div>
       <h2 style="max-width:16ch; margin-inline:auto;">This Is the Moment.</h2>
-      <p style="max-width:48ch; margin-inline:auto; font-size:1.15rem;">Gather your church, your campus, your living room. Be part of the day the whole global Church gathers as one.</p>
+      <p style="max-width:52ch; margin-inline:auto; font-size:1.15rem;">This gathering happens in churches, schools, living rooms, and coffee shops through personal invites, not big ad campaigns. Be part of the Church gathering as one.</p>
       <div style="margin-top:var(--space-4);">
         <a class="btn" href="#" data-tooltip="/host" style="background:var(--color-dark-blue);">Host a Watch Party</a>
       </div>
@@ -963,9 +971,12 @@
       <a href="#" data-tooltip="@gatherglobal" style="color:inherit; text-decoration:none;">YouTube</a>
     </div>
   </div>
+  <div class="container" style="padding-block: var(--space-4); display:flex; justify-content:center;">
+    <img src="assets/gather-cluster-light.svg" alt="Gather" style="height:36px; width:auto;">
+  </div>
   <div class="container" style="padding-bottom: var(--space-2); display:flex; justify-content:center; gap:var(--space-3); font-size:0.75rem; opacity:0.6;">
-    <a href="#" style="color:inherit; text-decoration:none;">Privacy</a>
-    <a href="#" style="color:inherit; text-decoration:none;">Terms</a>
+    <a href="#" data-tooltip="/privacy" style="color:inherit; text-decoration:none;">Privacy</a>
+    <a href="#" data-tooltip="/terms" style="color:inherit; text-decoration:none;">Terms</a>
   </div>
   <div class="container" style="padding-bottom: var(--space-4); font-size:0.8rem; opacity:0.7; text-align:center;">
     Gather27 and Gather Global are part of <a href="#" data-tooltip="Gather Everywhere Website" style="color:inherit;">Gather</a>, a movement founded by <a href="#" data-tooltip="Jennie Allen Website" style="color:inherit;">Jennie Allen</a>.

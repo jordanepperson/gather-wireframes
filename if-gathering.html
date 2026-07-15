@@ -25,6 +25,22 @@
   .story-tile { background: var(--color-light-blue); border-radius:1rem; padding: var(--space-3); }
   .faq-item { border-bottom: 1px solid rgba(18,22,29,0.12); padding-block: var(--space-2); }
   .faq-item summary { cursor:pointer; font-weight:600; }
+
+  .btn-goto-tooltip {
+    position: fixed; top: 0; left: 0; z-index: 1000;
+    background: var(--color-dark-blue);
+    color: var(--color-off-white);
+    font-family: var(--font-primary);
+    font-size: 0.75rem; font-weight: 600;
+    padding: 0.4rem 0.75rem;
+    border-radius: 999px;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 0.12s ease, transform 0.12s ease;
+  }
+  .btn-goto-tooltip.visible { opacity: 1; transform: translateY(0); }
 </style>
 </head>
 <body data-page="if-gathering">
@@ -143,8 +159,20 @@
   <div class="container" style="padding-top: var(--space-4); font-size:0.85rem; opacity:0.6;">
     IF:Gathering · Wireframe · <a href="gather-everywhere.html" style="color:inherit;">Part of Gather</a>
   </div>
-  <div class="container" style="padding-bottom: var(--space-4); font-size:0.8rem; opacity:0.6; text-align:center;">
-    A movement founded by <a href="https://www.jennieallen.com/" target="_blank" rel="noopener" style="color:inherit;">Jennie Allen</a>
+  <div class="container" style="padding-block: var(--space-4); display:flex; justify-content:center;">
+    <img src="assets/gather-cluster-dark.svg" alt="Gather" style="height:36px; width:auto;">
+  </div>
+  <div class="container" style="padding-bottom: var(--space-4); display:flex; justify-content:center; align-items:center; gap: var(--space-4); flex-wrap:wrap;">
+    <a href="#" data-tooltip="/Gather27" style="opacity:0.85;"><img src="assets/gather-27-dark.svg" alt="Gather Global" style="height:22px; width:auto;"></a>
+    <a href="#" data-tooltip="/Gather-Cities" style="opacity:0.85;"><img src="assets/gather-cities-dark.svg" alt="Gather Cities" style="height:22px; width:auto;"></a>
+    <a href="#" data-tooltip="/IF" style="opacity:0.85;"><img src="assets/if-gathering-dark.svg" alt="IF:Gathering" style="height:22px; width:auto;"></a>
+  </div>
+  <div class="container" style="padding-bottom: var(--space-2); font-size:0.8rem; opacity:0.6; text-align:center;">
+    A movement founded by <a href="#" data-tooltip="Jennie Allen Website" style="color:inherit;">Jennie Allen</a>
+  </div>
+  <div class="container" style="padding-bottom: var(--space-4); display:flex; justify-content:center; gap:var(--space-3); font-size:0.75rem; opacity:0.6;">
+    <a href="#" data-tooltip="/privacy" style="color:inherit; text-decoration:none;">Privacy</a>
+    <a href="#" data-tooltip="/terms" style="color:inherit; text-decoration:none;">Terms</a>
   </div>
 </footer>
 
@@ -155,5 +183,32 @@
 
 <script src="js/sections-manifest.js"></script>
 <script src="js/review-mode.js"></script>
+<script>
+  // "Goes to: X" cursor tooltip, driven by a data-tooltip attribute.
+  // These buttons are annotations of intended future routing only — none of
+  // them navigate anywhere; the tooltip is the whole point.
+  (function () {
+    var tooltip = document.createElement('div');
+    tooltip.className = 'btn-goto-tooltip';
+    document.body.appendChild(tooltip);
+
+    document.querySelectorAll('[data-tooltip]').forEach(function (el) {
+      var label = el.getAttribute('data-tooltip');
+      if (!label) return;
+
+      el.addEventListener('mouseenter', function () {
+        tooltip.textContent = 'Goes to: ' + label;
+        tooltip.classList.add('visible');
+      });
+      el.addEventListener('mousemove', function (e) {
+        tooltip.style.left = (e.clientX + 16) + 'px';
+        tooltip.style.top = (e.clientY + 16) + 'px';
+      });
+      el.addEventListener('mouseleave', function () {
+        tooltip.classList.remove('visible');
+      });
+    });
+  })();
+</script>
 </body>
 </html>
