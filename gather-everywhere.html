@@ -327,6 +327,7 @@
     overflow: hidden;
     background: var(--color-off-white);
     border: 1px solid rgba(18,22,29,0.08);
+    cursor: pointer;
   }
   .story-card .photo {
     aspect-ratio: 4/3;
@@ -428,7 +429,7 @@
   <nav class="site-nav container">
     <a href="index.html"><img class="logo" src="assets/gather-dark.svg" alt="Gather"></a>
     <div style="display:flex; align-items:center; gap: 0.5rem;">
-      <a class="btn" href="#cta">Give</a>
+      <a class="btn" href="#" data-tooltip="/give">Give</a>
       <div class="nav-menu">
         <button type="button" class="nav-menu-toggle" id="nav-menu-toggle" aria-expanded="false" aria-controls="nav-menu-panel" aria-label="Open menu">
           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 6H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M3 12H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M3 18H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
@@ -436,20 +437,20 @@
         <div class="nav-menu-panel" id="nav-menu-panel">
           <div class="nav-menu-group">
             <div class="nav-menu-group-label">Gather Everywhere</div>
-            <a href="gather-global.html">Gather Global</a>
-            <a href="gather-cities.html">Gather Cities</a>
-            <a href="if-gathering.html">IF:Gathering</a>
+            <a href="#" data-tooltip="/Gather27">Gather Global</a>
+            <a href="#" data-tooltip="/Gather-Cities">Gather Cities</a>
+            <a href="#" data-tooltip="/IF">IF:Gathering</a>
           </div>
           <div class="nav-menu-group">
             <div class="nav-menu-group-label">The Movement</div>
-            <a href="#founder">Our Story</a>
-            <a href="https://www.jennieallen.com/" target="_blank" rel="noopener">Jennie Allen</a>
-            <a href="#partners">Our Partners</a>
+            <a href="#" data-tooltip="/about">Our Story</a>
+            <a href="#" data-tooltip="/partners">Our Partners</a>
+            <a href="#" data-tooltip="/jennie-allen">Jennie Allen</a>
           </div>
           <div class="nav-menu-group">
             <div class="nav-menu-group-label">Partner</div>
-            <a href="#cta">Donate</a>
-            <a href="#">Contact Us</a>
+            <a href="#" data-tooltip="/give">Give</a>
+            <a href="#" data-tooltip="/contact">Contact Us</a>
           </div>
         </div>
       </div>
@@ -545,7 +546,7 @@
                 <div><span class="event-meta-label">Details</span><span class="event-meta-value">Virtual</span></div>
               </div>
               <p>Each week, believers from around the world gather to pray together. In a spirit of humility, we come before God to repent, worship, and be renewed by His presence. This call has become a steady rhythm for thousands — a place to bring the weight of what's happening in your city, your family, and the nations, and lay it down together. There's no commitment beyond showing up; just come as you are and pray.</p>
-              <a class="btn" href="#" style="margin-top:var(--space-2);">Sign Up</a>
+              <a class="btn" href="#" data-tooltip="Sign Up Form" style="margin-top:var(--space-2);">Sign Up</a>
             </div>
             <div class="event-photo"></div>
           </div>
@@ -561,7 +562,7 @@
                 <div><span class="event-meta-label">Details</span><span class="event-meta-value">Live Broadcast</span><span class="event-meta-value">In-Person</span></div>
               </div>
               <p>Gather27 is a 24-hour global broadcast event designed to bring Christians together across all continents, time zones, and denominations through worship, prayer, and repentance. Hosted from a rotating slate of cities, the broadcast moves with the sun, handing off from region to region so every time zone gets its own moment in the spotlight. Churches, campuses, and living rooms around the world will tune in together, making it one of the largest single days of collective prayer in the movement's history.</p>
-              <a class="btn" href="gather-global.html" style="margin-top:var(--space-2);">Register to Host</a>
+              <a class="btn" href="#" data-tooltip="Gather27 Page" style="margin-top:var(--space-2);">See Event</a>
             </div>
             <div class="event-photo"></div>
           </div>
@@ -577,7 +578,7 @@
                 <div><span class="event-meta-label">Details</span><span class="event-meta-value">In-Person</span><span class="event-meta-value">Dallas, TX</span></div>
               </div>
               <p>Local churches across Dallas are gathering for a night of worship, prayer, and vision for what God is doing in our city — a taste of the momentum building toward Gather27. Pastors from a dozen congregations are co-hosting, sharing a single stage and a single microphone, which is itself part of the point: this isn't any one church's event, it's the whole city's. Expect worship, short testimonies from local ministries, and a clear next step for getting involved beyond the night itself.</p>
-              <a class="btn" href="gather-cities.html" style="margin-top:var(--space-2);">Partner With Us</a>
+              <a class="btn" href="#" data-tooltip="/gather-cities" style="margin-top:var(--space-2);">Partner With Us</a>
             </div>
             <div class="event-photo"></div>
           </div>
@@ -593,7 +594,7 @@
                 <div><span class="event-meta-label">Details</span><span class="event-meta-value">Live Broadcast</span><span class="event-meta-value">In-Person</span></div>
               </div>
               <p>IF:Gathering exists to gather, equip, and unleash women to live on mission. Across cities, churches, campuses, and living rooms, women come together to worship, learn from Scripture, and be reminded of their identity in Christ. What started as a single weekend gathering has grown into a year-round network of small groups — IF:Local tables — meeting in homes and churches everywhere, discipling each other long after the broadcast ends.</p>
-              <a class="btn" href="if-gathering.html" style="margin-top:var(--space-2);">Host an IF:Local</a>
+              <a class="btn" href="#" data-tooltip="IF:Gathering Page" style="margin-top:var(--space-2);">See Event</a>
             </div>
             <div class="event-photo"></div>
           </div>
@@ -614,7 +615,7 @@
         <p class="eyebrow-label">A Movement Founded by Jennie Allen</p>
         <h2>If Jesus came back tomorrow, then what?</h2>
         <p>In 2014, Jennie Allen and a small team began gathering people to live like the answer matters. In 2025, that grew into Gather's first global broadcast, reaching 7 million people across 225 countries. It was only the beginning.</p>
-        <a class="btn btn-outline" href="https://www.jennieallen.com/" target="_blank" rel="noopener" style="margin-top:var(--space-2);">More About Jennie Allen</a>
+        <a class="btn btn-outline" href="#" data-tooltip="/jennie-allen" style="margin-top:var(--space-2);">More About Jennie Allen</a>
       </div>
     </div>
   </section>
@@ -630,32 +631,32 @@
       <p class="eyebrow-label" style="text-align:center; margin-inline:auto;">Stories</p>
       <h2 style="text-align:center; max-width:24ch; margin-inline:auto;">Gathering happening everywhere</h2>
       <div class="story-grid">
-        <div class="story-card">
+        <div class="story-card" data-tooltip="Story Single">
           <div class="photo"></div>
           <div class="tags"><span class="tag-pill brand">Gather Global</span><span class="tag-pill country">USA</span></div>
           <h3>A campus watch party turned into a weekly prayer group.</h3>
         </div>
-        <div class="story-card">
+        <div class="story-card" data-tooltip="Story Single">
           <div class="photo"></div>
           <div class="tags"><span class="tag-pill brand">Gather Cities</span><span class="tag-pill country">Rwanda</span></div>
           <h3>Churches gathered by the hundreds to broadcast together.</h3>
         </div>
-        <div class="story-card">
+        <div class="story-card" data-tooltip="Story Single">
           <div class="photo"></div>
           <div class="tags"><span class="tag-pill brand">IF:Gathering</span><span class="tag-pill country">Ukraine</span></div>
           <h3>Believers prayed together across active conflict zones.</h3>
         </div>
-        <div class="story-card">
+        <div class="story-card" data-tooltip="Story Single">
           <div class="photo"></div>
           <div class="tags"><span class="tag-pill brand">Gather Everywhere</span><span class="tag-pill country">Malaysia</span></div>
           <h3>A living room gathering grew into a citywide network.</h3>
         </div>
-        <div class="story-card">
+        <div class="story-card" data-tooltip="Story Single">
           <div class="photo"></div>
           <div class="tags"><span class="tag-pill brand">Gather Global</span><span class="tag-pill country">Peru</span></div>
           <h3>Ten thousand watched the broadcast from a single stadium.</h3>
         </div>
-        <div class="story-card">
+        <div class="story-card" data-tooltip="Story Single">
           <div class="photo"></div>
           <div class="tags"><span class="tag-pill brand">IF:Gathering</span><span class="tag-pill country">Kenya</span></div>
           <h3>Women from six churches met for the first IF:Local table.</h3>
@@ -671,7 +672,7 @@
       <div class="partner-logos" style="justify-content:center; margin-top: var(--space-3);">
         <div>Partner Logo</div><div>Partner Logo</div><div>Partner Logo</div><div>Partner Logo</div><div>Partner Logo</div>
       </div>
-      <a class="btn" href="#cta" style="margin-top: var(--space-4);">Become a Partner</a>
+      <a class="btn" href="#" data-tooltip="/partner" style="margin-top: var(--space-4);">Become a Partner</a>
     </div>
   </section>
 
@@ -691,14 +692,14 @@
 <footer class="pairing-01">
   <div class="container" style="padding-block: var(--space-5); display:flex; flex-wrap:wrap; justify-content:space-between; gap: var(--space-3); font-size:0.85rem;">
     <div style="display:flex; gap: var(--space-4); flex-wrap:wrap;">
-      <a href="#founder" style="color:inherit; text-decoration:none;">Our Story</a>
-      <a href="#" style="color:inherit; text-decoration:none;">Contact</a>
-      <a href="#" style="color:inherit; text-decoration:none;">Careers</a>
+      <a href="#" data-tooltip="/about" style="color:inherit; text-decoration:none;">Our Story</a>
+      <a href="#" data-tooltip="/contact" style="color:inherit; text-decoration:none;">Contact</a>
+      <a href="#" data-tooltip="/careers" style="color:inherit; text-decoration:none;">Careers</a>
     </div>
     <div style="display:flex; gap: var(--space-4); flex-wrap:wrap; opacity:0.75;">
-      <a href="#" style="color:inherit; text-decoration:none;">Instagram</a>
-      <a href="#" style="color:inherit; text-decoration:none;">YouTube</a>
-      <a href="#" style="color:inherit; text-decoration:none;">YouVersion</a>
+      <a href="#" data-tooltip="@gathereverywhere" style="color:inherit; text-decoration:none;">Instagram</a>
+      <a href="#" data-tooltip="@gathereverywhere" style="color:inherit; text-decoration:none;">YouTube</a>
+      <a href="#" data-tooltip="Gather" style="color:inherit; text-decoration:none;">YouVersion</a>
     </div>
   </div>
   <div class="container" style="padding-bottom: var(--space-5); display:flex; justify-content:center;">
@@ -825,36 +826,27 @@
   })();
 </script>
 <script>
-  // "Goes to: X" cursor tooltip for real navigation buttons
+  // "Goes to: X" cursor tooltip, driven by a data-tooltip attribute.
+  // These buttons are annotations of intended future routing only — none of
+  // them navigate anywhere; the tooltip is the whole point.
   (function () {
-    var DESTINATIONS = {
-      '#cta': 'Get Involved',
-      '#expressions': 'Happening Around the World',
-      'gather-global.html': 'Gather Global',
-      'gather-cities.html': 'Gather Cities',
-      'if-gathering.html': 'IF:Gathering',
-      'https://www.jennieallen.com/': 'Jennie Allen',
-      'https://donate.gathereverywhere.com': 'Give'
-    };
-
     var tooltip = document.createElement('div');
     tooltip.className = 'btn-goto-tooltip';
     document.body.appendChild(tooltip);
 
-    document.querySelectorAll('a.btn').forEach(function (btn) {
-      var href = btn.getAttribute('href');
-      var label = DESTINATIONS[href];
-      if (!label) return; // skip placeholders like "#" with no real destination
+    document.querySelectorAll('[data-tooltip]').forEach(function (el) {
+      var label = el.getAttribute('data-tooltip');
+      if (!label) return;
 
-      btn.addEventListener('mouseenter', function () {
+      el.addEventListener('mouseenter', function () {
         tooltip.textContent = 'Goes to: ' + label;
         tooltip.classList.add('visible');
       });
-      btn.addEventListener('mousemove', function (e) {
+      el.addEventListener('mousemove', function (e) {
         tooltip.style.left = (e.clientX + 16) + 'px';
         tooltip.style.top = (e.clientY + 16) + 'px';
       });
-      btn.addEventListener('mouseleave', function () {
+      el.addEventListener('mouseleave', function () {
         tooltip.classList.remove('visible');
       });
     });
