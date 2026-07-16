@@ -8,37 +8,217 @@
 <link rel="stylesheet" href="css/base.css">
 <link rel="stylesheet" href="css/review-mode.css">
 <style>
-  body { background: var(--color-bright-blue); color: var(--color-off-white); }
-  .cities-nav {
-    position: sticky; top: 0; z-index: 100;
-    background: rgba(255,250,240,0.96);
-    backdrop-filter: blur(6px);
-    border-bottom: 1px solid rgba(18,22,29,0.1);
-  }
-  .cities-nav a { color: var(--color-dark-blue); }
-  .step-card { text-align:center; }
-  .step-card .step-num {
-    width:48px; height:48px; border-radius:50%;
-    background: rgba(255,250,240,0.15);
-    display:flex; align-items:center; justify-content:center;
-    margin: 0 auto var(--space-2);
-    font-weight:600;
-  }
-  .provisional-tag {
-    display:inline-block; font-size:0.75rem; font-weight:600;
-    background: rgba(255,250,240,0.15); border-radius:999px; padding:0.3rem 0.8rem;
+  body { background: var(--color-bright-blue); }
+
+  .eyebrow-label {
+    font-family: var(--font-primary);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
     margin-bottom: var(--space-2);
   }
-  .event-card {
-    background: rgba(255,250,240,0.1);
+
+  .content-note {
+    font-family: var(--font-primary);
+    font-size: 0.7rem;
+    font-style: italic;
+    line-height: 1.4;
+    color: var(--color-off-white);
+    background: rgba(18,22,29,0.55);
+    padding: 0.6rem 0.75rem;
+    border-radius: 0.5rem;
+    margin: 0;
+  }
+
+  /* Nav — shares Gather Everywhere's hamburger pattern, re-skinned bright blue */
+  .sticky-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(6px);
+    background: rgba(42,94,216,0.94);
+  }
+  .sticky-nav .site-nav { border-bottom: 1px solid rgba(255,250,240,0.18); }
+  .nav-menu { position: relative; }
+  .nav-menu-toggle {
+    width: 2.75rem; height: 2.75rem;
+    border-radius: 50%;
+    border: none;
+    background: var(--color-dark-blue);
+    color: var(--color-off-white);
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .nav-menu-toggle svg { width: 1.1rem; height: 1.1rem; }
+  .nav-menu-panel {
+    position: absolute;
+    top: calc(100% + 0.75rem);
+    right: 0;
+    min-width: 240px;
+    background: var(--color-off-white);
+    color: var(--color-dark-blue);
+    border-radius: 1rem;
+    padding: var(--space-3);
+    box-shadow: 0 12px 32px rgba(18,22,29,0.18);
+    display: none;
+    flex-direction: column;
+    gap: var(--space-3);
+    z-index: 200;
+  }
+  .nav-menu-panel.open { display: flex; }
+  .nav-menu-group { display: flex; flex-direction: column; }
+  .nav-menu-group + .nav-menu-group { border-top: 1px solid rgba(18,22,29,0.1); padding-top: var(--space-3); }
+  .nav-menu-group-label {
+    font-family: var(--font-primary);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-bright-blue);
+    margin-bottom: var(--space-1);
+  }
+  .nav-menu-group a { color: var(--color-dark-blue); text-decoration: none; font-size: 0.95rem; padding-block: 0.3rem; }
+  .nav-menu-group a:hover { color: var(--color-bright-blue); }
+
+  /* Hero */
+  .hero-grid { display: grid; grid-template-columns: 1.1fr 1fr; align-items: center; gap: var(--space-5); }
+  @media (max-width: 800px) { .hero-grid { grid-template-columns: 1fr; } }
+  .hero-globe-wrap { position: relative; width: min(80%, 340px); margin-inline: auto; }
+  .motif-dot-globe.hero-globe { border-width: 3px; }
+  .hero-globe-caption {
+    position: absolute; left: 50%; bottom: -1.75rem; transform: translateX(-50%);
+    white-space: nowrap; font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.08em; color: var(--color-off-white); opacity: 0.75;
+  }
+  @keyframes dot-pulse { 0%, 100% { opacity: 0.55; } 50% { opacity: 1; } }
+  .motif-dot-globe.hero-globe span { animation: dot-pulse 3.6s ease-in-out infinite; }
+  @media (prefers-reduced-motion: reduce) { .motif-dot-globe.hero-globe span { animation: none; } }
+
+  /* Documentary photo band under hero */
+  .doc-band {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    min-height: 260px;
+    display: flex;
+    align-items: flex-end;
+    padding: var(--space-3);
+    background: linear-gradient(140deg, var(--color-dark-blue), var(--color-bright-blue) 75%);
+  }
+  .doc-band .content-note { max-width: 420px; }
+
+  /* What It Is — split stat card (off-white card nested on bright-blue bg needs explicit colors) */
+  .split-card {
+    background: var(--color-off-white);
+    border-radius: 1.25rem;
+    padding: var(--space-4);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    text-align: center;
+    gap: var(--space-2);
+  }
+  .split-card .split-num { font-family: var(--font-primary); font-size: 2.4rem; font-weight: 700; color: var(--color-bright-blue); line-height: 1; }
+  .split-card .split-label { color: var(--color-dark-blue); font-size: 0.85rem; margin-top: 0.4rem; }
+  .split-card > div + div { border-left: 1px solid rgba(18,22,29,0.12); }
+
+  /* Why — pull-quote treatment */
+  .pull-quote {
+    font-family: var(--font-secondary);
+    font-style: italic;
+    font-size: 1.6rem;
+    line-height: 1.3;
+    max-width: 24ch;
+    margin: 0 auto var(--space-3);
+    text-align: center;
+  }
+
+  /* How it works */
+  .how-it-works { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-4) var(--space-5); margin-top: var(--space-4); }
+  .how-step { display: flex; align-items: flex-start; gap: 0.75rem; max-width: 260px; text-align: left; }
+  .how-step-number {
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    width: 2rem; height: 2rem;
+    border-radius: 50%;
+    background: var(--color-dark-blue);
+    color: var(--color-off-white);
+    font-size: 0.85rem; font-weight: 700;
+    font-family: var(--font-primary);
+  }
+  .how-step h4 { margin: 0 0 0.2rem; }
+  .how-step p { font-size: 0.9rem; opacity: 0.85; margin: 0; }
+
+  /* Cities-in-Action reel (documentary/grassroots take on the Moments-reel pattern) */
+  .reel-banner {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-size: 0.75rem; font-weight: 600;
+    background: rgba(255,250,240,0.15); border-radius: 999px; padding: 0.35rem 0.9rem;
+    margin-bottom: var(--space-2);
+  }
+  .reel-wrap { position: relative; margin-top: var(--space-4); }
+  .reel-row {
+    display: flex; gap: var(--space-3);
+    overflow-x: auto;
+    padding-bottom: var(--space-2);
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+  }
+  .reel-row::-webkit-scrollbar { display: none; }
+  .reel-card { position: relative; flex: 0 0 auto; width: 210px; aspect-ratio: 9/16; border-radius: 1.25rem; overflow: hidden; scroll-snap-align: start; }
+  .reel-media { position: absolute; inset: 0; display: flex; align-items: flex-start; padding: var(--space-2); background: linear-gradient(160deg, var(--color-dark-blue), var(--color-bright-blue) 75%); }
+  .reel-card:nth-child(2) .reel-media { background: linear-gradient(200deg, var(--color-bright-blue), var(--color-dark-blue) 130%); }
+  .reel-card:nth-child(3) .reel-media { background: linear-gradient(160deg, var(--color-light-blue), var(--color-bright-blue) 70%); }
+  .reel-card:nth-child(4) .reel-media { background: linear-gradient(200deg, var(--color-dark-blue), var(--color-bright-blue) 130%); }
+  .reel-card:nth-child(5) .reel-media { background: linear-gradient(160deg, var(--color-light-blue), var(--color-bright-blue) 70%); }
+  .reel-card:nth-child(6) .reel-media { background: linear-gradient(140deg, var(--color-dark-blue), var(--color-bright-blue) 85%); }
+  .reel-media .content-note { max-width: 100%; }
+  .reel-play {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 3rem; height: 3rem; border-radius: 50%;
+    background: rgba(255,250,240,0.92); color: var(--color-bright-blue);
+    display: flex; align-items: center; justify-content: center; padding-left: 2px;
+  }
+  .reel-caption { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; padding: var(--space-3); background: linear-gradient(to top, rgba(18,22,29,0.92) 30%, transparent); }
+  .reel-caption .tag-pill { display: inline-block; font-family: var(--font-primary); font-size: 0.62rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; padding: 0.22rem 0.55rem; border-radius: 999px; background: var(--color-off-white); color: var(--color-dark-blue); margin-bottom: 0.5rem; }
+  .reel-caption h3 { font-family: var(--font-secondary); font-style: normal; font-weight: 400; font-size: 0.95rem; line-height: 1.25; margin: 0; color: var(--color-off-white); }
+  @media (max-width: 700px) { .reel-card { width: 165px; } }
+  .reel-nav {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    width: 2.4rem; height: 2.4rem; border-radius: 50%; border: none;
+    background: var(--color-dark-blue); color: var(--color-off-white);
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 14px rgba(18,22,29,0.3); z-index: 5;
+  }
+  .reel-nav.prev { left: -0.75rem; }
+  .reel-nav.next { right: -0.75rem; }
+  @media (max-width: 700px) { .reel-nav.prev { left: 0.25rem; } .reel-nav.next { right: 0.25rem; } }
+
+  /* Confirmed first-activation event card */
+  .activation-card {
+    background: var(--color-off-white);
     border-radius: 1rem;
     padding: var(--space-3);
     font-family: var(--font-primary);
-    max-width: 320px;
-    margin-inline: auto;
+    color: var(--color-dark-blue);
+    max-width: 340px;
+    margin: var(--space-5) auto 0;
+    text-align: center;
   }
-  .faq-item { border-bottom: 1px solid rgba(255,250,240,0.2); padding-block: var(--space-2); }
-  .faq-item summary { cursor:pointer; font-weight:600; }
+  .activation-card .tag { display: inline-block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-bright-blue); margin-bottom: 0.4rem; }
+
+  /* Big closing CTA band */
+  .cta-band-motif { width: 88px; margin: 0 auto var(--space-3); }
+  .cta-form { max-width: 480px; margin: var(--space-4) auto 0; }
+  input, textarea {
+    width: 100%; padding: 0.7rem 0.9rem; border-radius: 0.6rem;
+    border: 1px solid rgba(255,250,240,0.4);
+    background: rgba(255,250,240,0.08); color: var(--color-off-white);
+    font-family: var(--font-primary); margin-bottom: var(--space-2);
+  }
+  ::placeholder { color: rgba(255,250,240,0.6); }
+
+  .faq-item { border-bottom: 1px solid rgba(18,22,29,0.15); padding-block: var(--space-2); }
+  .faq-item summary { cursor: pointer; font-weight: 600; }
 
   .btn-goto-tooltip {
     position: fixed; top: 0; left: 0; z-index: 1000;
@@ -55,130 +235,217 @@
     transition: opacity 0.12s ease, transform 0.12s ease;
   }
   .btn-goto-tooltip.visible { opacity: 1; transform: translateY(0); }
-  input, textarea {
-    width:100%; padding:0.7rem 0.9rem; border-radius:0.6rem; border:1px solid rgba(255,250,240,0.4);
-    background: rgba(255,250,240,0.08); color: var(--color-off-white); font-family: var(--font-primary);
-    margin-bottom: var(--space-2);
-  }
-  ::placeholder { color: rgba(255,250,240,0.6); }
 </style>
 </head>
 <body data-page="gather-cities">
 
-<header class="cities-nav">
+<header class="sticky-nav pairing-02">
   <nav class="site-nav container">
-    <div style="display:flex; align-items:center; gap: var(--space-3);">
-      <img src="assets/gather-cities.svg" alt="Gather Cities" style="height:24px; width:auto;">
-      <a href="gather-everywhere.html" class="back-to-gather" style="color:var(--color-dark-blue);">← part of Gather</a>
+    <a href="gather-everywhere.html"><img class="logo" src="assets/gather-cities-light.svg" alt="Gather Cities" style="height:26px; width:auto;"></a>
+    <div style="display:flex; align-items:center; gap: 0.5rem;">
+      <a class="btn" href="#" data-tooltip="/host-inquiry">Help Host an Event</a>
+      <div class="nav-menu">
+        <button type="button" class="nav-menu-toggle" id="nav-menu-toggle" aria-expanded="false" aria-controls="nav-menu-panel" aria-label="Open menu">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 6H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M3 12H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M3 18H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+        <div class="nav-menu-panel" id="nav-menu-panel">
+          <div class="nav-menu-group">
+            <div class="nav-menu-group-label">Gather Everywhere</div>
+            <a href="#" data-tooltip="/Gather27">Gather Global</a>
+            <a href="#" data-tooltip="/Gather-Cities">Gather Cities</a>
+            <a href="#" data-tooltip="/IF">IF:Gathering</a>
+          </div>
+          <div class="nav-menu-group">
+            <div class="nav-menu-group-label">The Movement</div>
+            <a href="#" data-tooltip="/about">Our Story</a>
+            <a href="#" data-tooltip="/partners">Our Partners</a>
+            <a href="#" data-tooltip="/jennie-allen">Jennie Allen</a>
+          </div>
+          <div class="nav-menu-group">
+            <div class="nav-menu-group-label">Partner</div>
+            <a href="#" data-tooltip="/give">Give</a>
+            <a href="#" data-tooltip="/contact">Contact Us</a>
+          </div>
+        </div>
+      </div>
     </div>
-    <ul class="links">
-      <li><a href="#what-it-is">What It Is</a></li>
-      <li><a href="#how-it-works">How It Works</a></li>
-      <li><a href="#faq">FAQ</a></li>
-    </ul>
-    <a class="btn" href="#cta">Help Host an Event</a>
   </nav>
 </header>
 
 <main>
 
-  <section id="hero">
-    <div class="container" style="text-align:center; padding-block: var(--space-6);">
-      <div class="motif-dot-globe" style="width:72px; margin:0 auto var(--space-3);">
-        <span style="width:8px;height:8px;top:20%;left:25%;"></span>
-        <span style="width:6px;height:6px;top:55%;left:60%;"></span>
-        <span style="width:6px;height:6px;top:65%;left:20%;"></span>
-        <span style="width:5px;height:5px;top:30%;left:65%;"></span>
+  <section id="hero" class="pairing-02">
+    <div class="container hero-grid">
+      <div>
+        <h1 style="max-width:16ch;">It's just the beginning.</h1>
+        <p class="accent" style="font-size:1.15rem;">Across homes, cities, and continents, hearts are turning toward God.</p>
+        <p style="max-width:52ch;">Bring Gather to your city and be part of a movement building toward 1,000 activated cities by 2030, one church-led gathering at a time.</p>
+        <div style="margin-top: var(--space-4); display:flex; gap: var(--space-2); flex-wrap:wrap;">
+          <a class="btn" href="#" data-tooltip="/host-inquiry">Help Host an Event</a>
+          <a class="btn btn-outline" href="#how-it-works" style="color:var(--color-dark-blue); border-color:var(--color-dark-blue);">See How It Works</a>
+        </div>
       </div>
-      <h1 style="max-width:20ch; margin-inline:auto; color: var(--color-off-white);">It's just the beginning.</h1>
-      <p style="max-width:55ch; margin-inline:auto; color: var(--color-off-white); font-size:1.1rem;">Across homes, cities, and continents, hearts are turning toward God.</p>
+      <div class="hero-globe-wrap">
+        <div class="motif-dot-globe hero-globe">
+          <span style="width:14px;height:14px;top:18%;left:22%;"></span>
+          <span style="width:10px;height:10px;top:50%;left:62%;"></span>
+          <span style="width:9px;height:9px;top:66%;left:18%;"></span>
+          <span style="width:8px;height:8px;top:28%;left:64%;"></span>
+          <span style="width:7px;height:7px;top:72%;left:52%;"></span>
+          <span style="width:6px;height:6px;top:42%;left:32%;"></span>
+        </div>
+        <div class="hero-globe-caption">Every dot, a city saying yes</div>
+      </div>
+    </div>
+
+    <div class="doc-band">
+      <p class="content-note">Content note: handheld, unpolished footage — volunteers setting up folding chairs and a sound system in a church gym, morning light, mid-setup.</p>
     </div>
   </section>
 
-  <section id="what-it-is">
+  <section id="what-it-is" class="pairing-02">
     <div class="container grid grid-2" style="align-items:center;">
       <div>
-        <h2 style="color:var(--color-off-white);">What Gather Cities is</h2>
-        <p style="color:var(--color-off-white);">A Gather Cities event is pastor-led and local-church-led — your church runs 80–90% of it. Gather provides the remaining light support: playbooks, promotional assets, and a point of contact. We don't run the event for you; we help you run it well.</p>
+        <p class="eyebrow-label">The Model</p>
+        <h2>A Gather Cities event is led by your church.</h2>
+        <p>Your church runs 80 to 90 percent of a Gather Cities event: the space, the people, the promotion, the pastoral leadership. Gather provides the rest — playbooks, promotional assets, and a point of contact who knows the format. We don't run the event for you, and there's no lighter, one-off version to choose instead. It's one model, so every city knows exactly what it's signing up for.</p>
       </div>
-      <div class="card" style="background: rgba(255,250,240,0.1); border-color: rgba(255,250,240,0.2);">
-        <div class="grid" style="grid-template-columns: 1fr 1fr; text-align:center;">
-          <div><div style="font-size:2rem; color:var(--color-off-white);">85%</div><p style="color:var(--color-off-white); font-size:0.85rem;">Led by your church</p></div>
-          <div><div style="font-size:2rem; color:var(--color-off-white);">15%</div><p style="color:var(--color-off-white); font-size:0.85rem;">Supported by Gather</p></div>
-        </div>
+      <div class="split-card">
+        <div><div class="split-num">85%</div><p class="split-label">Led by your church</p></div>
+        <div><div class="split-num">15%</div><p class="split-label">Supported by Gather</p></div>
       </div>
     </div>
   </section>
 
-  <section id="why">
+  <section id="why" class="pairing-02">
     <div class="container" style="text-align:center;">
-      <h2 style="color:var(--color-off-white); max-width:28ch; margin-inline:auto;">Through global events, local initiatives, and digital platforms</h2>
-      <p style="margin-inline:auto; color:var(--color-off-white);">Gather brings together the global Church, mobilizes believers, and amplifies stories of God moving around the world. Bringing Gather to your city is momentum — the on-ramp toward hosting Gather27, not a one-off event on its own.</p>
+      <p class="eyebrow-label" style="margin-inline:auto;">Why It Matters</p>
+      <p class="pull-quote accent">This is momentum, not a finish line.</p>
+      <p style="margin-inline:auto; max-width:60ch;">Bringing Gather to your city connects your congregation to a global rhythm of prayer, worship, and mobilization already moving through homes and churches everywhere. It's the on-ramp toward hosting Gather27 in 2027, not a one-off event that stands on its own. Every city that gathers now is a city ready to gather the world when Gather27 arrives.</p>
     </div>
   </section>
 
-  <section id="how-it-works">
-    <div class="container">
-      <h2 style="text-align:center; color:var(--color-off-white);">How it works</h2>
-      <div class="grid grid-3" style="margin-top: var(--space-4);">
-        <div class="step-card">
-          <div class="step-num">1</div>
-          <h4 style="color:var(--color-off-white);">Inquire</h4>
-          <p style="color:var(--color-off-white); font-size:0.9rem;">Tell us about your church and your city.</p>
-        </div>
-        <div class="step-card">
-          <div class="step-num">2</div>
-          <h4 style="color:var(--color-off-white);">Get vetted &amp; equipped</h4>
-          <p style="color:var(--color-off-white); font-size:0.9rem;">We confirm fit and hand you the local-activation playbook.</p>
-        </div>
-        <div class="step-card">
-          <div class="step-num">3</div>
-          <h4 style="color:var(--color-off-white);">Host</h4>
-          <p style="color:var(--color-off-white); font-size:0.9rem;">Your church leads the gathering, with Gather's light support.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="proof">
+  <section id="how-it-works" class="pairing-02">
     <div class="container" style="text-align:center;">
-      <span class="provisional-tag">Coming this fall</span>
-      <h2 style="color:var(--color-off-white);">Proof — a Gather Cities activation</h2>
-      <div class="event-card" style="margin-top: var(--space-3);">
-        <p style="color:var(--color-off-white); margin:0;"><strong>Brooklyn</strong> / New York City<br>September 12 / 4 PM</p>
+      <p class="eyebrow-label" style="margin-inline:auto;">The Process</p>
+      <h2>How it works</h2>
+      <div class="how-it-works">
+        <div class="how-step">
+          <span class="how-step-number">1</span>
+          <div><h4>Inquire</h4><p>Tell us about your church and your city. A short form starts the conversation.</p></div>
+        </div>
+        <div class="how-step">
+          <span class="how-step-number">2</span>
+          <div><h4>Get Vetted &amp; Equipped</h4><p>We confirm fit together, then hand you the playbook, promotional assets, and a point of contact.</p></div>
+        </div>
+        <div class="how-step">
+          <span class="how-step-number">3</span>
+          <div><h4>Host</h4><p>Your church leads the gathering. Gather stays close with light, ongoing support.</p></div>
+        </div>
+      </div>
+      <a class="btn" href="#" data-tooltip="/host-inquiry" style="margin-top: var(--space-5); display:inline-block;">Help Host an Event</a>
+    </div>
+  </section>
+
+  <section id="proof" class="pairing-02">
+    <div class="container" style="text-align:center;">
+      <p class="eyebrow-label" style="margin-inline:auto;">Cities In Action</p>
+      <h2 style="max-width:26ch; margin-inline:auto;">What Gather Cities looks like on the ground</h2>
+      <span class="reel-banner">Coming this fall — the first activations are just getting underway</span>
+
+      <div class="reel-wrap">
+        <button type="button" class="reel-nav prev" id="reel-prev" aria-label="Previous">
+          <svg viewBox="0 0 24 24" width="16" height="16"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="reel-row" id="reel-row">
+          <div class="reel-card">
+            <div class="reel-media"><p class="content-note">Content note: vertical clip, volunteers setting up chairs and a sound system before doors open.</p></div>
+            <div class="reel-play" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></div>
+            <div class="reel-caption"><span class="tag-pill">First Activation</span><h3>Brooklyn gets ready first.</h3></div>
+          </div>
+          <div class="reel-card">
+            <div class="reel-media"><p class="content-note">Content note: vertical clip, a pastor walking the empty room before doors open, pointing out where the prayer stations will go.</p></div>
+            <div class="reel-play" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></div>
+            <div class="reel-caption"><span class="tag-pill">Downtown Church</span><h3>Every detail led by a local pastor.</h3></div>
+          </div>
+          <div class="reel-card">
+            <div class="reel-media"><p class="content-note">Content note: vertical clip, college students stringing up lights in a rented hall.</p></div>
+            <div class="reel-play" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></div>
+            <div class="reel-caption"><span class="tag-pill">Campus Ministry</span><h3>A campus turns a hall into a gathering place.</h3></div>
+          </div>
+          <div class="reel-card">
+            <div class="reel-media"><p class="content-note">Content note: vertical clip, two churches from different denominations praying together backstage.</p></div>
+            <div class="reel-play" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></div>
+            <div class="reel-caption"><span class="tag-pill">Multi-Church Host</span><h3>Different churches, one night.</h3></div>
+          </div>
+          <div class="reel-card">
+            <div class="reel-media"><p class="content-note">Content note: vertical clip, a modest crowd in a small-town fellowship hall, warm and unpolished.</p></div>
+            <div class="reel-play" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></div>
+            <div class="reel-caption"><span class="tag-pill">Small Town</span><h3>Small towns gather too.</h3></div>
+          </div>
+          <div class="reel-card">
+            <div class="reel-media"><p class="content-note">Content note: vertical clip, a city skyline at dusk, waiting for its own Gather Cities night.</p></div>
+            <div class="reel-play" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></div>
+            <div class="reel-caption"><span class="tag-pill">Your City?</span><h3>Is your city next?</h3></div>
+          </div>
+        </div>
+        <button type="button" class="reel-nav next" id="reel-next" aria-label="Next">
+          <svg viewBox="0 0 24 24" width="16" height="16"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+
+      <div class="activation-card">
+        <p class="tag">First Confirmed Activation</p>
+        <p style="margin:0;"><strong>Brooklyn</strong> / New York City<br>September 12 / 4 PM</p>
       </div>
     </div>
   </section>
 
-  <section id="cta">
-    <div class="container" style="max-width:560px;">
-      <h2 style="text-align:center; color:var(--color-off-white);">Partner with us</h2>
-      <p style="text-align:center; color:var(--color-off-white);">Bring Gather to your city.</p>
-      <form style="margin-top: var(--space-3);">
+  <section id="cta" class="pairing-03">
+    <div class="container" style="text-align:center; max-width:640px;">
+      <div class="motif-dot-globe cta-band-motif">
+        <span style="width:9px;height:9px;top:20%;left:25%;"></span>
+        <span style="width:7px;height:7px;top:55%;left:60%;"></span>
+        <span style="width:6px;height:6px;top:65%;left:20%;"></span>
+        <span style="width:6px;height:6px;top:30%;left:65%;"></span>
+      </div>
+      <p class="eyebrow-label" style="margin-inline:auto;">Partner With Us</p>
+      <h2 style="max-width:16ch; margin-inline:auto;">Bring Gather to your city.</h2>
+      <p style="margin-inline:auto;">Every Gather Cities activation starts with one conversation. Tell us about your church, and let's start building toward your night.</p>
+      <form class="cta-form">
         <input type="text" placeholder="Church name">
         <input type="text" placeholder="City">
         <input type="email" placeholder="Email">
-        <button type="button" class="btn" style="background: var(--color-dark-blue); width:100%;">Help Host an Event</button>
+        <button type="button" class="btn" style="width:100%;">Help Host an Event</button>
       </form>
     </div>
   </section>
 
-  <section id="faq">
+  <section id="faq" class="pairing-02">
     <div class="container" style="max-width:70ch;">
-      <h2 style="text-align:center; color:var(--color-off-white);">FAQ</h2>
-      <details class="faq-item"><summary style="color:var(--color-off-white);">What's the timeline?</summary><p style="color:var(--color-off-white);">Gather Cities is building toward 1,000 activated cities by 2030.</p></details>
-      <details class="faq-item"><summary style="color:var(--color-off-white);">What does my church commit to?</summary><p style="color:var(--color-off-white);">Leading 80–90% of the event — space, people, and promotion — with Gather providing playbooks and light support.</p></details>
-      <details class="faq-item"><summary style="color:var(--color-off-white);">Is there a cost?</summary><p style="color:var(--color-off-white);">No fee to partner. Your church covers its own local event costs.</p></details>
+      <h2 style="text-align:center;">FAQ</h2>
+      <details class="faq-item"><summary>What's the timeline?</summary><p>Gather Cities is building toward 1,000 activated cities by 2030. We're just getting started.</p></details>
+      <details class="faq-item"><summary>What does my church commit to?</summary><p>Leading 80 to 90 percent of the event — space, people, and promotion — with Gather providing playbooks and light support.</p></details>
+      <details class="faq-item"><summary>Is there a cost?</summary><p>No fee to partner. Your church covers its own local event costs.</p></details>
+      <details class="faq-item"><summary>How is this different from hosting Gather27?</summary><p>Gather Cities events happen locally, on your own timeline, building momentum in your city right now. Gather27 is the global broadcast in 2027 that every Gather Cities activation is building toward — many of our first hosts plan to host Gather27 watch parties too.</p></details>
     </div>
   </section>
 
 </main>
 
-<footer>
-  <div class="container" style="padding-top: var(--space-4); font-size:0.85rem; color:var(--color-off-white); opacity:0.7;">
-    Gather Cities · Wireframe · <a href="gather-everywhere.html" style="color:inherit;">Part of Gather</a>
+<footer class="pairing-03">
+  <div class="container" style="padding-block: var(--space-5); display:flex; flex-wrap:wrap; justify-content:space-between; gap: var(--space-3); font-size:0.85rem;">
+    <div style="display:flex; gap: var(--space-4); flex-wrap:wrap;">
+      <a href="#" data-tooltip="/host-inquiry" style="color:inherit; text-decoration:none;">Help Host an Event</a>
+      <a href="#" data-tooltip="/contact" style="color:inherit; text-decoration:none;">Contact</a>
+      <a href="#" data-tooltip="/careers" style="color:inherit; text-decoration:none;">Careers</a>
+    </div>
+    <div style="display:flex; gap: var(--space-4); flex-wrap:wrap; opacity:0.75;">
+      <a href="#" data-tooltip="@gathercities" style="color:inherit; text-decoration:none;">Instagram</a>
+      <a href="#" data-tooltip="@gathercities" style="color:inherit; text-decoration:none;">YouTube</a>
+    </div>
   </div>
-  <div class="container" style="padding-block: var(--space-4); display:flex; justify-content:center;">
+  <div class="container" style="padding-bottom: var(--space-5); display:flex; justify-content:center;">
     <img src="assets/gather-cluster-light.svg" alt="Gather" style="height:36px; width:auto;">
   </div>
   <div class="container" style="padding-bottom: var(--space-4); display:flex; justify-content:center; align-items:center; gap: var(--space-4); flex-wrap:wrap;">
@@ -186,10 +453,10 @@
     <a href="#" data-tooltip="/Gather-Cities" style="opacity:0.85;"><img src="assets/gather-cities-light.svg" alt="Gather Cities" style="height:22px; width:auto;"></a>
     <a href="#" data-tooltip="/IF" style="opacity:0.85;"><img src="assets/if-gathering-light.svg" alt="IF:Gathering" style="height:22px; width:auto;"></a>
   </div>
-  <div class="container" style="padding-bottom: var(--space-2); font-size:0.8rem; color:var(--color-off-white); opacity:0.6; text-align:center;">
-    A movement founded by <a href="#" data-tooltip="Jennie Allen Website" style="color:inherit;">Jennie Allen</a>
+  <div class="container" style="padding-bottom: var(--space-2); font-size:0.8rem; opacity:0.7; text-align:center;">
+    Gather Cities is part of <a href="#" data-tooltip="Gather Everywhere Website" style="color:inherit;">Gather</a>, a movement founded by <a href="#" data-tooltip="Jennie Allen Website" style="color:inherit;">Jennie Allen</a>.
   </div>
-  <div class="container" style="padding-bottom: var(--space-4); display:flex; justify-content:center; gap:var(--space-3); font-size:0.75rem; color:var(--color-off-white); opacity:0.6;">
+  <div class="container" style="padding-bottom: var(--space-4); display:flex; justify-content:center; gap:var(--space-3); font-size:0.75rem; opacity:0.6;">
     <a href="#" data-tooltip="/privacy" style="color:inherit; text-decoration:none;">Privacy</a>
     <a href="#" data-tooltip="/terms" style="color:inherit; text-decoration:none;">Terms</a>
   </div>
@@ -202,6 +469,22 @@
 
 <script src="js/sections-manifest.js"></script>
 <script src="js/review-mode.js"></script>
+<script src="js/nav-menu.js"></script>
+<script>
+  (function () {
+    var row = document.getElementById('reel-row');
+    var prev = document.getElementById('reel-prev');
+    var next = document.getElementById('reel-next');
+    if (!row || !prev || !next) return;
+    function scrollByCard(dir) {
+      var card = row.querySelector('.reel-card');
+      var amount = card ? card.getBoundingClientRect().width + 24 : 240;
+      row.scrollBy({ left: dir * amount, behavior: 'auto' });
+    }
+    prev.addEventListener('click', function () { scrollByCard(-1); });
+    next.addEventListener('click', function () { scrollByCard(1); });
+  })();
+</script>
 <script>
   // "Goes to: X" cursor tooltip, driven by a data-tooltip attribute.
   // These buttons are annotations of intended future routing only — none of
