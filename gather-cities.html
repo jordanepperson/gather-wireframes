@@ -10,6 +10,15 @@
 <style>
   body { background: var(--color-bright-blue); }
 
+  /* Client override: on the bright-blue sections, headings read white and
+     buttons read light-blue-with-dark-blue-text rather than the base
+     pairing-02 token defaults. Scoped to this page only. */
+  .pairing-02 {
+    --heading: var(--color-off-white);
+    --btn-bg: var(--color-light-blue);
+    --btn-text: var(--color-dark-blue);
+  }
+
   .eyebrow-label {
     font-family: var(--font-primary);
     font-size: 0.75rem;
@@ -282,7 +291,7 @@
         <p style="max-width:52ch;">Bring Gather to your city and be part of a movement building toward 1,000 activated cities by 2030, one church-led gathering at a time.</p>
         <div style="margin-top: var(--space-4); display:flex; gap: var(--space-2); flex-wrap:wrap;">
           <a class="btn" href="#" data-tooltip="/host-inquiry">Help Host an Event</a>
-          <a class="btn btn-outline" href="#how-it-works" style="color:var(--color-dark-blue); border-color:var(--color-dark-blue);">See How It Works</a>
+          <a class="btn btn-outline" href="#how-it-works" style="color:var(--color-light-blue); border-color:var(--color-light-blue);">See How It Works</a>
         </div>
       </div>
       <div class="hero-globe-wrap">
