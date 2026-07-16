@@ -135,6 +135,10 @@
     width: 100%;
   }
   .city-scroll-list li {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
     height: 56px;
     display: flex;
     align-items: center;
@@ -578,6 +582,7 @@
     }
 
     var offset = 0;
+    render(offset);
     var last = null;
     function frame(t) {
       if (last === null) last = t;
