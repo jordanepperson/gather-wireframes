@@ -40,24 +40,20 @@
     margin: 0;
   }
 
-  /* Nav — shares Gather Everywhere's hamburger pattern, re-skinned bright blue */
-  .sticky-nav {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    backdrop-filter: blur(6px);
-    background: rgba(42,94,216,0.94);
-  }
-  .sticky-nav .site-nav { border-bottom: 1px solid rgba(255,250,240,0.18); }
+  /* Nav — exact copy of Gather Everywhere's hamburger pattern (this page
+     lives alongside it, so the nav should be indistinguishable). */
   .nav-menu { position: relative; }
   .nav-menu-toggle {
-    width: 2.75rem; height: 2.75rem;
+    width: 2.75rem;
+    height: 2.75rem;
     border-radius: 50%;
     border: none;
-    background: var(--color-dark-blue);
+    background: var(--color-bright-blue);
     color: var(--color-off-white);
     cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   .nav-menu-toggle svg { width: 1.1rem; height: 1.1rem; }
   .nav-menu-panel {
@@ -76,8 +72,6 @@
     z-index: 200;
   }
   .nav-menu-panel.open { display: flex; }
-  .nav-menu-group { display: flex; flex-direction: column; }
-  .nav-menu-group + .nav-menu-group { border-top: 1px solid rgba(18,22,29,0.1); padding-top: var(--space-3); }
   .nav-menu-group-label {
     font-family: var(--font-primary);
     font-size: 0.7rem;
@@ -87,22 +81,69 @@
     color: var(--color-bright-blue);
     margin-bottom: var(--space-1);
   }
-  .nav-menu-group a { color: var(--color-dark-blue); text-decoration: none; font-size: 0.95rem; padding-block: 0.3rem; }
+  .nav-menu-group { display: flex; flex-direction: column; }
+  .nav-menu-group + .nav-menu-group { border-top: 1px solid rgba(18,22,29,0.1); padding-top: var(--space-3); }
+  .nav-menu-group a {
+    color: var(--color-dark-blue);
+    text-decoration: none;
+    font-size: 0.95rem;
+    padding-block: 0.3rem;
+  }
   .nav-menu-group a:hover { color: var(--color-bright-blue); }
 
   /* Hero */
   .hero-grid { display: grid; grid-template-columns: 1.1fr 1fr; align-items: center; gap: var(--space-5); }
   @media (max-width: 800px) { .hero-grid { grid-template-columns: 1fr; } }
-  .hero-globe-wrap { position: relative; width: min(80%, 340px); margin-inline: auto; }
-  .motif-dot-globe.hero-globe { border-width: 3px; }
-  .hero-globe-caption {
-    position: absolute; left: 50%; bottom: -1.75rem; transform: translateX(-50%);
-    white-space: nowrap; font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
-    letter-spacing: 0.08em; color: var(--color-off-white); opacity: 0.75;
+
+  /* City scroller — a rolodex of cities easing past a globe-limb arc,
+     the nearest-to-center city large and dark, the rest smaller and blue. */
+  .city-scroll-card {
+    position: relative;
+    background: var(--color-off-white);
+    border-radius: 1.5rem;
+    overflow: hidden;
+    height: 340px;
+    padding-left: 3rem;
   }
-  @keyframes dot-pulse { 0%, 100% { opacity: 0.55; } 50% { opacity: 1; } }
-  .motif-dot-globe.hero-globe span { animation: dot-pulse 3.6s ease-in-out infinite; }
-  @media (prefers-reduced-motion: reduce) { .motif-dot-globe.hero-globe span { animation: none; } }
+  .city-scroll-arc {
+    position: absolute;
+    left: -55%;
+    top: 50%;
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: 2px solid var(--color-bright-blue);
+    opacity: 0.6;
+    transform: translateY(-50%);
+  }
+  .city-scroll-arc::after {
+    content: "";
+    position: absolute;
+    top: 50%; right: -7px;
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    background: var(--color-bright-blue);
+    transform: translateY(-50%);
+  }
+  .city-scroll-viewport { position: relative; height: 100%; width: 100%; overflow: hidden; }
+  .city-scroll-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+  }
+  .city-scroll-list li {
+    height: 56px;
+    display: flex;
+    align-items: center;
+    font-family: var(--font-primary);
+    font-weight: 700;
+    white-space: nowrap;
+    will-change: transform, opacity;
+  }
+  @media (max-width: 800px) { .city-scroll-card { height: 260px; } }
 
   /* Documentary photo band under hero */
   .doc-band {
@@ -248,11 +289,11 @@
 </head>
 <body data-page="gather-cities">
 
-<header class="sticky-nav pairing-02">
+<header class="pairing-01">
   <nav class="site-nav container">
-    <a href="gather-everywhere.html"><img class="logo" src="assets/gather-cities-light.svg" alt="Gather Cities" style="height:26px; width:auto;"></a>
+    <a href="index.html"><img class="logo" src="assets/gather-dark.svg" alt="Gather"></a>
     <div style="display:flex; align-items:center; gap: 0.5rem;">
-      <a class="btn" href="#" data-tooltip="/host-inquiry">Help Host an Event</a>
+      <a class="btn" href="#" data-tooltip="/give">Give</a>
       <div class="nav-menu">
         <button type="button" class="nav-menu-toggle" id="nav-menu-toggle" aria-expanded="false" aria-controls="nav-menu-panel" aria-label="Open menu">
           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 6H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M3 12H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M3 18H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
@@ -286,24 +327,36 @@
   <section id="hero" class="pairing-02">
     <div class="container hero-grid">
       <div>
-        <h1 style="max-width:16ch;">It's just the beginning.</h1>
-        <p class="accent" style="font-size:1.15rem;">Across homes, cities, and continents, hearts are turning toward God.</p>
+        <img src="assets/gather-cities-light.svg" alt="Gather Cities" style="height:32px; width:auto; margin-bottom: var(--space-3);">
+        <h1 style="max-width:16ch;">This is just the beginning</h1>
         <p style="max-width:52ch;">Bring Gather to your city and be part of a movement building toward 1,000 activated cities by 2030, one church-led gathering at a time.</p>
-        <div style="margin-top: var(--space-4); display:flex; gap: var(--space-2); flex-wrap:wrap;">
+        <div style="margin-top: var(--space-4); display:flex; align-items:center; gap: var(--space-2); flex-wrap:wrap;">
           <a class="btn" href="#" data-tooltip="/host-inquiry">Help Host an Event</a>
           <a class="btn btn-outline" href="#how-it-works" style="color:var(--color-light-blue); border-color:var(--color-light-blue);">See How It Works</a>
         </div>
       </div>
-      <div class="hero-globe-wrap">
-        <div class="motif-dot-globe hero-globe">
-          <span style="width:14px;height:14px;top:18%;left:22%;"></span>
-          <span style="width:10px;height:10px;top:50%;left:62%;"></span>
-          <span style="width:9px;height:9px;top:66%;left:18%;"></span>
-          <span style="width:8px;height:8px;top:28%;left:64%;"></span>
-          <span style="width:7px;height:7px;top:72%;left:52%;"></span>
-          <span style="width:6px;height:6px;top:42%;left:32%;"></span>
+      <div class="city-scroll-card">
+        <div class="city-scroll-arc"></div>
+        <div class="city-scroll-viewport">
+          <ul class="city-scroll-list" id="city-scroll-list">
+            <li>London</li>
+            <li>Austin</li>
+            <li>Edmonton</li>
+            <li>New York</li>
+            <li>Paris</li>
+            <li>Tokyo</li>
+            <li>Nairobi</li>
+            <li>São Paulo</li>
+            <li>London</li>
+            <li>Austin</li>
+            <li>Edmonton</li>
+            <li>New York</li>
+            <li>Paris</li>
+            <li>Tokyo</li>
+            <li>Nairobi</li>
+            <li>São Paulo</li>
+          </ul>
         </div>
-        <div class="hero-globe-caption">Every dot, a city saying yes</div>
       </div>
     </div>
 
@@ -479,6 +532,64 @@
 <script src="js/sections-manifest.js"></script>
 <script src="js/review-mode.js"></script>
 <script src="js/nav-menu.js"></script>
+<script>
+  // Hero city scroller — cities ease upward past a fixed center point;
+  // the nearest one reads large and dark, the rest shrink and turn blue
+  // as they recede. The <ul> holds the city list twice back-to-back so
+  // the loop point is seamless.
+  (function () {
+    var list = document.getElementById('city-scroll-list');
+    if (!list) return;
+    var card = list.closest('.city-scroll-card');
+    var items = Array.prototype.slice.call(list.children);
+    var itemHeight = 56;
+    var setCount = items.length / 2;
+    var loopHeight = itemHeight * setCount;
+    var speed = 22; // px/sec
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    var DARK = [18, 22, 29];
+    var BRIGHT = [42, 94, 216];
+    function lerp(a, b, t) { return a + (b - a) * t; }
+    function lerpColor(t) {
+      return 'rgb(' + Math.round(lerp(DARK[0], BRIGHT[0], t)) + ',' +
+        Math.round(lerp(DARK[1], BRIGHT[1], t)) + ',' +
+        Math.round(lerp(DARK[2], BRIGHT[2], t)) + ')';
+    }
+
+    function render(offset) {
+      var viewportHeight = card.clientHeight;
+      var centerY = viewportHeight / 2;
+      items.forEach(function (li, i) {
+        var top = i * itemHeight - offset;
+        var itemCenter = top + itemHeight / 2;
+        var distance = Math.abs(itemCenter - centerY);
+        var ratio = Math.min(distance / (viewportHeight / 2), 1);
+        li.style.transform = 'translateY(' + top + 'px) translateX(' + lerp(0, 26, ratio) + 'px)';
+        li.style.fontSize = lerp(1.9, 1, ratio) + 'rem';
+        li.style.opacity = lerp(1, 0.4, ratio);
+        li.style.color = lerpColor(ratio);
+      });
+    }
+
+    if (reduceMotion) {
+      render(loopHeight / 2 - (card.clientHeight / 2 - itemHeight / 2));
+      return;
+    }
+
+    var offset = 0;
+    var last = null;
+    function frame(t) {
+      if (last === null) last = t;
+      var dt = (t - last) / 1000;
+      last = t;
+      offset = (offset + speed * dt) % loopHeight;
+      render(offset);
+      requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  })();
+</script>
 <script>
   (function () {
     var row = document.getElementById('reel-row');
