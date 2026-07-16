@@ -67,7 +67,8 @@
   /* Hero info bar — floating, inset from the viewport edge */
   .hero-info-bar {
     width: calc(100vw - 2rem);
-    margin-left: calc(50% - 50vw + 1rem);
+    max-width: 1920px;
+    margin-inline: auto;
     background: var(--color-bright-blue);
     border-radius: 1.25rem;
     border: 1px solid rgba(189,216,231,0.5);
@@ -560,6 +561,45 @@
     transition: opacity 0.12s ease, transform 0.12s ease;
   }
   .btn-goto-tooltip.visible { opacity: 1; transform: translateY(0); }
+
+  /* Big art/hype moment (passion2027.com-style full-bleed visual break) */
+  .hype-media {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    min-height: 75vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: var(--space-4);
+    padding: var(--space-5);
+    background: linear-gradient(160deg, var(--color-dark-blue), var(--color-bright-blue) 65%, var(--color-light-blue));
+  }
+  .hype-media .accent {
+    display: block;
+    color: var(--color-off-white);
+    font-size: clamp(2.25rem, 7vw, 5rem);
+    line-height: 1.05;
+  }
+  .hype-media .content-note { max-width: 420px; }
+  @media (max-width: 700px) { .hype-media { min-height: 55vh; } }
+
+  /* Full-width blue display-type band (Gather Everywhere's footer-bleed, recolored) */
+  .footer-bleed-blue {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    background: var(--color-bright-blue);
+    padding-block: var(--space-6);
+    text-align: center;
+  }
+  .footer-bleed-blue .accent {
+    display: block;
+    color: var(--color-off-white);
+    font-size: clamp(2rem, 6.5vw, 5.25rem);
+    line-height: 1.1;
+    margin: 0;
+  }
 </style>
 </head>
 <body data-page="gather-global">
@@ -796,7 +836,7 @@
   <section id="get-involved" class="pairing-03">
     <div class="container">
       <p class="eyebrow-label" style="text-align:center; margin-inline:auto;">Take Part</p>
-      <h2 style="text-align:center;">The Global Church, in One Room.</h2>
+      <h2 style="text-align:center;">The Global Church, in One Room</h2>
       <p style="text-align:center; margin-inline:auto; max-width:52ch;">Gather with others right where you are, in a sanctuary, a living room, a campus, or a coffee shop.</p>
 
       <div class="how-it-works">
@@ -832,6 +872,13 @@
         </div>
         <a class="btn btn-outline" href="#" data-tooltip="/join" style="color:var(--color-off-white);">Find a Gathering</a>
       </div>
+    </div>
+  </section>
+
+  <section id="hype">
+    <div class="hype-media">
+      <span class="accent">One voice.<br>Every nation.</span>
+      <p class="content-note">Content note: sweeping crowd worship footage, hands raised, a wide aerial or stage-level shot of a packed watch party, warm stage lighting against a dark room.</p>
     </div>
   </section>
 
@@ -926,21 +973,17 @@
   <section id="faq" class="pairing-03">
     <div class="container" style="max-width:70ch;">
       <h2 style="text-align:center;">FAQ</h2>
-      <details class="faq-item"><summary>What does hosting a watch party require?</summary><p>A space, a screen, and a few volunteers — we provide the broadcast, a host guide, and promotional materials.</p></details>
-      <details class="faq-item"><summary>How long is the broadcast?</summary><p>24 hours, relayed across regional hubs so every time zone has a moment built for them.</p></details>
-      <details class="faq-item"><summary>Is there a cost to host?</summary><p>No — hosting a watch party is free. Optional add-ons are available for larger gatherings.</p></details>
-      <details class="faq-item"><summary>What happens after the broadcast?</summary><p>You'll receive a simple next-step guide for your specific gathering. Details in your host toolkit.</p></details>
+      <details class="faq-item"><summary>Who is Gather27 for?</summary><p>Gather27 is for every man, woman, and child on Earth who follows Jesus, from every denomination, every continent, every generation. There's no ticket, application, or membership required.</p></details>
+      <details class="faq-item"><summary>When is Gather27?</summary><p>Gather27 is a 24-hour global broadcast taking place March 5 to 6, 2027, moving continuously from region to region as it follows the sun across time zones.</p></details>
+      <details class="faq-item"><summary>How long is the broadcast, and what happens during it?</summary><p>Gather27 runs 24 hours, relayed across regional hubs so every time zone gets a moment built for them. The global Church gathers for prayer, worship, repentance, and commissioning, with each hub hosting a session in turn as the broadcast follows the sun.</p></details>
 
-      <details class="faq-item"><summary>Who is Gather27 for?</summary><p>Gather27 is for every man, woman, and child on Earth who follows Jesus — every denomination, every continent, every generation. There's no ticket, application, or membership required.</p></details>
-      <details class="faq-item"><summary>What happens during the 24 hours?</summary><p>Through live-streaming technology, the global Church gathers for prayer, worship, repentance, and commissioning. Regional hubs each host a session in turn, relaying the broadcast around the world as it follows the sun.</p></details>
-      <details class="faq-item"><summary>Where are the Gather27 broadcast sites?</summary><p>Regional hubs currently include Dallas (North America), Auckland (Oceania), Kuala Lumpur (Asia), Cluj (Eastern Europe), Kigali (Africa), London (Western Europe), and Lima (South America), alongside undisclosed sites serving the persecuted Church.</p></details>
-      <details class="faq-item"><summary>What is a Gather Group?</summary><p>A Gather Group is a local gathering — in a church, a living room, on a campus, anywhere — organized by a host to bring their community into the broadcast together. Gather25 saw over 21,000 registered worldwide.</p></details>
-      <details class="faq-item"><summary>Who are the partners behind Gather27?</summary><p>A growing list of global Christian organizations — including IF:Gathering, YouVersion, Cru, Alpha, and dozens more — are collaborating to make Gather27 possible. See the full list in the Partners section above.</p></details>
+      <details class="faq-item"><summary>Is Gather27 free to watch?</summary><p>Yes. Gather27 is completely free, everywhere. The broadcast, host guides, and promotional materials all come at no cost.</p></details>
+      <details class="faq-item"><summary>How do I watch Gather27 online?</summary><p>The broadcast streams free from this site and through partner platforms. Register to host a watch party to get early access to streaming details as they're announced.</p></details>
 
-      <details class="faq-item"><summary>When is Gather27?</summary><p>Gather27 is a 24-hour global broadcast taking place March 5–6, 2027, moving continuously from region to region as it follows the sun across time zones.</p></details>
-      <details class="faq-item"><summary>Is Gather27 free to watch?</summary><p>Yes. Gather27 is completely free, everywhere — the broadcast, host guides, and promotional materials all come at no cost.</p></details>
-      <details class="faq-item"><summary>How is Gather27 different from Gather25?</summary><p>Gather25 was the first 25-hour global broadcast, held in March 2025. Gather27 is the next iteration two years later — same spirit of prayer, worship, repentance, and commissioning, expanded to reach even more of the global Church.</p></details>
-      <details class="faq-item"><summary>How do I watch Gather27 online?</summary><p>The broadcast streams free from this site and through partner platforms; register to host a watch party to get early access to streaming details as they're announced.</p></details>
+      <details class="faq-item"><summary>What does hosting a watch party require?</summary><p>A space, a screen, and a few volunteers. We provide the broadcast, a host guide, and promotional materials.</p></details>
+      <details class="faq-item"><summary>Is there a cost to host?</summary><p>No. Hosting a watch party is free. Optional add-ons are available for larger gatherings.</p></details>
+      <details class="faq-item"><summary>What is a Gather Group?</summary><p>A Gather Group is a local gathering, in a church, a living room, on a campus, anywhere, organized by a host to bring their community into the broadcast together. Gather25 saw over 21,000 registered worldwide.</p></details>
+      <details class="faq-item"><summary>What happens after the broadcast?</summary><p>You'll receive a simple next-step guide for your specific gathering. Details are in your host toolkit.</p></details>
     </div>
   </section>
 
@@ -962,7 +1005,7 @@
     <div style="display:flex; gap: var(--space-4); flex-wrap:wrap;">
       <a href="#" data-tooltip="/host" style="color:inherit; text-decoration:none;">Host</a>
       <a href="#" data-tooltip="/join" style="color:inherit; text-decoration:none;">Join</a>
-      <a href="#" data-tooltip="/careers" style="color:inherit; text-decoration:none;">Careers</a>
+      <a href="#" data-tooltip="/partner" style="color:inherit; text-decoration:none;">Partner</a>
     </div>
     <div style="display:flex; gap: var(--space-4); flex-wrap:wrap; opacity:0.75;">
       <a href="#" data-tooltip="YouVersion" style="color:inherit; text-decoration:none;">YouVersion</a>
@@ -1040,6 +1083,10 @@
     <p id="leader-modal-bio">Bio</p>
     <div class="leader-modal-socials" id="leader-modal-socials"></div>
   </div>
+</div>
+
+<div class="footer-bleed-blue">
+  <span class="accent">The Global Church, in One Room</span>
 </div>
 
 <a href="index.html" class="back-to-index-fab" aria-label="Back to index">
