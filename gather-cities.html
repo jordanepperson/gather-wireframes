@@ -8,15 +8,13 @@
 <link rel="stylesheet" href="css/base.css">
 <link rel="stylesheet" href="css/review-mode.css">
 <style>
-  body { background: var(--color-bright-blue); }
+  body { background: var(--color-off-white); }
 
-  /* Client override: on the bright-blue sections, headings read white and
-     buttons read light-blue-with-dark-blue-text rather than the base
-     pairing-02 token defaults. Scoped to this page only. */
-  .pairing-02 {
-    --heading: var(--color-off-white);
-    --btn-bg: var(--color-light-blue);
-    --btn-text: var(--color-dark-blue);
+  /* Client override: headlines read bright blue rather than pairing-01's
+     default dark blue. Scoped to this page only; buttons/logo are already
+     blue via the base pairing-01 tokens and a page-specific logo asset. */
+  .pairing-01 {
+    --heading: var(--color-bright-blue);
   }
 
   .eyebrow-label {
@@ -25,6 +23,7 @@
     font-weight: 700;
     letter-spacing: 0.12em;
     text-transform: uppercase;
+    color: var(--color-bright-blue);
     margin-bottom: var(--space-2);
   }
 
@@ -92,22 +91,26 @@
   .nav-menu-group a:hover { color: var(--color-bright-blue); }
 
   /* Hero */
-  .hero-grid { display: grid; grid-template-columns: 1.1fr 1fr; align-items: center; gap: var(--space-5); }
-  @media (max-width: 800px) { .hero-grid { grid-template-columns: 1fr; } }
+  .hero-top { position: relative; overflow: hidden; }
+  .hero-text { max-width: 600px; position: relative; z-index: 2; }
 
-  /* City scroller — a rolodex of cities easing past a globe-limb arc,
-     the nearest-to-center city large and dark, the rest smaller and blue. */
-  .city-scroll-card {
-    position: relative;
-    background: var(--color-off-white);
-    border-radius: 1.5rem;
-    overflow: hidden;
-    height: 340px;
-    padding-left: 3rem;
+  /* City scroller — bleeds off the right edge of the viewport, like a
+     globe mostly off-screen; cities sit outside its curve and ease past
+     a fixed center point, the nearest one large and dark, the rest
+     smaller and blue as they recede further from center. */
+  .city-scroll-bleed {
+    position: absolute;
+    top: 0; bottom: 0; right: 0;
+    width: min(50vw, 620px);
+    display: flex;
+    align-items: center;
+    pointer-events: none;
   }
+  @media (max-width: 800px) { .city-scroll-bleed { display: none; } }
+  .city-scroll-inner { position: relative; width: 100%; height: 380px; }
   .city-scroll-arc {
     position: absolute;
-    left: -55%;
+    right: -55%;
     top: 50%;
     width: 100%;
     aspect-ratio: 1;
@@ -119,7 +122,7 @@
   .city-scroll-arc::after {
     content: "";
     position: absolute;
-    top: 50%; right: -7px;
+    top: 50%; left: -7px;
     width: 14px; height: 14px;
     border-radius: 50%;
     background: var(--color-bright-blue);
@@ -142,28 +145,36 @@
     height: 56px;
     display: flex;
     align-items: center;
+    justify-content: flex-end;
+    padding-right: 2.75rem;
     font-family: var(--font-primary);
     font-weight: 700;
     white-space: nowrap;
     will-change: transform, opacity;
   }
-  @media (max-width: 800px) { .city-scroll-card { height: 260px; } }
 
-  /* Documentary photo band under hero */
+  /* Documentary video band under hero — rounded container, inset from the
+     viewport edge rather than a hard full bleed, with room to breathe
+     after the hero content above it. */
   .doc-band {
-    width: 100vw;
-    margin-left: calc(50% - 50vw);
-    min-height: 260px;
+    width: calc(100vw - 3rem);
+    margin-left: calc(50% - 50vw + 1.5rem);
+    margin-top: var(--space-7);
+    min-height: 320px;
+    border-radius: 1.5rem;
     display: flex;
     align-items: flex-end;
     padding: var(--space-3);
     background: linear-gradient(140deg, var(--color-dark-blue), var(--color-bright-blue) 75%);
   }
   .doc-band .content-note { max-width: 420px; }
+  @media (max-width: 700px) { .doc-band { min-height: 240px; } }
 
-  /* What It Is — split stat card (off-white card nested on bright-blue bg needs explicit colors) */
+  /* What It Is — split stat card. Explicit colors regardless of ambient
+     section, plus a border since the page bg is now the same off-white. */
   .split-card {
     background: var(--color-off-white);
+    border: 1px solid rgba(18,22,29,0.1);
     border-radius: 1.25rem;
     padding: var(--space-4);
     display: grid;
@@ -206,7 +217,8 @@
   .reel-banner {
     display: inline-flex; align-items: center; gap: 0.5rem;
     font-size: 0.75rem; font-weight: 600;
-    background: rgba(255,250,240,0.15); border-radius: 999px; padding: 0.35rem 0.9rem;
+    background: var(--color-light-blue); color: var(--color-dark-blue);
+    border-radius: 999px; padding: 0.35rem 0.9rem;
     margin-bottom: var(--space-2);
   }
   .reel-wrap { position: relative; margin-top: var(--space-4); }
@@ -250,6 +262,7 @@
   /* Confirmed first-activation event card */
   .activation-card {
     background: var(--color-off-white);
+    border: 1px solid rgba(18,22,29,0.1);
     border-radius: 1rem;
     padding: var(--space-3);
     font-family: var(--font-primary);
@@ -328,38 +341,42 @@
 
 <main>
 
-  <section id="hero" class="pairing-02">
-    <div class="container hero-grid">
-      <div>
-        <img src="assets/gather-cities-light.svg" alt="Gather Cities" style="height:32px; width:auto; margin-bottom: var(--space-3);">
-        <h1 style="max-width:16ch;">This is just the beginning</h1>
-        <p style="max-width:52ch;">Bring Gather to your city and be part of a movement building toward 1,000 activated cities by 2030, one church-led gathering at a time.</p>
-        <div style="margin-top: var(--space-4); display:flex; align-items:center; gap: var(--space-2); flex-wrap:wrap;">
-          <a class="btn" href="#" data-tooltip="/host-inquiry">Help Host an Event</a>
-          <a class="btn btn-outline" href="#how-it-works" style="color:var(--color-light-blue); border-color:var(--color-light-blue);">See How It Works</a>
+  <section id="hero" class="pairing-01">
+    <div class="hero-top">
+      <div class="container">
+        <div class="hero-text">
+          <img src="assets/gather-cities-blue.svg" alt="Gather Cities" style="height:32px; width:auto; margin-bottom: var(--space-3);">
+          <h1 style="max-width:16ch;">This is just the beginning</h1>
+          <p style="max-width:52ch;">Bring Gather to your city and be part of a movement building toward 1,000 activated cities by 2030, one church-led gathering at a time.</p>
+          <div style="margin-top: var(--space-4); display:flex; align-items:center; gap: var(--space-2); flex-wrap:wrap;">
+            <a class="btn" href="#" data-tooltip="/host-inquiry">Help Host an Event</a>
+            <a class="btn btn-outline" href="#how-it-works" style="color:var(--color-bright-blue); border-color:var(--color-bright-blue);">See How It Works</a>
+          </div>
         </div>
       </div>
-      <div class="city-scroll-card">
-        <div class="city-scroll-arc"></div>
-        <div class="city-scroll-viewport">
-          <ul class="city-scroll-list" id="city-scroll-list">
-            <li>London</li>
-            <li>Austin</li>
-            <li>Edmonton</li>
-            <li>New York</li>
-            <li>Paris</li>
-            <li>Tokyo</li>
-            <li>Nairobi</li>
-            <li>São Paulo</li>
-            <li>London</li>
-            <li>Austin</li>
-            <li>Edmonton</li>
-            <li>New York</li>
-            <li>Paris</li>
-            <li>Tokyo</li>
-            <li>Nairobi</li>
-            <li>São Paulo</li>
-          </ul>
+      <div class="city-scroll-bleed">
+        <div class="city-scroll-inner">
+          <div class="city-scroll-arc"></div>
+          <div class="city-scroll-viewport">
+            <ul class="city-scroll-list" id="city-scroll-list">
+              <li>London</li>
+              <li>Austin</li>
+              <li>Edmonton</li>
+              <li>New York</li>
+              <li>Paris</li>
+              <li>Tokyo</li>
+              <li>Nairobi</li>
+              <li>São Paulo</li>
+              <li>London</li>
+              <li>Austin</li>
+              <li>Edmonton</li>
+              <li>New York</li>
+              <li>Paris</li>
+              <li>Tokyo</li>
+              <li>Nairobi</li>
+              <li>São Paulo</li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
@@ -369,7 +386,7 @@
     </div>
   </section>
 
-  <section id="what-it-is" class="pairing-02">
+  <section id="what-it-is" class="pairing-01">
     <div class="container grid grid-2" style="align-items:center;">
       <div>
         <p class="eyebrow-label">The Model</p>
@@ -383,7 +400,7 @@
     </div>
   </section>
 
-  <section id="why" class="pairing-02">
+  <section id="why" class="pairing-01">
     <div class="container" style="text-align:center;">
       <p class="eyebrow-label" style="margin-inline:auto;">Why It Matters</p>
       <p class="pull-quote accent">This is momentum, not a finish line.</p>
@@ -391,7 +408,7 @@
     </div>
   </section>
 
-  <section id="how-it-works" class="pairing-02">
+  <section id="how-it-works" class="pairing-01">
     <div class="container" style="text-align:center;">
       <p class="eyebrow-label" style="margin-inline:auto;">The Process</p>
       <h2>How it works</h2>
@@ -413,7 +430,7 @@
     </div>
   </section>
 
-  <section id="proof" class="pairing-02">
+  <section id="proof" class="pairing-01">
     <div class="container" style="text-align:center;">
       <p class="eyebrow-label" style="margin-inline:auto;">Cities In Action</p>
       <h2 style="max-width:26ch; margin-inline:auto;">What Gather Cities looks like on the ground</h2>
@@ -487,7 +504,7 @@
     </div>
   </section>
 
-  <section id="faq" class="pairing-02">
+  <section id="faq" class="pairing-01">
     <div class="container" style="max-width:70ch;">
       <h2 style="text-align:center;">FAQ</h2>
       <details class="faq-item"><summary>What's the timeline?</summary><p>Gather Cities is building toward 1,000 activated cities by 2030. We're just getting started.</p></details>
@@ -544,7 +561,7 @@
   (function () {
     var list = document.getElementById('city-scroll-list');
     if (!list) return;
-    var card = list.closest('.city-scroll-card');
+    var card = list.closest('.city-scroll-inner');
     var items = Array.prototype.slice.call(list.children);
     var itemHeight = 56;
     var setCount = items.length / 2;
@@ -569,7 +586,7 @@
         var itemCenter = top + itemHeight / 2;
         var distance = Math.abs(itemCenter - centerY);
         var ratio = Math.min(distance / (viewportHeight / 2), 1);
-        li.style.transform = 'translateY(' + top + 'px) translateX(' + lerp(0, 26, ratio) + 'px)';
+        li.style.transform = 'translateY(' + top + 'px) translateX(' + lerp(0, -26, ratio) + 'px)';
         li.style.fontSize = lerp(1.9, 1, ratio) + 'rem';
         li.style.opacity = lerp(1, 0.4, ratio);
         li.style.color = lerpColor(ratio);
