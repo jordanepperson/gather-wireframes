@@ -90,27 +90,29 @@
   }
   .nav-menu-group a:hover { color: var(--color-bright-blue); }
 
-  /* Hero */
-  .hero-top { position: relative; overflow: hidden; }
-  .hero-text { max-width: 600px; position: relative; z-index: 2; }
+  /* Hero — full viewport height, so the half-circle scroller has room to
+     render at full size without getting clipped top/bottom. */
+  .hero-top { position: relative; overflow: hidden; min-height: 100vh; display: flex; align-items: center; }
+  .hero-text { max-width: 460px; position: relative; z-index: 2; }
 
-  /* City scroller — bleeds off the right edge of the viewport, like a
-     globe mostly off-screen; cities sit outside its curve and ease past
-     a fixed center point, the nearest one large and dark, the rest
-     smaller and blue as they recede further from center. */
+  /* City scroller — a half-circle bleeding off the right edge of the
+     viewport. Cities sit at fixed angles around it, dovetailed outward
+     (rotated to fan away from the circle's edge) rather than stacked in
+     a vertical list, and rotate around the circle one slot at a time
+     with a pause between steps rather than continuously. */
   .city-scroll-bleed {
     position: absolute;
     top: 0; bottom: 0; right: 0;
-    width: min(50vw, 620px);
+    width: min(34vw, 420px);
     display: flex;
     align-items: center;
     pointer-events: none;
   }
   @media (max-width: 800px) { .city-scroll-bleed { display: none; } }
-  .city-scroll-inner { position: relative; width: 100%; height: 380px; }
+  .city-scroll-inner { position: relative; width: 100%; aspect-ratio: 1; max-height: 100%; margin-inline: auto; }
   .city-scroll-arc {
     position: absolute;
-    right: -55%;
+    right: -50%;
     top: 50%;
     width: 100%;
     aspect-ratio: 1;
@@ -128,39 +130,26 @@
     background: var(--color-bright-blue);
     transform: translateY(-50%);
   }
-  .city-scroll-viewport { position: relative; height: 100%; width: 100%; overflow: hidden; }
-  .city-scroll-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%;
-  }
+  .city-scroll-viewport { position: absolute; inset: 0; }
+  .city-scroll-list { list-style: none; margin: 0; padding: 0; }
   .city-scroll-list li {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 56px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    padding-right: 2.75rem;
+    width: max-content;
+    transform-origin: 100% 50%;
     font-family: var(--font-primary);
     font-weight: 700;
     white-space: nowrap;
+    transition: transform 0.8s ease, font-size 0.8s ease, color 0.8s ease, opacity 0.8s ease;
     will-change: transform, opacity;
   }
 
-  /* Documentary video band under hero — rounded container, inset from the
-     viewport edge rather than a hard full bleed, with room to breathe
-     after the hero content above it. */
+  /* Documentary video band under hero — matches the page's normal
+     container width rather than bleeding to the viewport edge. */
   .doc-band {
-    width: calc(100vw - 3rem);
-    margin-left: calc(50% - 50vw + 1.5rem);
-    margin-top: var(--space-7);
-    min-height: 320px;
+    width: 100%;
+    height: 85vh;
     border-radius: 1.5rem;
     display: flex;
     align-items: flex-end;
@@ -168,7 +157,6 @@
     background: linear-gradient(140deg, var(--color-dark-blue), var(--color-bright-blue) 75%);
   }
   .doc-band .content-note { max-width: 420px; }
-  @media (max-width: 700px) { .doc-band { min-height: 240px; } }
 
   /* What It Is — split stat card. Explicit colors regardless of ambient
      section, plus a border since the page bg is now the same off-white. */
@@ -345,7 +333,7 @@
     <div class="hero-top">
       <div class="container">
         <div class="hero-text">
-          <img src="assets/gather-cities-blue.svg" alt="Gather Cities" style="height:32px; width:auto; margin-bottom: var(--space-3);">
+          <img src="assets/gather-cities-blue.svg" alt="Gather Cities" style="height:26px; width:auto; margin-bottom: var(--space-3);">
           <h1 style="max-width:16ch;">This is just the beginning</h1>
           <p style="max-width:52ch;">Bring Gather to your city and be part of a movement building toward 1,000 activated cities by 2030, one church-led gathering at a time.</p>
           <div style="margin-top: var(--space-4); display:flex; align-items:center; gap: var(--space-2); flex-wrap:wrap;">
@@ -367,22 +355,16 @@
               <li>Tokyo</li>
               <li>Nairobi</li>
               <li>São Paulo</li>
-              <li>London</li>
-              <li>Austin</li>
-              <li>Edmonton</li>
-              <li>New York</li>
-              <li>Paris</li>
-              <li>Tokyo</li>
-              <li>Nairobi</li>
-              <li>São Paulo</li>
             </ul>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="doc-band">
-      <p class="content-note">Content note: handheld, unpolished footage — volunteers setting up folding chairs and a sound system in a church gym, morning light, mid-setup.</p>
+    <div class="container" style="margin-top: var(--space-7);">
+      <div class="doc-band">
+        <p class="content-note">Content note: handheld, unpolished footage — volunteers setting up folding chairs and a sound system in a church gym, morning light, mid-setup.</p>
+      </div>
     </div>
   </section>
 
@@ -554,19 +536,18 @@
 <script src="js/review-mode.js"></script>
 <script src="js/nav-menu.js"></script>
 <script>
-  // Hero city scroller — cities ease upward past a fixed center point;
-  // the nearest one reads large and dark, the rest shrink and turn blue
-  // as they recede. The <ul> holds the city list twice back-to-back so
-  // the loop point is seamless.
+  // Hero city scroller — cities sit at fixed angles around a half-circle
+  // (only the left side is ever visible; the rest bleeds off-screen to
+  // the right), each dovetailed outward from the circle's edge rather
+  // than stacked in a list. The whole arrangement rotates one slot at a
+  // time, pausing between steps, rather than scrolling continuously.
   (function () {
     var list = document.getElementById('city-scroll-list');
     if (!list) return;
-    var card = list.closest('.city-scroll-inner');
+    var inner = list.closest('.city-scroll-inner');
     var items = Array.prototype.slice.call(list.children);
-    var itemHeight = 56;
-    var setCount = items.length / 2;
-    var loopHeight = itemHeight * setCount;
-    var speed = 22; // px/sec
+    var n = items.length;
+    var stepDegrees = 360 / n;
     var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     var DARK = [18, 22, 29];
@@ -578,38 +559,42 @@
         Math.round(lerp(DARK[2], BRIGHT[2], t)) + ')';
     }
 
-    function render(offset) {
-      var viewportHeight = card.clientHeight;
-      var centerY = viewportHeight / 2;
+    var rotation = 0; // degrees; advances by one slot per step
+
+    function render() {
+      var w = inner.clientWidth;
+      var h = inner.clientHeight;
+      var cx = w;      // circle center sits at the inner box's right edge
+      var cy = h / 2;
+      var r = w / 2;
+
       items.forEach(function (li, i) {
-        var top = i * itemHeight - offset;
-        var itemCenter = top + itemHeight / 2;
-        var distance = Math.abs(itemCenter - centerY);
-        var ratio = Math.min(distance / (viewportHeight / 2), 1);
-        li.style.transform = 'translateY(' + top + 'px) translateX(' + lerp(0, -26, ratio) + 'px)';
-        li.style.fontSize = lerp(1.9, 1, ratio) + 'rem';
-        li.style.opacity = lerp(1, 0.4, ratio);
+        var angle = (i * stepDegrees + rotation) % 360;
+        var rad = angle * Math.PI / 180;
+        var x = cx + r * Math.cos(rad);
+        var y = cy + r * Math.sin(rad);
+
+        // angular distance from 180deg (the leftmost, most-visible point)
+        var delta = Math.abs(((angle - 180 + 540) % 360) - 180);
+        var ratio = Math.min(delta / 90, 1);
+        var onVisibleSide = Math.cos(rad) < 0.05;
+        var fade = onVisibleSide ? Math.max(0, 1 - Math.max(0, delta - 75) / 15) : 0;
+        var dovetail = angle - 180;
+
+        li.style.transform = 'translate(' + x + 'px,' + y + 'px) translate(-100%, -50%) rotate(' + dovetail + 'deg)';
+        li.style.fontSize = lerp(1.6, 0.95, ratio) + 'rem';
+        li.style.opacity = fade;
         li.style.color = lerpColor(ratio);
       });
     }
 
-    if (reduceMotion) {
-      render(loopHeight / 2 - (card.clientHeight / 2 - itemHeight / 2));
-      return;
-    }
+    render();
+    if (reduceMotion) return;
 
-    var offset = 0;
-    render(offset);
-    var last = null;
-    function frame(t) {
-      if (last === null) last = t;
-      var dt = (t - last) / 1000;
-      last = t;
-      offset = (offset + speed * dt) % loopHeight;
-      render(offset);
-      requestAnimationFrame(frame);
-    }
-    requestAnimationFrame(frame);
+    setInterval(function () {
+      rotation = (rotation + stepDegrees) % 360;
+      render();
+    }, 2200);
   })();
 </script>
 <script>
