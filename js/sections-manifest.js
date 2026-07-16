@@ -42,8 +42,8 @@ window.GATHER_SECTIONS = {
       { id: 'why', label: 'Why Bring It Here' },
       { id: 'how-it-works', label: 'How It Works' },
       { id: 'proof', label: 'Proof' },
-      { id: 'cta', label: 'Partner / Inquiry CTA' },
       { id: 'faq', label: 'FAQ' },
+      { id: 'cta', label: 'Partner / Inquiry CTA' },
     ],
   },
   'if-gathering': {
