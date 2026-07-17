@@ -92,7 +92,10 @@
 
   /* Hero — full viewport height, so the half-circle scroller has room to
      render at full size without getting clipped top/bottom. */
-  .hero-top { position: relative; overflow: hidden; min-height: 100vh; display: flex; align-items: center; }
+  /* The base stylesheet's default section padding-block would otherwise
+     push .hero-top down before its own height/centering math even starts. */
+  #hero { padding-block: 0; }
+  .hero-top { position: relative; overflow: hidden; min-height: calc(100vh - 98px); display: flex; align-items: center; }
   .hero-top > .container { width: 100%; }
   .hero-text { max-width: 460px; position: relative; z-index: 2; }
 
@@ -396,7 +399,7 @@
     <div class="hero-top">
       <div class="container">
         <div class="hero-text">
-          <img src="assets/gather-cities-blue.svg" alt="Gather Cities" style="height:26px; width:auto; margin-bottom: var(--space-3);">
+          <img src="assets/gather-cities-blue.svg" alt="Gather Cities" style="height:21px; width:auto; margin-bottom: var(--space-5);">
           <h1 style="max-width:16ch;">This is just the beginning</h1>
           <p style="max-width:52ch;">Be part of a movement building toward 1,000 activated cities by 2030, one church-led gathering at a time.</p>
           <div style="margin-top: var(--space-4);">
@@ -417,6 +420,22 @@
               <li>Tokyo</li>
               <li>Nairobi</li>
               <li>São Paulo</li>
+              <li>Toronto</li>
+              <li>Chicago</li>
+              <li>Dallas</li>
+              <li>Seattle</li>
+              <li>Madrid</li>
+              <li>Berlin</li>
+              <li>Lagos</li>
+              <li>Manila</li>
+              <li>Mumbai</li>
+              <li>Seoul</li>
+              <li>Sydney</li>
+              <li>Auckland</li>
+              <li>Bogotá</li>
+              <li>Mexico City</li>
+              <li>Vancouver</li>
+              <li>Cape Town</li>
             </ul>
           </div>
         </div>
@@ -636,18 +655,21 @@
 
     var rotation = 0; // degrees; advances by one slot per step
 
+    var labelGap = 32; // extra px between the circle's edge and the label text
+
     function render() {
       var w = inner.clientWidth;
       var h = inner.clientHeight;
       var cx = w;      // circle center sits at the inner box's right edge
       var cy = h / 2;
       var r = w / 2;
+      var textR = r + labelGap;
 
       items.forEach(function (li, i) {
         var angle = (i * stepDegrees + rotation) % 360;
         var rad = angle * Math.PI / 180;
-        var x = cx + r * Math.cos(rad);
-        var y = cy + r * Math.sin(rad);
+        var x = cx + textR * Math.cos(rad);
+        var y = cy + textR * Math.sin(rad);
 
         // angular distance from 180deg (the leftmost, most-visible point)
         var delta = Math.abs(((angle - 180 + 540) % 360) - 180);
@@ -657,13 +679,17 @@
         var dovetail = angle - 180;
 
         li.style.transform = 'translate(' + x + 'px,' + y + 'px) translate(-100%, -50%) rotate(' + dovetail + 'deg)';
-        li.style.fontSize = lerp(1.6, 0.95, ratio) + 'rem';
+        li.style.fontSize = lerp(2.1, 0.95, ratio) + 'rem';
         li.style.opacity = fade;
         li.style.color = lerpColor(ratio);
       });
     }
 
-    render();
+    // Deferred to the next frame (twice) so .city-scroll-inner has a real,
+    // laid-out size before the first render — calling this synchronously
+    // on load can catch clientWidth/clientHeight mid-layout and briefly
+    // collapse every city onto the same point until the first tick fixes it.
+    requestAnimationFrame(function () { requestAnimationFrame(render); });
     if (reduceMotion) return;
 
     setInterval(function () {
