@@ -117,26 +117,9 @@
   }
   .hero-content { padding-block: var(--space-6); }
   .hero-image .content-note { position: absolute; left: var(--space-3); bottom: var(--space-3); max-width: 320px; }
-  /* A big, fun, slightly-tilted flourish in the corner — the actual IF
-     badge asset, not a reconstructed motif. Bleeds off the rounded
-     corner on purpose, clipped by the hero-image's own overflow:hidden. */
-  .hero-badge {
-    position: absolute;
-    right: -2.5rem;
-    bottom: -2.5rem;
-    width: 260px;
-    height: auto;
-    transform: rotate(-12deg);
-    opacity: 0.9;
-    pointer-events: none;
-  }
   @media (max-width: 700px) {
     .hero-image { min-height: 420px; }
     .hero-image .content-note { display: none; }
-    /* Same fate as the content-note above — at narrow widths the hero
-       text wraps to 3-4 lines and fills the image's height, leaving no
-       clear corner for the badge to sit in without overlapping it. */
-    .hero-badge { display: none; }
   }
 
   .hero-info-bar {
@@ -233,12 +216,35 @@
 
   /* Get Involved — three-tier CTA stack, same shape as Gather Global's
      get-involved section: big host card, secondary find banner, a small
-     tertiary attend line. Now sits inside its own Light Blue "band"
-     container (the first bit of color layered back onto the otherwise
-     plain-white page) — buttons inside the band switch to Bright Blue so
-     they don't disappear into the band's own Light Blue background. */
+     tertiary attend line. Sits inside a White card with a Bright Blue
+     outline (was a solid Light Blue fill) — buttons inside stay Bright
+     Blue since White no longer needs the contrast swap Light Blue did. */
+  #get-involved { position: relative; overflow: hidden; }
+  /* A row of the real IF badge asset, faded, behind the eyebrow/heading —
+     "fun" decorative flourish moved here from the hero. Real gotcha:
+     a negative z-index here (to sit "behind" the text/band) combined
+     with this section's own overflow:hidden made the whole row fail to
+     render/hit-test at all in this environment — confirmed via
+     elementFromPoint returning the section instead of the image, even
+     with opacity forced to 1. Fix: keep this row at z-index:0 (not
+     negative) and instead push the actual content (.container) to
+     z-index:1 below, so stacking order still puts text/band on top. */
+  .get-involved-badge-row {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    padding-top: var(--space-4);
+    z-index: 0;
+    pointer-events: none;
+  }
+  #get-involved > .container { position: relative; z-index: 1; }
+  .get-involved-badge-row img { width: 110px; height: auto; opacity: 0.45; }
+  @media (max-width: 700px) { .get-involved-badge-row img { width: 60px; } }
   .get-involved-band {
-    background: var(--color-light-blue);
+    background: var(--color-off-white);
+    border: 2px solid var(--color-bright-blue);
     border-radius: 2rem;
     padding: var(--space-6) var(--space-5);
     margin-top: var(--space-4);
@@ -251,6 +257,7 @@
     grid-template-columns: 1fr 1fr;
     align-items: stretch;
     background: var(--color-off-white);
+    border: 1px solid rgba(18,22,29,0.1);
     border-radius: 1.5rem;
     overflow: hidden;
     margin-top: var(--space-5);
@@ -493,7 +500,6 @@
         <p style="max-width:52ch; margin-inline:auto; color:var(--color-off-white); opacity:0.92; font-size:1.1rem;">Discipleship is what we're about — life-on-life, in living rooms, in local churches, studying God's Word together.</p>
       </div>
       <p class="content-note">Content note: warm, candid photo — a small group of women around a coffee table, mid-laugh, Bibles open, natural light.</p>
-      <img class="hero-badge" src="assets/if-badge.svg" alt="" aria-hidden="true">
     </div>
 
     <div class="hero-info-bar">
@@ -541,6 +547,13 @@
   </section>
 
   <section id="get-involved" class="pairing-01">
+    <div class="get-involved-badge-row" aria-hidden="true">
+      <img src="assets/if-badge.svg" alt="">
+      <img src="assets/if-badge.svg" alt="">
+      <img src="assets/if-badge.svg" alt="">
+      <img src="assets/if-badge.svg" alt="">
+      <img src="assets/if-badge.svg" alt="">
+    </div>
     <div class="container">
       <div class="get-involved-band">
         <p class="eyebrow-label" style="text-align:center; margin-inline:auto;">Now Gathering Everywhere</p>
