@@ -226,6 +226,21 @@
     background: linear-gradient(160deg, var(--color-bright-blue), var(--color-light-blue));
     margin: 0 auto var(--space-2);
   }
+  .leader-grid > .leader-card.is-hidden { display: none; }
+  .leader-pagination { display: flex; align-items: center; justify-content: center; gap: var(--space-3); margin-top: var(--space-5); }
+  .leader-page-btn {
+    width: 2.25rem; height: 2.25rem;
+    border-radius: 50%;
+    border: 1px solid rgba(18,22,29,0.3);
+    background: transparent;
+    color: var(--color-dark-blue);
+    font-size: 1.1rem;
+    cursor: pointer;
+  }
+  .leader-page-btn:disabled { opacity: 0.3; cursor: default; }
+  .leader-page-dots { display: flex; gap: 0.5rem; }
+  .leader-page-dot { width: 0.55rem; height: 0.55rem; border-radius: 50%; background: rgba(18,22,29,0.2); border: none; padding: 0; cursor: pointer; }
+  .leader-page-dot.active { background: var(--color-bright-blue); }
 
   .modal-overlay {
     position: fixed; inset: 0;
@@ -473,6 +488,11 @@
           <div class="avatar"></div><h4>Leader name TK</h4><p style="font-size:0.85rem;">Worship Leader</p>
         </button>
       </div>
+      <div class="leader-pagination" id="leader-pagination">
+        <button type="button" class="leader-page-btn" data-page-nav="prev" aria-label="Previous leaders">‹</button>
+        <div class="leader-page-dots" id="leader-page-dots"></div>
+        <button type="button" class="leader-page-btn" data-page-nav="next" aria-label="Next leaders">›</button>
+      </div>
     </div>
   </section>
 
@@ -594,7 +614,8 @@
 <script src="js/review-mode.js"></script>
 <script src="js/nav-menu.js"></script>
 <script>
-  // Leader cards: click opens a shared modal populated from data-* attrs.
+  // Leader cards: pagination (12 per page) + click opens a shared modal
+  // populated from data-* attrs.
   (function () {
     var grid = document.getElementById('leader-grid');
     var cards = grid ? Array.from(grid.querySelectorAll('.leader-card')) : [];
@@ -603,6 +624,48 @@
     var modalRole = document.getElementById('leader-modal-role');
     var modalName = document.getElementById('leader-modal-name');
     var modalBio = document.getElementById('leader-modal-bio');
+
+    var pageSize = 12;
+    var pageCount = Math.ceil(cards.length / pageSize);
+    var currentPage = 0;
+
+    var paginationWrap = document.getElementById('leader-pagination');
+    var dotsWrap = document.getElementById('leader-page-dots');
+    var prevBtn = document.querySelector('[data-page-nav="prev"]');
+    var nextBtn = document.querySelector('[data-page-nav="next"]');
+
+    // No point showing pagination controls for a single page.
+    if (paginationWrap) paginationWrap.style.display = pageCount <= 1 ? 'none' : '';
+
+    var dots = [];
+    for (var i = 0; i < pageCount; i++) {
+      var dot = document.createElement('button');
+      dot.type = 'button';
+      dot.className = 'leader-page-dot';
+      dot.setAttribute('aria-label', 'Page ' + (i + 1));
+      (function (pageIndex) {
+        dot.addEventListener('click', function () { goToPage(pageIndex); });
+      })(i);
+      dotsWrap.appendChild(dot);
+      dots.push(dot);
+    }
+
+    function renderPage() {
+      cards.forEach(function (card, index) {
+        var onPage = Math.floor(index / pageSize) === currentPage;
+        card.classList.toggle('is-hidden', !onPage);
+      });
+      dots.forEach(function (dot, index) { dot.classList.toggle('active', index === currentPage); });
+      if (prevBtn) prevBtn.disabled = currentPage === 0;
+      if (nextBtn) nextBtn.disabled = currentPage === pageCount - 1;
+    }
+    function goToPage(index) {
+      currentPage = Math.max(0, Math.min(pageCount - 1, index));
+      renderPage();
+    }
+    if (prevBtn) prevBtn.addEventListener('click', function () { goToPage(currentPage - 1); });
+    if (nextBtn) nextBtn.addEventListener('click', function () { goToPage(currentPage + 1); });
+    renderPage();
 
     function closeAll() {
       document.querySelectorAll('.modal-overlay.open').forEach(function (o) { o.classList.remove('open'); });

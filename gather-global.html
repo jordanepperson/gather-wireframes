@@ -1286,13 +1286,17 @@
   (function () {
     var grid = document.getElementById('leader-grid');
     var cards = grid ? Array.from(grid.querySelectorAll('.leader-card')) : [];
-    var pageSize = 4;
+    var pageSize = 12;
     var pageCount = Math.ceil(cards.length / pageSize);
     var currentPage = 0;
 
+    var paginationWrap = document.getElementById('leader-pagination');
     var dotsWrap = document.getElementById('leader-page-dots');
     var prevBtn = document.querySelector('[data-page-nav="prev"]');
     var nextBtn = document.querySelector('[data-page-nav="next"]');
+
+    // No point showing pagination controls for a single page.
+    if (paginationWrap) paginationWrap.style.display = pageCount <= 1 ? 'none' : '';
 
     var dots = [];
     for (var i = 0; i < pageCount; i++) {
