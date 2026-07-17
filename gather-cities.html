@@ -321,7 +321,6 @@
     border-radius: 999px; padding: 0.5rem 1.1rem;
   }
   .queue-ticker-item .city { font-weight: 700; }
-  .queue-ticker-item .status { opacity: 0.6; font-size: 0.75rem; }
   @keyframes queue-ticker-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
   @media (prefers-reduced-motion: reduce) { .queue-ticker-track { animation: none; overflow-x: auto; } }
 
@@ -820,19 +819,19 @@
     var track = document.getElementById('queue-ticker-track');
     if (!track) return;
     var ITEMS = [
-      { city: 'Nashville, TN', status: 'Inquiry submitted' },
-      { city: 'Denver, CO', status: 'In review' },
-      { city: 'Phoenix, AZ', status: 'Playbook sent' },
-      { city: 'Charlotte, NC', status: 'Vetting scheduled' },
-      { city: 'Portland, OR', status: 'Inquiry submitted' },
-      { city: 'Kansas City, MO', status: 'In review' },
-      { city: 'Tampa, FL', status: 'Playbook sent' },
-      { city: 'Columbus, OH', status: 'Vetting scheduled' }
+      'Nashville, TN',
+      'Denver, CO',
+      'Phoenix, AZ',
+      'Charlotte, NC',
+      'Portland, OR',
+      'Kansas City, MO',
+      'Tampa, FL',
+      'Columbus, OH'
     ];
-    function renderItem(d) {
+    function renderItem(city) {
       var span = document.createElement('span');
       span.className = 'queue-ticker-item';
-      span.innerHTML = '<span class="city">' + d.city + '</span><span class="status">' + d.status + '</span>';
+      span.innerHTML = '<span class="city">' + city + '</span>';
       return span;
     }
     ITEMS.concat(ITEMS).forEach(function (d) { track.appendChild(renderItem(d)); });
