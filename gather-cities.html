@@ -282,6 +282,19 @@
     padding: var(--space-3);
     background: linear-gradient(150deg, var(--color-bright-blue), var(--color-dark-blue) 75%);
   }
+  /* Gather + dot + city wordmark lockup, reconstructed in CSS to match
+     the hero's real logo asset since no "Gather Brooklyn" mark exists */
+  .gather-lockup {
+    display: flex; align-items: center; gap: 0.5rem;
+    font-family: var(--font-primary); font-weight: 600; font-size: 1.05rem;
+    color: var(--color-off-white);
+    margin-bottom: var(--space-3);
+  }
+  .gather-lockup .dot { width: 0.65rem; height: 0.65rem; border-radius: 50%; background: var(--color-bright-blue); flex-shrink: 0; }
+  /* On the bright-blue CTA band, a bright-blue dot would vanish into the
+     background, so it swaps to dark blue there; the city name crossfades. */
+  #cta .gather-lockup .dot { background: var(--color-dark-blue); }
+  #cta-city-rotator { display: inline-block; transition: opacity 0.3s ease; }
   .brooklyn-feature-body { padding: var(--space-5); display: flex; flex-direction: column; height: 100%; }
   .brooklyn-feature-body .tag { display: inline-block; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-light-blue); margin-bottom: 0.6rem; }
   .brooklyn-feature-body h3 { color: var(--color-off-white); margin-bottom: var(--space-2); }
@@ -570,6 +583,7 @@
           <p class="content-note">Content note: handheld footage of the Brooklyn host church preparing the room, chairs and a stage taking shape.</p>
         </div>
         <div class="brooklyn-feature-body">
+          <div class="gather-lockup" aria-hidden="true"><span>Gather</span><span class="dot"></span><span>Brooklyn</span></div>
           <span class="tag">First Confirmed Activation</span>
           <h3>Brooklyn, New York City</h3>
           <p>A dozen churches across Brooklyn are co-hosting one night of worship, prayer, and vision for what God is doing in the city, the first Gather Cities activation on the calendar.</p>
@@ -638,6 +652,7 @@
 
   <section id="cta" class="pairing-02">
     <div class="container" style="text-align:center; max-width:640px;">
+      <div class="gather-lockup" style="justify-content:center; margin-inline:auto;" aria-hidden="true"><span>Gather</span><span class="dot"></span><span id="cta-city-rotator">Brooklyn</span></div>
       <p class="eyebrow-label" style="margin-inline:auto; color:var(--color-off-white);">Partner With Us</p>
       <h2 style="max-width:18ch; margin-inline:auto;">The church, gathering everywhere</h2>
       <p style="margin-inline:auto;">Every Gather Cities activation starts with one conversation. Tell us about your church, and let's start building toward your night.</p>
@@ -823,6 +838,25 @@
       return span;
     }
     ITEMS.concat(ITEMS).forEach(function (d) { track.appendChild(renderItem(d)); });
+  })();
+</script>
+<script>
+  // Closing CTA's "Gather · [City]" lockup — crossfades through cities,
+  // Brooklyn first since it's the one confirmed activation.
+  (function () {
+    var el = document.getElementById('cta-city-rotator');
+    if (!el) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var cities = ['Brooklyn', 'Nashville', 'Denver', 'Phoenix', 'Charlotte', 'Portland', 'Kansas City', 'Tampa', 'Columbus'];
+    var i = 0;
+    setInterval(function () {
+      i = (i + 1) % cities.length;
+      el.style.opacity = 0;
+      setTimeout(function () {
+        el.textContent = cities[i];
+        el.style.opacity = 1;
+      }, 300);
+    }, 2200);
   })();
 </script>
 <script>
