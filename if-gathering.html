@@ -117,9 +117,23 @@
   }
   .hero-content { padding-block: var(--space-6); }
   .hero-image .content-note { position: absolute; left: var(--space-3); bottom: var(--space-3); max-width: 320px; }
+  /* A big, fun, slightly-tilted flourish in the corner — the actual IF
+     badge asset, not a reconstructed motif. Bleeds off the rounded
+     corner on purpose, clipped by the hero-image's own overflow:hidden. */
+  .hero-badge {
+    position: absolute;
+    right: -2.5rem;
+    bottom: -2.5rem;
+    width: 260px;
+    height: auto;
+    transform: rotate(-12deg);
+    opacity: 0.9;
+    pointer-events: none;
+  }
   @media (max-width: 700px) {
     .hero-image { min-height: 420px; }
     .hero-image .content-note { display: none; }
+    .hero-badge { width: 160px; right: -1.5rem; bottom: -1.5rem; }
   }
 
   .hero-info-bar {
@@ -320,7 +334,6 @@
 
   /* Stories — testimony reel leads, then plain italic-serif quotes (no
      card chrome), then a bigger Share Your Story banner. */
-  .reel-banner { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.75rem; font-weight: 600; background: var(--color-light-blue); color: var(--color-dark-blue); border-radius: 999px; padding: 0.35rem 0.9rem; margin-bottom: var(--space-2); }
   .reel-wrap { position: relative; margin-top: var(--space-3); }
   .reel-row { display: flex; gap: var(--space-3); overflow-x: auto; padding-bottom: var(--space-2); scroll-snap-type: x proximity; scrollbar-width: none; }
   .reel-row::-webkit-scrollbar { display: none; }
@@ -462,6 +475,7 @@
         <p style="max-width:52ch; margin-inline:auto; color:var(--color-off-white); opacity:0.92; font-size:1.1rem;">Discipleship is what we're about — life-on-life, in living rooms, in local churches, studying God's Word together.</p>
       </div>
       <p class="content-note">Content note: warm, candid photo — a small group of women around a coffee table, mid-laugh, Bibles open, natural light.</p>
+      <img class="hero-badge" src="assets/if-badge.svg" alt="" aria-hidden="true">
     </div>
 
     <div class="hero-info-bar">
@@ -503,7 +517,7 @@
       <div class="jumbo-wrap" style="text-align:center;">
         <p class="eyebrow-label" style="margin-inline:auto;">A Gathering for Women</p>
         <h2 class="jumbo-headline serif-heading">Making disciples everywhere</h2>
-        <p style="margin-inline:auto; max-width:60ch;">Discipleship was never meant to happen once a year. It's the quiet, faithful work of studying Scripture together, showing up for each other, and passing on what we've learned, one woman, one table, one city at a time.</p>
+        <p style="margin-inline:auto; max-width:60ch;">IF gathers women to encourage one another toward courageous obedience to Jesus. Obedience is personal, but courage grows in community. We come together to pray, worship, learn from Scripture, and encourage one another through honest conversations about faith and life, becoming the everyday rhythm that carries IF:Gathering forward all year long.</p>
       </div>
     </div>
   </section>
@@ -528,7 +542,7 @@
         <div class="find-banner">
           <div>
             <h3>Find an IF:Local Near You</h3>
-            <p>IF:Locals are meeting everywhere — in prisons, in churches, and in homes across the world. Search by church or city name to find one near you.</p>
+            <p>IF:Locals are meeting everywhere — in churches, homes, and coffee shops around the world. Search by church or city name to find one near you.</p>
           </div>
           <a class="btn btn-outline" href="#" data-tooltip="/find-an-if-local" style="color:var(--color-dark-blue); border-color:var(--color-dark-blue);">Find an IF:Local</a>
         </div>
@@ -595,10 +609,7 @@
       <p class="eyebrow-label" style="text-align:center; margin-inline:auto;">Stories From IF</p>
       <h2 class="serif-heading" style="text-align:center; max-width:26ch; margin-inline:auto;"><span class="accent">Changed lives</span>, one table at a time</h2>
 
-      <div style="text-align:center; margin-top: var(--space-4);">
-        <span class="reel-banner">More stories from IF:Locals everywhere</span>
-      </div>
-      <div class="reel-wrap">
+      <div class="reel-wrap" style="margin-top: var(--space-5);">
         <button type="button" class="reel-nav prev" id="reel-prev" aria-label="Previous">
           <svg viewBox="0 0 24 24" width="16" height="16"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>

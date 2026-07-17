@@ -67,23 +67,19 @@
   footer.index-footer {
     position: relative;
     text-align: center;
-    padding-top: min(30vw, 360px);
+    padding-top: 90px;
     padding-bottom: var(--space-5);
     font-size: 0.8rem;
     overflow: hidden;
   }
-  /* Big blue half circle, sized to the page container width, sitting as
-     the footer's background — flat edge down, dome bulging up behind
-     the credit line. Footer's own padding-top is deliberately less than
-     the dome's full height (container-width / 2) so only the lower
-     portion of the arc shows, reading as a wide horizon rather than a
-     tall pointed dome. */
+  /* Small blue half circle, sized to just barely contain the credit
+     line — flat edge down, dome bulging up behind the text. */
   .footer-half-circle {
     position: absolute;
     left: 50%;
     bottom: 0;
     transform: translateX(-50%);
-    width: min(100%, var(--container-max));
+    width: min(90%, 460px);
     aspect-ratio: 2 / 1;
     background: var(--color-bright-blue);
     border-radius: 50% 50% 0 0 / 100% 100% 0 0;
