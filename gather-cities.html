@@ -249,12 +249,14 @@
     border-radius: 1.25rem;
     padding: var(--space-4);
   }
-  .how-step-icon {
+  .how-step-number {
     display: flex; align-items: center; justify-content: center;
     width: 3rem; height: 3rem;
     border-radius: 50%;
     background: var(--color-off-white);
     color: var(--color-bright-blue);
+    font-size: 1.2rem; font-weight: 700;
+    font-family: var(--font-primary);
   }
   .how-step h4 { margin: 0; font-size: 1.2rem; }
   .how-step p { font-size: 0.92rem; opacity: 0.9; margin: 0; }
@@ -359,6 +361,27 @@
   /* Big closing CTA band — bright blue now, continuous with the footer
      right below it; heading/inputs re-tuned for that lighter background */
   #cta { --heading: var(--color-off-white); }
+  .cta-video {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 1.25rem;
+    overflow: hidden;
+    margin-top: var(--space-4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(150deg, var(--color-dark-blue), var(--color-bright-blue) 75%);
+  }
+  .cta-video .play-button {
+    width: 3.25rem; height: 3.25rem;
+    border-radius: 50%;
+    background: rgba(255,250,240,0.92);
+    color: var(--color-bright-blue);
+    display: flex; align-items: center; justify-content: center;
+    padding-left: 3px;
+  }
+  .cta-video .content-note { position: absolute; left: var(--space-2); right: var(--space-2); bottom: var(--space-2); max-width: none; text-align: left; }
   .cta-form { max-width: 480px; margin: var(--space-4) auto 0; }
   input, textarea {
     width: 100%; padding: 0.7rem 0.9rem; border-radius: 0.6rem;
@@ -515,20 +538,20 @@
       <div class="how-it-works-band pairing-02" style="text-align:center;">
         <p class="eyebrow-label" style="margin-inline:auto; color:var(--color-off-white);">Host Applications Now Open</p>
         <h2>Bring Gather to your city</h2>
-        <p style="margin-inline:auto; max-width:56ch;">Submissions are now open for church partners ready to bring Gather to their city. Here's exactly how the process works, from your first message to us to the night itself.</p>
+        <p style="margin-inline:auto; max-width:56ch;">We'd love for your church to be part of this. Here's exactly what it looks like to bring Gather to your city, from your first hello to the night itself.</p>
         <div class="how-it-works">
           <div class="how-step">
-            <span class="how-step-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none"><path d="M4 4h16v12H8l-4 4V4z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span>
+            <span class="how-step-number">1</span>
             <h4>Reach Out</h4>
             <p>Fill out a two-minute form telling us about your church and your city. That's the whole ask to get started.</p>
           </div>
           <div class="how-step">
-            <span class="how-step-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="how-step-number">2</span>
             <h4>We'll get you set up</h4>
             <p>We'll hop on a call to confirm it's a good fit, then send the full playbook: run-of-show, promotional assets, and a real person to call with questions.</p>
           </div>
           <div class="how-step">
-            <span class="how-step-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none"><path d="M3 10v4a1 1 0 0 0 1 1h2l7 4V5L6 9H4a1 1 0 0 0-1 1z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M18 9a4 4 0 0 1 0 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+            <span class="how-step-number">3</span>
             <h4>Host Your Night</h4>
             <p>Your church leads from the stage. We stay close with support before, during, and after.</p>
           </div>
@@ -619,6 +642,12 @@
       <p class="eyebrow-label" style="margin-inline:auto; color:var(--color-off-white);">Partner With Us</p>
       <h2 style="max-width:18ch; margin-inline:auto;">The church, gathering everywhere</h2>
       <p style="margin-inline:auto;">Every Gather Cities activation starts with one conversation. Tell us about your church, and let's start building toward your night.</p>
+      <div class="cta-video">
+        <div class="play-button" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="20" height="20"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
+        </div>
+        <p class="content-note">Content note: a short, direct-to-camera clip, Jennie or a Gather Cities pastor personally encouraging the pastor watching to reach out and inquire.</p>
+      </div>
       <form class="cta-form">
         <input type="text" placeholder="Church name">
         <input type="text" placeholder="City">
