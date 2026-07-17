@@ -204,8 +204,9 @@
   .why-float-4 { right: 11%; bottom: 0%; background: linear-gradient(200deg, var(--color-bright-blue), var(--color-dark-blue) 130%); }
   @media (max-width: 900px) { .why-float { display: none; } }
 
-  /* How it works — bright-blue container, white text, cleaner 3-column layout */
-  #how-it-works { --heading: var(--color-off-white); }
+  /* How it works — an inset rounded blue card (not full-bleed), white text,
+     cleaner 3-column layout inside it */
+  .how-it-works-band { --heading: var(--color-off-white); border-radius: 1.5rem; padding: var(--space-6) var(--space-4); }
   .how-it-works {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -396,7 +397,7 @@
       <div class="container">
         <div class="hero-text">
           <img src="assets/gather-cities-blue.svg" alt="Gather Cities" style="height:26px; width:auto; margin-bottom: var(--space-3);">
-          <h1 style="max-width:18ch;">Bring Gather to your city</h1>
+          <h1 style="max-width:16ch;">This is just the beginning</h1>
           <p style="max-width:52ch;">Be part of a movement building toward 1,000 activated cities by 2030, one church-led gathering at a time.</p>
           <div style="margin-top: var(--space-4);">
             <a class="btn" href="#" data-tooltip="/host-inquiry">Host an Event</a>
@@ -456,25 +457,27 @@
     </div>
   </section>
 
-  <section id="how-it-works" class="pairing-02">
-    <div class="container" style="text-align:center;">
-      <p class="eyebrow-label" style="margin-inline:auto; color:var(--color-off-white);">The Process</p>
-      <h2>How it works</h2>
-      <div class="how-it-works">
-        <div class="how-step">
-          <span class="how-step-number">1</span>
-          <div><h4>Inquire</h4><p>Tell us about your church and your city. A short form starts the conversation.</p></div>
+  <section id="how-it-works" class="pairing-01">
+    <div class="container">
+      <div class="how-it-works-band pairing-02" style="text-align:center;">
+        <p class="eyebrow-label" style="margin-inline:auto; color:var(--color-off-white);">The Process</p>
+        <h2>Bring Gather to your city</h2>
+        <div class="how-it-works">
+          <div class="how-step">
+            <span class="how-step-number">1</span>
+            <div><h4>Inquire</h4><p>Tell us about your church and your city. A short form starts the conversation.</p></div>
+          </div>
+          <div class="how-step">
+            <span class="how-step-number">2</span>
+            <div><h4>Get Vetted &amp; Equipped</h4><p>We confirm fit together, then hand you the playbook, promotional assets, and a point of contact.</p></div>
+          </div>
+          <div class="how-step">
+            <span class="how-step-number">3</span>
+            <div><h4>Host</h4><p>Your church leads the gathering. Gather stays close with light, ongoing support.</p></div>
+          </div>
         </div>
-        <div class="how-step">
-          <span class="how-step-number">2</span>
-          <div><h4>Get Vetted &amp; Equipped</h4><p>We confirm fit together, then hand you the playbook, promotional assets, and a point of contact.</p></div>
-        </div>
-        <div class="how-step">
-          <span class="how-step-number">3</span>
-          <div><h4>Host</h4><p>Your church leads the gathering. Gather stays close with light, ongoing support.</p></div>
-        </div>
+        <a class="btn" href="#" data-tooltip="/host-inquiry" style="margin-top: var(--space-5); display:inline-block;">Host an Event</a>
       </div>
-      <a class="btn" href="#" data-tooltip="/host-inquiry" style="margin-top: var(--space-5); display:inline-block;">Host an Event</a>
     </div>
   </section>
 
