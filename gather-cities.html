@@ -153,7 +153,7 @@
      container width rather than bleeding to the viewport edge. */
   .doc-band {
     width: 100%;
-    height: 85vh;
+    aspect-ratio: 16 / 9;
     border-radius: 1.5rem;
     display: flex;
     align-items: flex-end;
@@ -162,34 +162,56 @@
   }
   .doc-band .content-note { max-width: 420px; }
 
-  /* What It Is — split stat card. Explicit colors regardless of ambient
-     section, plus a border since the page bg is now the same off-white. */
-  .split-card {
-    background: var(--color-off-white);
-    border: 1px solid rgba(18,22,29,0.1);
+  /* What It Is — Jennie addressing pastors, same treatment as Gather
+     Everywhere's founder-video */
+  .jennie-video {
+    position: relative;
+    height: 100%;
+    min-height: 420px;
+    width: auto;
+    aspect-ratio: 9 / 16;
+    margin-inline: auto;
     border-radius: 1.25rem;
-    padding: var(--space-4);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    text-align: center;
-    gap: var(--space-2);
+    overflow: hidden;
+    background: linear-gradient(160deg, var(--color-light-blue), var(--color-bright-blue), var(--color-dark-blue));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-3);
+    padding: var(--space-3);
   }
-  .split-card .split-num { font-family: var(--font-primary); font-size: 2.4rem; font-weight: 700; color: var(--color-bright-blue); line-height: 1; }
-  .split-card .split-label { color: var(--color-dark-blue); font-size: 0.85rem; margin-top: 0.4rem; }
-  .split-card > div + div { border-left: 1px solid rgba(18,22,29,0.12); }
+  @media (max-width: 700px) { .jennie-video { height: auto; width: 100%; max-width: 320px; } }
+  .jennie-video .play-button {
+    width: 3.25rem;
+    height: 3.25rem;
+    border-radius: 50%;
+    background: rgba(255,250,240,0.92);
+    color: var(--color-bright-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 3px;
+  }
+  .jennie-video .content-note { position: absolute; left: var(--space-2); right: var(--space-2); bottom: var(--space-2); }
 
   /* Why It Matters — an art moment: one jumbo line of type, floating
      vertical placeholder tiles either side that parallax on scroll. */
   #why { position: relative; overflow: hidden; }
-  .jumbo-wrap { position: relative; padding-block: var(--space-6); }
+  #why { position: relative; }
+  .jumbo-wrap { position: relative; z-index: 2; padding-block: var(--space-6); }
   .jumbo-headline {
+    font-family: var(--font-secondary);
+    font-style: italic;
+    font-weight: 400;
     font-size: clamp(2.75rem, 7vw, 6.5rem);
-    line-height: 1.03;
-    max-width: 14ch;
+    line-height: 1.05;
+    max-width: 16ch;
     margin-inline: auto;
   }
   .why-float {
     position: absolute;
+    z-index: 1;
     width: 150px;
     aspect-ratio: 9 / 16;
     border-radius: 1rem;
@@ -208,25 +230,31 @@
   @media (max-width: 900px) { .why-float { display: none; } }
 
   /* How it works — an inset rounded blue card (not full-bleed), white text,
-     cleaner 3-column layout inside it */
-  .how-it-works-band { --heading: var(--color-off-white); border-radius: 1.5rem; padding: var(--space-6) var(--space-4); }
+     each step its own card inside it with an illustrative icon */
+  .how-it-works-band { --heading: var(--color-off-white); border-radius: 1.5rem; padding: var(--space-8) var(--space-5); }
   .how-it-works {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: var(--space-4);
-    margin-top: var(--space-5);
+    margin-top: var(--space-6);
     text-align: left;
   }
   @media (max-width: 700px) { .how-it-works { grid-template-columns: 1fr; } }
-  .how-step { display: flex; flex-direction: column; gap: 0.85rem; }
-  .how-step-number {
+  .how-step {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    background: rgba(255,250,240,0.1);
+    border: 1px solid rgba(255,250,240,0.2);
+    border-radius: 1.25rem;
+    padding: var(--space-4);
+  }
+  .how-step-icon {
     display: flex; align-items: center; justify-content: center;
     width: 3rem; height: 3rem;
     border-radius: 50%;
     background: var(--color-off-white);
     color: var(--color-bright-blue);
-    font-size: 1.2rem; font-weight: 700;
-    font-family: var(--font-primary);
   }
   .how-step h4 { margin: 0; font-size: 1.2rem; }
   .how-step p { font-size: 0.92rem; opacity: 0.9; margin: 0; }
@@ -235,7 +263,7 @@
   .brooklyn-feature {
     display: grid;
     grid-template-columns: 1.1fr 1fr;
-    align-items: center;
+    align-items: stretch;
     gap: var(--space-5);
     text-align: left;
     margin-top: var(--space-4);
@@ -452,26 +480,30 @@
   <section id="what-it-is" class="pairing-01">
     <div class="container grid grid-2" style="align-items:center;">
       <div>
-        <p class="eyebrow-label">The Model</p>
-        <h2>A Gather Cities event is led by your church.</h2>
-        <p>Your church runs 80 to 90 percent of a Gather Cities event: the space, the people, the promotion, the pastoral leadership. Gather provides the rest — playbooks, promotional assets, and a point of contact who knows the format. We don't run the event for you, and there's no lighter, one-off version to choose instead. It's one model, so every city knows exactly what it's signing up for.</p>
+        <p class="eyebrow-label">What It Is</p>
+        <h2>Your church, leading your city.</h2>
+        <p>Gather Cities is a night your church leads for your city: worship, prayer, and a shared hope for what God is doing right where you are. Your church brings the people and the platform. We bring the playbook, the promotional assets, and a real person to call with questions.</p>
+        <p>The first cities are already stepping up, months ahead of Gather27, because momentum like this doesn't wait for a global broadcast to start it.</p>
       </div>
-      <div class="split-card">
-        <div><div class="split-num">85%</div><p class="split-label">Led by your church</p></div>
-        <div><div class="split-num">15%</div><p class="split-label">Supported by Gather</p></div>
+      <div class="jennie-video">
+        <div class="play-button" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="20" height="20"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
+        </div>
+        <p class="content-note">Content note: Jennie speaking directly to camera, addressing a room of pastors, sharing the vision and story behind Gather Cities.</p>
       </div>
     </div>
   </section>
 
   <section id="why" class="pairing-01">
+    <div class="why-float why-float-1"><p class="content-note">Content note: vertical clip, a pastor praying over a small group before doors open.</p></div>
+    <div class="why-float why-float-2"><p class="content-note">Content note: vertical clip, hands raised in worship at a Gather Cities night.</p></div>
+    <div class="why-float why-float-3"><p class="content-note">Content note: vertical clip, volunteers greeting people at the door.</p></div>
+    <div class="why-float why-float-4"><p class="content-note">Content note: vertical clip, a city skyline at dusk.</p></div>
     <div class="container">
       <div class="jumbo-wrap" style="text-align:center;">
-        <div class="why-float why-float-1"><p class="content-note">Content note: vertical clip, a pastor praying over a small group before doors open.</p></div>
-        <div class="why-float why-float-2"><p class="content-note">Content note: vertical clip, hands raised in worship at a Gather Cities night.</p></div>
         <p class="eyebrow-label" style="margin-inline:auto;">Why It Matters</p>
-        <h2 class="jumbo-headline">This is how we build momentum</h2>
-        <div class="why-float why-float-3"><p class="content-note">Content note: vertical clip, volunteers greeting people at the door.</p></div>
-        <div class="why-float why-float-4"><p class="content-note">Content note: vertical clip, a city skyline at dusk.</p></div>
+        <h2 class="jumbo-headline accent">This is how we build momentum</h2>
+        <p style="margin-inline:auto; max-width:60ch;">Bringing Gather to your city connects your congregation to a global rhythm of prayer, worship, and mobilization already moving through homes and churches everywhere. It's the on-ramp toward hosting Gather27 in 2027, not a one-off event that stands on its own. Every city that gathers now is a city ready to gather the world when Gather27 arrives.</p>
       </div>
     </div>
   </section>
@@ -479,23 +511,27 @@
   <section id="how-it-works" class="pairing-01">
     <div class="container">
       <div class="how-it-works-band pairing-02" style="text-align:center;">
-        <p class="eyebrow-label" style="margin-inline:auto; color:var(--color-off-white);">The Process</p>
+        <p class="eyebrow-label" style="margin-inline:auto; color:var(--color-off-white);">How to Plug In</p>
         <h2>Bring Gather to your city</h2>
+        <p style="margin-inline:auto; max-width:56ch;">Your city gets a night of worship and hope it won't forget. Your church gets a clear, guided path to lead it, with a real team backing you up the whole way. Here's exactly how to sign up.</p>
         <div class="how-it-works">
           <div class="how-step">
-            <span class="how-step-number">1</span>
-            <div><h4>Inquire</h4><p>Tell us about your church and your city. A short form starts the conversation.</p></div>
+            <span class="how-step-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none"><path d="M4 4h16v12H8l-4 4V4z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span>
+            <h4>Reach Out</h4>
+            <p>Fill out a two-minute form telling us about your church and your city. That's the whole ask to get started.</p>
           </div>
           <div class="how-step">
-            <span class="how-step-number">2</span>
-            <div><h4>Get Vetted &amp; Equipped</h4><p>We confirm fit together, then hand you the playbook, promotional assets, and a point of contact.</p></div>
+            <span class="how-step-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <h4>Get Equipped</h4>
+            <p>We'll hop on a call to confirm it's a good fit, then send the full playbook: run-of-show, promotional assets, and a real person to call with questions.</p>
           </div>
           <div class="how-step">
-            <span class="how-step-number">3</span>
-            <div><h4>Host</h4><p>Your church leads the gathering. Gather stays close with light, ongoing support.</p></div>
+            <span class="how-step-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none"><path d="M3 10v4a1 1 0 0 0 1 1h2l7 4V5L6 9H4a1 1 0 0 0-1 1z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M18 9a4 4 0 0 1 0 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+            <h4>Host Your Night</h4>
+            <p>Your church leads from the stage. We stay close with support before, during, and after.</p>
           </div>
         </div>
-        <a class="btn" href="#" data-tooltip="/host-inquiry" style="margin-top: var(--space-5); display:inline-block;">Host an Event</a>
+        <a class="btn" href="#" data-tooltip="/host-inquiry" style="margin-top: var(--space-6); display:inline-block;">Host an Event</a>
       </div>
     </div>
   </section>
@@ -569,10 +605,10 @@
   <section id="faq" class="pairing-01">
     <div class="container" style="max-width:70ch;">
       <h2 style="text-align:center;">FAQ</h2>
-      <details class="faq-item"><summary>What's the timeline?</summary><p>Gather Cities is building toward 1,000 activated cities by 2030. We're just getting started.</p></details>
-      <details class="faq-item"><summary>What does my church commit to?</summary><p>Leading 80 to 90 percent of the event — space, people, and promotion — with Gather providing playbooks and light support.</p></details>
+      <details class="faq-item"><summary>What is Gather Cities?</summary><p>A local night of worship, prayer, and vision for your city, led by your own church. It's part of a bigger movement building toward 1,000 activated cities by 2030.</p></details>
+      <details class="faq-item"><summary>How do churches play a role?</summary><p>Your church leads 80 to 90 percent of the night: the space, the people, the promotion, the pastor on the stage. Gather provides the playbook, promotional assets, and a real person to call with questions.</p></details>
       <details class="faq-item"><summary>Is there a cost?</summary><p>No fee to partner. Your church covers its own local event costs.</p></details>
-      <details class="faq-item"><summary>How is this different from hosting Gather27?</summary><p>Gather Cities events happen locally, on your own timeline, building momentum in your city right now. Gather27 is the global broadcast in 2027 that every Gather Cities activation is building toward — many of our first hosts plan to host Gather27 watch parties too.</p></details>
+      <details class="faq-item"><summary>How is this different than Gather27?</summary><p>Gather Cities happens locally, on your own timeline, building momentum in your city right now. Gather27 is the global broadcast in 2027 that every Gather Cities activation is building toward.</p></details>
     </div>
   </section>
 
