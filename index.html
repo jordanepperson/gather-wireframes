@@ -42,11 +42,16 @@
     position: relative;
     overflow: hidden;
     min-height: 220px;
-    background: var(--color-bright-blue);
+    background: rgba(255,250,240,0.05);
+    border: 1px solid rgba(255,250,240,0.15);
     color: var(--color-off-white);
-    transition: transform 0.15s ease;
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
   }
-  .page-card:hover { transform: translateY(-4px); }
+  .page-card:hover {
+    background: var(--color-bright-blue);
+    border-color: var(--color-bright-blue);
+    transform: translateY(-4px);
+  }
   .page-card h2 { margin-bottom: var(--space-1); color: var(--color-off-white); }
   .page-card p { color: inherit; opacity: 0.85; max-width: 42ch; }
   .page-card .tag {
@@ -59,11 +64,16 @@
     margin-bottom: var(--space-2);
   }
   .page-card.is-disabled {
-    background: rgba(255,250,240,0.05);
-    border: 1px solid rgba(255,250,240,0.15);
+    background: rgba(255,250,240,0.02);
+    border: 1px solid rgba(255,250,240,0.07);
+    opacity: 0.5;
     cursor: default;
   }
-  .page-card.is-disabled:hover { transform: none; }
+  .page-card.is-disabled:hover {
+    background: rgba(255,250,240,0.02);
+    border-color: rgba(255,250,240,0.07);
+    transform: none;
+  }
   .coming-soon-badge {
     position: absolute;
     top: var(--space-3);
