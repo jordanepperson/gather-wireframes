@@ -1,8 +1,19 @@
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; overflow-x: hidden; }
+/* body deliberately does NOT repeat overflow-x:hidden — doing so on both
+   html and body triggers a CSS interop rule (overflow-y silently
+   computes to `auto` on an element when overflow-x is non-visible and
+   overflow-y is left as its default `visible`) on both elements. That
+   made body register as its own scroll container, which hijacks
+   position:sticky children (e.g. .site-utility-bar) into sticking
+   relative to body's box instead of the real viewport — and since
+   body's height always exactly matches its content, nothing ever
+   visibly moves within body's own frame, so the sticky element never
+   appeared to stick. html alone keeping overflow-x:hidden is enough to
+   suppress the horizontal scrollbar full-bleed elements would otherwise
+   trigger. */
 body {
   margin: 0;
-  overflow-x: hidden;
   font-family: var(--font-primary);
   font-size: var(--body-size);
   font-weight: var(--body-weight);
