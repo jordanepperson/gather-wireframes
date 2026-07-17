@@ -54,6 +54,7 @@
   }
   .page-card h2 { margin-bottom: var(--space-1); color: var(--color-off-white); }
   .page-card p { color: inherit; opacity: 0.85; max-width: 42ch; }
+  .page-card .card-logo { height: 20px; width: auto; margin-bottom: var(--space-3); opacity: 0.95; }
   .page-card .tag {
     display: inline-block;
     font-size: 0.7rem;
@@ -88,11 +89,36 @@
     border-radius: 999px;
   }
   footer.index-footer {
+    position: relative;
     text-align: center;
-    padding-block: var(--space-5);
+    padding-top: min(30vw, 360px);
+    padding-bottom: var(--space-5);
     font-size: 0.8rem;
+    overflow: hidden;
+  }
+  /* Big blue half circle, sized to the page container width, sitting as
+     the footer's background — flat edge down, dome bulging up behind
+     the credit line. Footer's own padding-top is deliberately less than
+     the dome's full height (container-width / 2) so only the lower
+     portion of the arc shows, reading as a wide horizon rather than a
+     tall pointed dome. */
+  .footer-half-circle {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: min(100%, var(--container-max));
+    aspect-ratio: 2 / 1;
+    background: var(--color-bright-blue);
+    border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+    z-index: 1;
+  }
+  .index-footer-credit {
+    position: relative;
+    z-index: 2;
+    margin-inline: auto;
     color: var(--color-off-white);
-    opacity: 0.6;
+    opacity: 0.9;
   }
   .existing-properties { text-align: center; padding-bottom: var(--space-6); }
   .existing-properties p.eyebrow {
@@ -124,7 +150,7 @@
 </head>
 <body data-page="index">
 
-<div style="text-align:center; padding-top: var(--space-2); font-family: var(--font-primary); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; color: var(--color-bright-blue);">V 0.4</div>
+<div style="text-align:center; padding-top: var(--space-2); font-family: var(--font-primary); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; color: var(--color-bright-blue);">V 0.5</div>
 
 <div class="container index-hero">
   <img src="assets/gather-light.svg" alt="Gather">
@@ -134,22 +160,26 @@
 
 <div class="container page-grid">
   <a class="page-card" href="gather-everywhere.html">
+    <img class="card-logo" src="assets/gather-light.svg" alt="">
     <span class="tag">The Front Door</span>
     <h2>Gather Everywhere</h2>
     <p>The "front door" for all the brands. Everything happening across the movement surfaces here.</p>
   </a>
   <a class="page-card" href="gather-global.html">
+    <img class="card-logo" src="assets/gather-27-light.svg" alt="">
     <span class="tag">Global Broadcast</span>
     <h2>Gather Global</h2>
     <p>The cinematic, expansive 24-hour global event.</p>
   </a>
   <a class="page-card" href="gather-cities.html">
+    <img class="card-logo" src="assets/gather-cities-light.svg" alt="">
     <span class="tag">Local Activation</span>
     <h2>Gather Cities</h2>
     <p>Local gatherings happening everywhere.</p>
   </a>
   <a class="page-card" href="if-gathering.html">
     <span class="card-badge">WIP</span>
+    <img class="card-logo" src="assets/if-gathering-light.svg" alt="">
     <span class="tag">Women's Conference</span>
     <h2>IF:Gathering</h2>
     <p>The flagship event equipping women.</p>
@@ -160,13 +190,16 @@
   <p class="eyebrow">Existing Properties</p>
   <div class="links">
     <a href="https://www.gathereverywhere.com/" target="_blank" rel="noopener">gathereverywhere.com</a>
+    <a href="https://www.everybodyeverywhere.com/" target="_blank" rel="noopener">everybodyeverywhere.com</a>
     <a href="https://www.ifgathering.com/" target="_blank" rel="noopener">ifgathering.com</a>
     <a href="https://www.gather25.com/" target="_blank" rel="noopener">gather25.com</a>
+    <a href="https://www.gather25.com/worship" target="_blank" rel="noopener">gather25.com/worship</a>
   </div>
 </div>
 
 <footer class="index-footer">
-  Written with hands by Whiteboard. Built with tokens by Claude.
+  <div class="footer-half-circle" aria-hidden="true"></div>
+  <p class="index-footer-credit">Written with hands by Whiteboard. Built with tokens by Claude.</p>
 </footer>
 
 <script src="js/sections-manifest.js"></script>
