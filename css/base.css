@@ -221,15 +221,21 @@ a:hover { text-decoration-thickness: 2px; }
   align-items: center;
   justify-content: space-between;
   gap: var(--space-3);
-  padding: 0.5rem var(--space-3);
+  padding: 0.65rem var(--space-3);
   background: var(--color-dark-blue);
+  border-bottom: 1px solid rgba(255,250,240,0.15);
 }
 .site-utility-bar-start { display: flex; align-items: center; gap: var(--space-3); flex-shrink: 0; }
 .site-utility-bar .home-link {
   display: flex;
   align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: var(--color-bright-blue);
   color: var(--color-off-white);
-  opacity: 0.85;
+  opacity: 0.9;
   transition: opacity 0.15s ease;
   flex-shrink: 0;
 }
@@ -238,8 +244,9 @@ a:hover { text-decoration-thickness: 2px; }
    — that percentage can't resolve cleanly against a flex item's own
    indeterminate width and was collapsing this icon's width to 0 (height,
    the cross-axis dimension, rendered fine — only width broke). */
-.site-utility-bar .home-link svg { width: 1.1rem; height: 1.1rem; max-width: none; flex-shrink: 0; }
-.site-utility-bar .notes-btn {
+.site-utility-bar .home-link svg { width: 1rem; height: 1rem; max-width: none; flex-shrink: 0; }
+.site-utility-bar .notes-btn,
+.site-utility-bar .voiceover-btn {
   background: var(--color-bright-blue);
   color: var(--color-off-white);
   border: none;
@@ -251,11 +258,45 @@ a:hover { text-decoration-thickness: 2px; }
   cursor: pointer;
   flex-shrink: 0;
   white-space: nowrap;
+  text-decoration: none;
+  display: inline-block;
 }
-.site-utility-bar .site-logos { display: flex; align-items: center; gap: var(--space-3); flex-shrink: 0; }
-.site-utility-bar .site-logos a { display: flex; opacity: 0.7; transition: opacity 0.15s ease; flex-shrink: 0; }
+.site-utility-bar .voiceover-btn {
+  background: transparent;
+  border: 1px solid rgba(255,250,240,0.4);
+  color: var(--color-off-white);
+}
+.site-utility-bar .site-logos { display: flex; align-items: center; gap: var(--space-4); flex-shrink: 0; }
+.site-utility-bar .site-logos a {
+  display: flex;
+  align-items: center;
+  opacity: 0.7;
+  transition: opacity 0.15s ease;
+  flex-shrink: 0;
+  padding-block: 0.2rem;
+  position: relative;
+}
 .site-utility-bar .site-logos a:hover { opacity: 1; }
 .site-utility-bar .site-logos img { height: 16px; width: auto; max-width: none; flex-shrink: 0; }
+/* Gather Global's logo asset has extra empty space below the wordmark
+   (room for the circular "27" badge) that the other three logos don't
+   carry, so it optically sits high when all four are simply vertically
+   centered — nudge it down slightly to true up the row. */
+.site-utility-bar .site-logos img[src*="gather-27"] { transform: translateY(2px); }
+/* Current-page indicator: a little more breathing room top/bottom, full
+   opacity (not dimmed like the other three), and a small dot underneath. */
+.site-utility-bar .site-logos a.current { opacity: 1; padding-block: 0.35rem; }
+.site-utility-bar .site-logos a.current::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--color-off-white);
+}
 @media (max-width: 500px) {
   .site-utility-bar { overflow-x: auto; }
 }
