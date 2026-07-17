@@ -25,6 +25,14 @@
     margin-bottom: var(--space-2);
     margin-inline: auto;
   }
+  .index-actions {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+    margin-top: var(--space-4);
+  }
+  .index-actions-note { font-size: 0.75rem; opacity: 0.5; margin-top: var(--space-2); }
   .page-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -122,12 +130,17 @@
 </head>
 <body data-page="index">
 
-<div style="text-align:center; padding-top: var(--space-2); font-family: var(--font-primary); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; color: var(--color-bright-blue);">V 0.5</div>
+<div style="text-align:center; padding-top: var(--space-2); font-family: var(--font-primary); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; color: var(--color-bright-blue);">V 0.6</div>
 
 <div class="container index-hero">
   <img src="assets/gather-light.svg" alt="Gather">
   <p class="eyebrow">Whiteboard x Gather</p>
   <h1 style="max-width: 20ch; margin-inline: auto;">Landing Page Wireframes</h1>
+  <div class="index-actions">
+    <button type="button" class="btn" data-open-notes>Notes &amp; Open Questions</button>
+    <a class="btn btn-outline" href="#" id="supercut-link">Watch the Supercut</a>
+  </div>
+  <p class="index-actions-note">Supercut link coming soon.</p>
 </div>
 
 <div class="container page-grid">
@@ -174,5 +187,6 @@
 </footer>
 
 <script src="js/sections-manifest.js"></script>
+<script src="js/notes-modal.js"></script>
 </body>
 </html>
