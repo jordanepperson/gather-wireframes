@@ -8,6 +8,9 @@
 <link rel="stylesheet" href="css/base.css">
 <link rel="stylesheet" href="css/review-mode.css">
 <style>
+  /* Page reads as one continuous Off-White surface for now (no Light Blue
+     section-blocking) — a deliberate "start plain, layer color back in
+     later" step, not a final palette call. */
   body { background: var(--color-off-white); }
 
   /* IF:Gathering's own dominant pairing, per the brand guide: Off-White +
@@ -48,24 +51,15 @@
     margin: 0;
   }
 
-  /* Sticky header — utility row (My Account / Give) above the primary nav,
-     preserving IF:Gathering's own established multi-page nav shape rather
-     than the single-scroll anchor-nav pattern used by the other three
-     expressions (per the build-context doc's explicit navigation call-out). */
+  /* Sticky header — single nav row, own established nav shape (not
+     byte-identical to Everywhere/Cities), per the build-context doc's
+     explicit navigation call-out for this page. */
   .site-header { position: sticky; top: 0; z-index: 100; background: rgba(255,250,240,0.92); backdrop-filter: blur(6px); border-bottom: 1px solid rgba(18,22,29,0.08); }
-  .utility-nav {
-    display:flex; justify-content:flex-end; gap: var(--space-3);
-    font-size: 0.75rem; padding-block: 0.4rem;
-    background: var(--color-light-blue);
-  }
-  .utility-nav a { color: var(--color-dark-blue); text-decoration:none; }
-  .utility-nav a:hover { text-decoration: underline; }
 
-  /* Mobile nav — this page carries the most nav items of any expression
-     (4 links + a back-to-Gather link + utility row), so at narrow widths
-     the plain inline links get tucked behind a hamburger instead of
-     wrapping/overlapping the logo. Reuses js/nav-menu.js, the same
-     generic toggle Gather Cities/Everywhere already use. */
+  /* Mobile nav — 5 links + 2 buttons is more nav than any other page here,
+     so at narrow widths the plain inline links get tucked behind a
+     hamburger instead of wrapping/overlapping the logo. Reuses
+     js/nav-menu.js, the same generic toggle Gather Cities/Everywhere use. */
   .nav-menu-mobile-toggle {
     display: none;
     width: 2.5rem; height: 2.5rem;
@@ -97,92 +91,132 @@
   .nav-menu-panel a { color: var(--color-dark-blue); text-decoration: none; font-size: 0.95rem; padding-block: 0.35rem; }
   .nav-menu-panel a:hover { color: var(--color-bright-blue); }
   @media (max-width: 700px) {
-    .site-nav .links, .site-nav .back-to-gather { display: none; }
+    .site-nav .links { display: none; }
+    .site-nav .btn-outline { display: none; }
     .nav-menu-mobile-toggle { display: flex; }
   }
 
-  /* Hero — pairing-04 (Light Blue bg), the brand guide's own "alt" hero
-     treatment for IF:Gathering, used sparingly and only here. */
-  .hero-grid { align-items: center; gap: var(--space-5); }
-  .hero-visual { max-width: 380px; margin-inline: auto; }
-  .hero-visual .content-note { margin-top: var(--space-2); max-width: none; }
-
-  .save-date-card {
-    display: inline-flex;
-    flex-direction: column;
-    gap: 0.2rem;
-    background: var(--color-off-white);
-    border-radius: 1.25rem;
-    padding: 1rem 1.5rem;
-    margin-block: var(--space-3);
-  }
-  .save-date-label { font-family: var(--font-primary); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-bright-blue); }
-  .save-date-value { font-family: var(--font-primary); font-weight: 700; font-size: 1.35rem; color: var(--color-dark-blue); }
-  .save-date-format { font-size: 0.85rem; color: var(--color-dark-blue); opacity: 0.75; }
-  .save-date-note { font-size: 0.75rem; font-style: italic; opacity: 0.6; color: var(--color-dark-blue); }
-
-  /* Founder-question pull quote — ties IF's own story back to the "what
-     if Jesus came back tomorrow" origin question from the Everywhere
-     founder tie-in, without spending a whole extra section on it. */
-  .founder-quote {
-    font-family: var(--font-secondary);
-    font-style: italic;
-    font-weight: 400;
-    font-size: clamp(1.4rem, 3.2vw, 2rem);
-    line-height: 1.35;
-    max-width: 34ch;
-    border-left: 3px solid var(--color-bright-blue);
-    padding-left: 1.25rem;
-    margin: var(--space-4) 0;
-  }
-
-  .stat-strip { display:flex; gap: var(--space-6); flex-wrap:wrap; justify-content:center; }
-  .stat-strip .stat { text-align:center; }
-  .stat-strip .stat .num { font-size:2.4rem; font-weight:300; color: var(--color-bright-blue); font-family: var(--font-primary); }
-  .stat-strip-caption { text-align:center; font-size:0.78rem; opacity:0.6; margin-top: var(--space-2); }
-
-  .story-media {
-    width: 100%;
-    aspect-ratio: 16 / 9;
+  /* Hero — full-bleed rounded image container (Gather Everywhere's own
+     hero pattern), big centered serif headline over it, an info-bar/event
+     toolbar (Gather Global's pattern) floating below with the countdown
+     and the primary CTA built in. */
+  .hero-image {
+    position: relative;
+    width: calc(100vw - 3rem);
+    margin-left: calc(50% - 50vw + 1.5rem);
+    min-height: 520px;
     border-radius: 1.5rem;
     display: flex;
-    align-items: flex-end;
-    padding: var(--space-3);
-    background: linear-gradient(140deg, var(--color-light-blue), var(--color-bright-blue) 75%);
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background:
+      linear-gradient(135deg, rgba(42,94,216,0.45), rgba(18,22,29,0.55)),
+      linear-gradient(135deg, var(--color-light-blue), var(--color-bright-blue));
+    background-blend-mode: multiply;
   }
-  .story-media .content-note { max-width: 420px; }
+  .hero-content { padding-block: var(--space-6); }
+  .hero-image .content-note { position: absolute; left: var(--space-3); bottom: var(--space-3); max-width: 320px; }
+  @media (max-width: 700px) {
+    .hero-image { min-height: 420px; }
+    .hero-image .content-note { display: none; }
+  }
 
-  /* "The Vlog" genre — relational, intimate, direct-to-camera. Same
-     component shape as Gather Cities' Jennie-to-camera video, recolored
-     to IF's airier light-blue palette. */
-  .vlog-video {
-    position: relative;
-    height: 100%;
-    min-height: 380px;
-    width: auto;
-    aspect-ratio: 9 / 16;
+  .hero-info-bar {
+    width: calc(100vw - 2rem);
+    max-width: var(--container-max);
     margin-inline: auto;
+    margin-top: var(--space-4);
+    background: var(--color-off-white);
+    border: 1px solid rgba(18,22,29,0.1);
     border-radius: 1.25rem;
     overflow: hidden;
-    background: linear-gradient(160deg, var(--color-light-blue), var(--color-bright-blue));
+    box-shadow: 0 10px 30px rgba(18,22,29,0.08);
+  }
+  .hero-info-bar-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    padding-block: var(--space-3);
+    flex-wrap: wrap;
+  }
+  .hero-info-detail { display: flex; gap: var(--space-4); flex-wrap: wrap; }
+  .hero-info-detail-item { display: flex; flex-direction: column; gap: 0.15rem; }
+  .hero-info-detail-label {
+    font-family: var(--font-primary);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-bright-blue);
+  }
+  .hero-info-detail-value { font-size: 0.9rem; font-weight: 600; color: var(--color-dark-blue); }
+  .hero-countdown-box {
+    align-self: stretch;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: var(--space-3);
-    padding: var(--space-3);
+    gap: 0.3rem;
+    background: var(--color-dark-blue);
+    border-radius: 1rem;
+    padding: 0.5rem 1.5rem;
   }
-  @media (max-width: 700px) { .vlog-video { height: auto; width: 100%; max-width: 300px; } }
-  .vlog-video .play-button {
-    width: 3.25rem; height: 3.25rem;
-    border-radius: 50%;
-    background: rgba(255,250,240,0.92);
-    color: var(--color-bright-blue);
-    display: flex; align-items: center; justify-content: center;
-    padding-left: 3px;
+  .hero-countdown-box .hero-info-detail-label { margin: 0; color: var(--color-light-blue); }
+  .hero-countdown { display: flex; justify-content: center; gap: var(--space-3); }
+  .countdown-unit { text-align: center; min-width: 48px; }
+  .countdown-num {
+    display: block;
+    font-size: 1.6rem;
+    font-weight: 700;
+    font-family: var(--font-primary);
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    color: var(--color-off-white);
   }
-  .vlog-video .content-note { position: absolute; left: var(--space-2); right: var(--space-2); bottom: var(--space-2); }
+  .countdown-label { font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.75; color: var(--color-off-white); }
+  .hero-info-bar-cta {
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 0.9rem 1rem;
+    border-radius: 0;
+    text-align: center;
+    background: var(--color-bright-blue);
+    color: var(--color-off-white);
+  }
+  @media (max-width: 800px) {
+    .hero-info-bar-inner { flex-direction: column; align-items: stretch; }
+  }
 
+  /* What It Is — jumbo art-moment (Gather Cities' floating-tiles pattern),
+     regular (not italic) serif per IF's own brand exception. */
+  #what-it-is { position: relative; overflow: hidden; }
+  .jumbo-wrap { position: relative; z-index: 2; padding-block: var(--space-6); }
+  .jumbo-headline { font-size: clamp(2.5rem, 6.5vw, 5.5rem); line-height: 1.05; max-width: 18ch; margin-inline: auto; }
+  .why-float {
+    position: absolute;
+    z-index: 1;
+    width: 150px;
+    aspect-ratio: 9 / 16;
+    border-radius: 1rem;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    padding: var(--space-2);
+    will-change: transform;
+  }
+  .why-float .content-note { max-width: 100%; }
+  .why-float-1 { left: 1%; top: 4%; background: linear-gradient(160deg, var(--color-light-blue), var(--color-bright-blue) 70%); }
+  .why-float-2 { left: 11%; bottom: 2%; background: linear-gradient(200deg, var(--color-bright-blue), var(--color-light-blue) 130%); }
+  .why-float-3 { right: 1%; top: 8%; background: linear-gradient(140deg, var(--color-dark-blue), var(--color-bright-blue) 85%); }
+  .why-float-4 { right: 11%; bottom: 0%; background: linear-gradient(200deg, var(--color-light-blue), var(--color-bright-blue) 70%); }
+  @media (max-width: 900px) { .why-float { display: none; } }
+
+  /* Get Involved — three-tier CTA stack, same shape as Gather Global's
+     get-involved section: big host card, secondary find banner, a small
+     tertiary attend line. */
   .host-card {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -191,7 +225,7 @@
     border: 1px solid rgba(18,22,29,0.08);
     border-radius: 1.5rem;
     overflow: hidden;
-    margin-top: var(--space-5);
+    margin-top: var(--space-4);
   }
   .host-card-media {
     position: relative;
@@ -219,6 +253,9 @@
   .find-banner h3 { margin-bottom: 0.25rem; }
   .find-banner p { margin: 0; }
   .find-banner-note { font-size: 0.75rem; opacity: 0.6; }
+  .attend-tier { text-align: center; margin-top: var(--space-4); padding-top: var(--space-3); border-top: 1px solid rgba(18,22,29,0.1); }
+  .attend-tier p { margin-inline: auto; font-size: 0.9rem; opacity: 0.75; }
+  .attend-tier .attend-link { color: var(--color-bright-blue); font-weight: 600; text-decoration: underline; }
 
   .leader-card { text-align:center; background:none; border:none; font:inherit; color:inherit; padding:0; cursor:pointer; }
   .leader-card .avatar {
@@ -271,11 +308,9 @@
   .leader-modal-photo { width: 96px; height: 96px; border-radius: 50%; margin: 0 auto var(--space-3); background: linear-gradient(160deg, var(--color-bright-blue), var(--color-light-blue)); }
   .leader-modal-role { color: var(--color-bright-blue); font-weight: 700; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: var(--space-2); }
 
-  .story-tile { background: var(--color-light-blue); border-radius:1rem; padding: var(--space-3); }
-
-  /* Testimony reel — vertical-video "Moments" pattern, recolored light/airy
-     for IF's vlog genre instead of Global/Cities' darker gradients. */
-  .reel-banner { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.75rem; font-weight: 600; background: var(--color-light-blue); color: var(--color-dark-blue); border-radius: 999px; padding: 0.35rem 0.9rem; margin: var(--space-5) 0 var(--space-2); }
+  /* Stories — testimony reel leads, then plain italic-serif quotes (no
+     card chrome), then a bigger Share Your Story banner. */
+  .reel-banner { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.75rem; font-weight: 600; background: var(--color-light-blue); color: var(--color-dark-blue); border-radius: 999px; padding: 0.35rem 0.9rem; margin-bottom: var(--space-2); }
   .reel-wrap { position: relative; margin-top: var(--space-3); }
   .reel-row { display: flex; gap: var(--space-3); overflow-x: auto; padding-bottom: var(--space-2); scroll-snap-type: x proximity; scrollbar-width: none; }
   .reel-row::-webkit-scrollbar { display: none; }
@@ -295,11 +330,38 @@
   .reel-nav.next { right: -0.75rem; }
   @media (max-width: 700px) { .reel-nav.prev { left: 0.25rem; } .reel-nav.next { right: 0.25rem; } }
 
-  .share-story-link { display: inline-block; margin-top: var(--space-3); font-size: 0.85rem; color: var(--color-dark-blue); opacity: 0.75; text-decoration: underline; }
+  .quote-stack { display: flex; flex-direction: column; gap: var(--space-4); max-width: 640px; margin: var(--space-6) auto 0; text-align: center; }
+  .quote-line { font-size: 1.35rem; line-height: 1.4; margin: 0; }
 
-  /* .give section bg is Light Blue — the card must NOT match it (known
-     gotcha: identical section/card colors make the card vanish), so it
-     keeps base.css's .card default Off-White instead. */
+  .share-story-banner {
+    margin-top: var(--space-6);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+    background: rgba(42,94,216,0.06);
+    border: 1px solid rgba(18,22,29,0.08);
+    border-radius: 1.5rem;
+    padding: var(--space-5);
+  }
+  .share-story-banner h3 { margin-bottom: 0.25rem; }
+  .share-story-banner p { margin: 0; }
+
+  /* Other Ways to Connect */
+  .connect-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    background: rgba(42,94,216,0.06);
+    border: 1px solid rgba(18,22,29,0.08);
+    border-radius: 1.25rem;
+    padding: var(--space-4);
+    transition: border-color 0.15s ease, background 0.15s ease;
+  }
+  .connect-card:hover { background: rgba(42,94,216,0.12); border-color: var(--color-bright-blue); }
+  .connect-card h3 { margin-bottom: 0.4rem; }
+  .connect-card p { margin: 0; font-size: 0.9rem; opacity: 0.85; }
 
   .faq-item { border-bottom: 1px solid rgba(18,22,29,0.12); padding-block: var(--space-2); }
   .faq-item summary { cursor:pointer; font-weight:600; }
@@ -324,34 +386,28 @@
 <body data-page="if-gathering">
 
 <header class="site-header pairing-01">
-  <div class="utility-nav">
-    <div class="container" style="display:flex; justify-content:flex-end; gap: var(--space-3);">
-      <a href="#" data-tooltip="/my-account">My Account</a>
-      <a href="#give">Give</a>
-    </div>
-  </div>
   <nav class="site-nav container">
-    <div style="display:flex; align-items:center; gap: var(--space-3);">
-      <img src="assets/if-gathering-dark.svg" alt="IF:Gathering" style="height:24px; width:auto;">
-      <a href="gather-everywhere.html" class="back-to-gather">← part of Gather</a>
-    </div>
+    <img src="assets/if-gathering-dark.svg" alt="IF:Gathering" style="height:24px; width:auto;">
     <ul class="links">
-      <li><a href="#story">Who We Are</a></li>
-      <li><a href="#" data-tooltip="/on-demand">On Demand</a></li>
-      <li><a href="#" data-tooltip="/if-table">IF:Table</a></li>
-      <li><a href="#" data-tooltip="/free-resources">Free Resources</a></li>
+      <li><a href="#" data-tooltip="/who-we-are">About</a></li>
+      <li><a href="#" data-tooltip="/digital-access">IF: On Demand</a></li>
+      <li><a href="#" data-tooltip="/iftable">IF: Table</a></li>
+      <li><a href="#" data-tooltip="/ifequip">IF: Studies</a></li>
+      <li><a href="#" data-tooltip="/subscribe">Subscribe</a></li>
     </ul>
     <div style="position:relative; display:flex; align-items:center; gap: 0.6rem;">
-      <a class="btn" href="#get-involved">Host an IF:Local</a>
+      <a class="btn btn-outline" href="#" data-tooltip="/login" style="color:var(--color-dark-blue); border-color:var(--color-dark-blue);">Sign In</a>
+      <a class="btn" href="#get-involved">Host IF:</a>
       <button type="button" class="nav-menu-mobile-toggle" id="nav-menu-toggle" aria-expanded="false" aria-controls="nav-menu-panel" aria-label="Open menu">
         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 6H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M3 12H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M3 18H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
       </button>
       <div class="nav-menu-panel" id="nav-menu-panel">
-        <a href="#story">Who We Are</a>
-        <a href="#" data-tooltip="/on-demand">On Demand</a>
-        <a href="#" data-tooltip="/if-table">IF:Table</a>
-        <a href="#" data-tooltip="/free-resources">Free Resources</a>
-        <a href="gather-everywhere.html" style="border-top:1px solid rgba(18,22,29,0.1); padding-top:0.6rem; margin-top:0.2rem; opacity:0.75;">← part of Gather</a>
+        <a href="#" data-tooltip="/who-we-are">About</a>
+        <a href="#" data-tooltip="/digital-access">IF: On Demand</a>
+        <a href="#" data-tooltip="/iftable">IF: Table</a>
+        <a href="#" data-tooltip="/ifequip">IF: Studies</a>
+        <a href="#" data-tooltip="/subscribe">Subscribe</a>
+        <a href="#" data-tooltip="/login" style="border-top:1px solid rgba(18,22,29,0.1); padding-top:0.6rem; margin-top:0.2rem;">Sign In</a>
       </div>
     </div>
   </nav>
@@ -359,133 +415,131 @@
 
 <main>
 
-  <section id="hero" class="pairing-04">
-    <div class="container">
-      <div class="grid grid-2 hero-grid">
-        <div class="hero-text">
-          <p class="eyebrow-label">Twelve Years of Gathering Women</p>
-          <h1 class="serif-heading" style="font-size: clamp(3.25rem, 7vw, 6.5rem); line-height:1.05; margin-bottom: var(--space-2);">Find your people.</h1>
-          <p class="serif-heading" style="font-size:1.2rem; opacity:0.75;">Same Heart. Same Community.</p>
-          <p style="max-width:48ch;">Discipleship is what we're about — life-on-life, in living rooms, in local churches, studying God's Word together.</p>
+  <section id="hero" class="pairing-01" style="padding-block: var(--space-4);">
+    <div class="hero-image">
+      <div class="container hero-content" style="text-align:center;">
+        <p class="eyebrow-label" style="color:var(--color-off-white); margin-inline:auto;">Gathering Women Everywhere</p>
+        <h1 class="serif-heading" style="font-size: clamp(3.25rem, 7vw, 6.5rem); line-height:1.05; color:var(--color-off-white); margin-bottom:var(--space-2);">Find your people.</h1>
+        <p style="max-width:52ch; margin-inline:auto; color:var(--color-off-white); opacity:0.92; font-size:1.1rem;">Discipleship is what we're about — life-on-life, in living rooms, in local churches, studying God's Word together.</p>
+      </div>
+      <p class="content-note">Content note: warm, candid photo — a small group of women around a coffee table, mid-laugh, Bibles open, natural light.</p>
+    </div>
 
-          <div class="save-date-card">
-            <span class="save-date-label">Save the Date</span>
-            <span class="save-date-value">October 1–2, 2027</span>
-            <span class="save-date-format">Live Broadcast + In-Person</span>
-            <span class="save-date-note">Back to our original two-day format</span>
+    <div class="hero-info-bar">
+      <div class="container hero-info-bar-inner">
+        <div class="hero-info-detail">
+          <div class="hero-info-detail-item">
+            <span class="hero-info-detail-label">When</span>
+            <span class="hero-info-detail-value">October 1–2, 2027</span>
           </div>
-
-          <div style="display:flex; gap: var(--space-3); flex-wrap:wrap; margin-top: var(--space-2);">
-            <a class="btn" href="#get-involved">Host an IF:Local</a>
-            <a class="btn btn-outline" href="#get-involved" style="color:var(--color-dark-blue); border-color:var(--color-dark-blue);">Attend or Watch</a>
+          <div class="hero-info-detail-item">
+            <span class="hero-info-detail-label">What</span>
+            <span class="hero-info-detail-value">Live Broadcast + In-Person</span>
+          </div>
+          <div class="hero-info-detail-item">
+            <span class="hero-info-detail-label">Format</span>
+            <span class="hero-info-detail-value">Back to two days</span>
           </div>
         </div>
-
-        <div class="hero-visual">
-          <div class="motif-thought-bubble"><span class="mark"></span></div>
-          <p class="content-note">Content note: warm, candid photo — a small group of women around a coffee table, mid-laugh, Bibles open, natural light.</p>
+        <div class="hero-countdown-box">
+          <span class="hero-info-detail-label">We Gather In</span>
+          <div class="hero-countdown" id="hero-countdown" aria-live="polite">
+            <div class="countdown-unit"><span class="countdown-num" data-unit="days">--</span><span class="countdown-label">Days</span></div>
+            <div class="countdown-unit"><span class="countdown-num" data-unit="hours">--</span><span class="countdown-label">Hrs</span></div>
+            <div class="countdown-unit"><span class="countdown-num" data-unit="minutes">--</span><span class="countdown-label">Min</span></div>
+            <div class="countdown-unit"><span class="countdown-num" data-unit="seconds">--</span><span class="countdown-label">Sec</span></div>
+          </div>
         </div>
       </div>
+      <a class="btn hero-info-bar-cta" href="#get-involved">Host IF:</a>
     </div>
   </section>
 
-  <section id="story" class="pairing-01">
+  <section id="what-it-is" class="pairing-01">
+    <div class="why-float why-float-1"><p class="content-note">Content note: vertical clip, women praying together before an IF:Local starts.</p></div>
+    <div class="why-float why-float-2"><p class="content-note">Content note: vertical clip, hands resting on an open Bible mid-discussion.</p></div>
+    <div class="why-float why-float-3"><p class="content-note">Content note: vertical clip, two women laughing over coffee mid-conversation.</p></div>
+    <div class="why-float why-float-4"><p class="content-note">Content note: vertical clip, a living room full of women mid-worship.</p></div>
     <div class="container">
-      <p class="eyebrow-label">Our Story</p>
-      <h2 class="serif-heading">What started with one woman's question</h2>
-      <div class="grid grid-2" style="align-items:center; margin-top: var(--space-3);">
-        <div>
-          <p class="founder-quote accent">"It started with a question Jennie Allen couldn't shake: if Jesus came back tomorrow, then what?"</p>
-          <p>What started as a gathering for women is now a global movement of people gathering for the sake of the gospel. Twelve years in, IF:Gathering remains discipleship-first — life-on-life, in living rooms, in local churches, studying God's Word together.</p>
-          <p>We've seen God move in prisons, in churches, and in homes across the world. IF:Gathering has always been about women saying yes, right where they are.</p>
-        </div>
-        <div class="story-media">
-          <p class="content-note">Content note: a living-room IF:Local mid-study, phone-shot and candid, warm afternoon light.</p>
-        </div>
-      </div>
-
-      <div class="stat-strip" style="margin-top: var(--space-6);">
-        <div class="stat"><div class="num">2,799</div><div>IF:Locals meeting</div></div>
-        <div class="stat"><div class="num">50</div><div>states</div></div>
-        <div class="stat"><div class="num">35</div><div>countries</div></div>
-      </div>
-      <p class="stat-strip-caption">As of IF:One Night, February 2026 — and growing toward 2027.</p>
-    </div>
-  </section>
-
-  <section id="what-it-is" style="background: var(--color-light-blue);">
-    <div class="container">
-      <p class="eyebrow-label">What IF:Gathering Is</p>
-      <div class="grid grid-2" style="align-items:center;">
-        <div>
-          <h2 class="serif-heading">Discipleship, wherever you are</h2>
-          <p>IF:Gathering empowers women to disciple in their own context — making disciples who make disciples, wherever they are.</p>
-          <p>The wider IF family also welcomes men and children into the larger Gather story. This page is where it starts for women.</p>
-        </div>
-        <div class="vlog-video">
-          <div class="play-button" aria-hidden="true">
-            <svg viewBox="0 0 24 24" width="20" height="20"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
-          </div>
-          <p class="content-note">Content note: Jennie or an IF:Local host speaking directly to camera, warm lighting, answering "What if...?"</p>
-        </div>
+      <div class="jumbo-wrap" style="text-align:center;">
+        <p class="eyebrow-label" style="margin-inline:auto;">What IF:Gathering Is</p>
+        <h2 class="jumbo-headline serif-heading">Discipleship, wherever you are</h2>
+        <p style="margin-inline:auto; max-width:60ch;">IF:Gathering empowers women to disciple in their own context — making disciples who make disciples, wherever they are. The wider IF family also welcomes men and children into the larger Gather story. This page is where it starts for women.</p>
       </div>
     </div>
   </section>
 
   <section id="get-involved" class="pairing-01">
     <div class="container">
-      <p class="eyebrow-label" style="text-align:center; margin-inline:auto;">Get Involved</p>
-      <h2 class="serif-heading" style="text-align:center;">Two ways in</h2>
-      <div class="grid grid-2" style="margin-top: var(--space-4);">
-        <div class="card" style="background: rgba(189,216,231,0.4);">
-          <h3>Attend or watch</h3>
-          <p>Join in person or by free livestream, October 1–2. First-timers welcome — you don't need to belong to a church to attend.</p>
-          <a class="btn btn-outline" href="#" data-tooltip="/attend" style="margin-top:var(--space-2); color:var(--color-bright-blue); border-color:var(--color-bright-blue);">Attend or Watch</a>
-        </div>
-        <div class="card" style="background: rgba(42,94,216,0.08); border-color: var(--color-bright-blue);">
-          <h3>Host an IF:Local</h3>
-          <p>Start an IF:Local in your church, city, or living room — a small group of five or more gathering year-round to study Scripture and disciple one another.</p>
-          <a class="btn" href="#" data-tooltip="/host-if-local" style="margin-top:var(--space-2);">Host an IF:Local</a>
-        </div>
-      </div>
+      <p class="eyebrow-label" style="text-align:center; margin-inline:auto;">However You Gather</p>
+      <h2 class="serif-heading" style="text-align:center;">Start where you are</h2>
 
       <div class="host-card">
         <div class="host-card-media">
           <p class="content-note">Content note: an IF:Local host welcoming women in at the door of a living room, warm and unposed.</p>
         </div>
         <div class="host-card-body">
-          <h3>Don't do this alone</h3>
-          <p>IF:Locals are meeting everywhere — in prisons, in churches, and in homes across the world. Find one near you, or start your own.</p>
-          <a class="btn" href="#" data-tooltip="/find-an-if-local" style="margin-top:var(--space-2);">Find an IF:Local</a>
+          <h3>Host IF:</h3>
+          <p>Start an IF:Local in your church, city, or living room — a small group of five or more gathering year-round to study Scripture and disciple one another.</p>
+          <a class="btn" href="#" data-tooltip="/host-if-local" style="margin-top:var(--space-2); align-self:flex-start;">Host IF:</a>
         </div>
       </div>
 
       <div class="find-banner">
         <div>
           <h3>Find an IF:Local</h3>
-          <p>Search by church or city name to find a group meeting near you.</p>
+          <p>IF:Locals are meeting everywhere — in prisons, in churches, and in homes across the world. Search by church or city name to find one near you.</p>
           <p class="find-banner-note">No map shown — search results list church name and location only.</p>
         </div>
         <a class="btn btn-outline" href="#" data-tooltip="/find-an-if-local">Find an IF:Local</a>
       </div>
+
+      <div class="attend-tier">
+        <p>Prefer to attend the main event? <a href="#" class="attend-link" data-tooltip="/attend">Attend or watch live</a> — or, join us in Dallas.</p>
+      </div>
     </div>
   </section>
 
-  <section id="leaders" style="background: var(--color-light-blue);">
+  <section id="leaders" class="pairing-01">
     <div class="container">
+      <p class="eyebrow-label" style="text-align:center; margin-inline:auto;">Meet the Speakers</p>
       <h2 class="serif-heading" style="text-align:center;">Leading the way</h2>
       <div class="grid grid-4 leader-grid" id="leader-grid" style="margin-top: var(--space-4);">
-        <button type="button" class="leader-card" data-name="Jennie Allen" data-role="Founder" data-bio="Founder of IF:Gathering and Chief Storyteller for the wider Gather movement — the reach engine for a message bigger than any one voice.">
+        <button type="button" class="leader-card" data-name="Jennie Allen" data-role="Founder" data-bio="Founder of IF:Gathering and Chief Storyteller for the wider Gather movement.">
           <div class="avatar"></div><h4>Jennie Allen</h4><p style="font-size:0.85rem;">Founder</p>
         </button>
-        <button type="button" class="leader-card" data-name="Leader name TK" data-role="IF:Local Leader" data-bio="Full bio and photo coming soon — introducing the regional leaders shaping IF:Locals for 2027.">
-          <div class="avatar"></div><h4>Leader name TK</h4><p style="font-size:0.85rem;">IF:Local Leader</p>
+        <button type="button" class="leader-card" data-name="Christine Caine" data-role="Founder, A21 &amp; Propel Women" data-bio="Founder of A21 and Propel Women, known for her teaching on freedom and calling.">
+          <div class="avatar"></div><h4>Christine Caine</h4><p style="font-size:0.85rem;">Founder, A21 &amp; Propel Women</p>
         </button>
-        <button type="button" class="leader-card" data-name="Leader name TK" data-role="IF:Table Host" data-bio="Full bio and photo coming soon — introducing the hosts leading conversations at IF:Table.">
-          <div class="avatar"></div><h4>Leader name TK</h4><p style="font-size:0.85rem;">IF:Table Host</p>
+        <button type="button" class="leader-card" data-name="Francis Chan" data-role="Pastor &amp; Author" data-bio="Pastor and author known for calling the Church back to radical, wholehearted faith.">
+          <div class="avatar"></div><h4>Francis Chan</h4><p style="font-size:0.85rem;">Pastor &amp; Author</p>
         </button>
-        <button type="button" class="leader-card" data-name="Leader name TK" data-role="Worship Leader" data-bio="Full bio and photo coming soon — introducing the worship leaders joining IF:Gathering 2027.">
-          <div class="avatar"></div><h4>Leader name TK</h4><p style="font-size:0.85rem;">Worship Leader</p>
+        <button type="button" class="leader-card" data-name="Annie F. Downs" data-role="Author &amp; Podcast Host" data-bio="Author and podcast host encouraging women toward faith, friendship, and courage.">
+          <div class="avatar"></div><h4>Annie F. Downs</h4><p style="font-size:0.85rem;">Author &amp; Podcast Host</p>
+        </button>
+        <button type="button" class="leader-card" data-name="Matt Chandler" data-role="Pastor, The Village Church" data-bio="Pastor of The Village Church, known for his teaching on the gospel and the local church.">
+          <div class="avatar"></div><h4>Matt Chandler</h4><p style="font-size:0.85rem;">Pastor, The Village Church</p>
+        </button>
+        <button type="button" class="leader-card" data-name="Lauren Chandler" data-role="Author &amp; Worship Leader" data-bio="Author and worship leader, writing and singing about God's faithfulness.">
+          <div class="avatar"></div><h4>Lauren Chandler</h4><p style="font-size:0.85rem;">Author &amp; Worship Leader</p>
+        </button>
+        <button type="button" class="leader-card" data-name="Jada Edwards" data-role="Bible Teacher &amp; Author" data-bio="Bible teacher and author helping women study Scripture with depth and joy.">
+          <div class="avatar"></div><h4>Jada Edwards</h4><p style="font-size:0.85rem;">Bible Teacher &amp; Author</p>
+        </button>
+        <button type="button" class="leader-card" data-name="Joe L. Barnes" data-role="Worship Leader" data-bio="Worship leader and recording artist leading IF:Gathering in song.">
+          <div class="avatar"></div><h4>Joe L. Barnes</h4><p style="font-size:0.85rem;">Worship Leader</p>
+        </button>
+        <button type="button" class="leader-card" data-name="Gloria Umanah" data-role="IF:Gathering Speaker" data-bio="Speaker at IF:Gathering, part of the 2027 lineup.">
+          <div class="avatar"></div><h4>Gloria Umanah</h4><p style="font-size:0.85rem;">IF:Gathering Speaker</p>
+        </button>
+        <button type="button" class="leader-card" data-name="Keila Marin" data-role="IF:Gathering Speaker" data-bio="Speaker at IF:Gathering, part of the 2027 lineup.">
+          <div class="avatar"></div><h4>Keila Marin</h4><p style="font-size:0.85rem;">IF:Gathering Speaker</p>
+        </button>
+        <button type="button" class="leader-card" data-name="Davy Flowers Leffall" data-role="IF:Gathering Speaker" data-bio="Speaker at IF:Gathering, part of the 2027 lineup.">
+          <div class="avatar"></div><h4>Davy Flowers Leffall</h4><p style="font-size:0.85rem;">IF:Gathering Speaker</p>
+        </button>
+        <button type="button" class="leader-card" data-name="Layla de la Garza" data-role="IF:Gathering Speaker" data-bio="Speaker at IF:Gathering, part of the 2027 lineup.">
+          <div class="avatar"></div><h4>Layla de la Garza</h4><p style="font-size:0.85rem;">IF:Gathering Speaker</p>
         </button>
       </div>
       <div class="leader-pagination" id="leader-pagination">
@@ -498,14 +552,10 @@
 
   <section id="proof" class="pairing-01">
     <div class="container">
+      <p class="eyebrow-label" style="text-align:center; margin-inline:auto;">Stories From IF</p>
       <h2 class="serif-heading" style="text-align:center; max-width:26ch; margin-inline:auto;">Stoking <span class="accent">revival fires</span>, one table at a time</h2>
-      <div class="grid grid-3" style="margin-top: var(--space-4);">
-        <div class="story-tile"><p>"I finally feel so seen. These are my people."</p></div>
-        <div class="story-tile"><p>"What are you learning about God and yourself right now? That question changed my group."</p></div>
-        <div class="story-tile"><p>"Life-on-life discipleship, over coffee, changed how I read Scripture."</p></div>
-      </div>
 
-      <div style="text-align:center;">
+      <div style="text-align:center; margin-top: var(--space-4);">
         <span class="reel-banner">More stories from IF:Locals everywhere</span>
       </div>
       <div class="reel-wrap">
@@ -548,18 +598,41 @@
           <svg viewBox="0 0 24 24" width="16" height="16"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
       </div>
-      <div style="text-align:center;">
-        <a href="#" class="share-story-link" data-tooltip="/share-your-story">Share how God moved in your IF:Local →</a>
+
+      <div class="quote-stack">
+        <p class="accent quote-line">"I finally feel so seen. These are my people."</p>
+        <p class="accent quote-line">"What are you learning about God and yourself right now? That question changed my group."</p>
+        <p class="accent quote-line">"Life-on-life discipleship, over coffee, changed how I read Scripture."</p>
+      </div>
+
+      <div class="share-story-banner">
+        <div>
+          <h3>Been part of an IF:Local?</h3>
+          <p>We'd love to hear how God moved through your group, your table, your city.</p>
+        </div>
+        <a class="btn" href="#" data-tooltip="/share-your-story">Share Your Story</a>
       </div>
     </div>
   </section>
 
-  <section id="give" style="background: var(--color-light-blue);">
-    <div class="container" style="max-width:520px; text-align:center;">
-      <div class="card">
-        <h3>Give</h3>
-        <p>The world needs the hope of Jesus now. Your gift helps make disciples who make disciples, in living rooms and local churches everywhere.</p>
-        <a class="btn btn-outline" href="#" data-tooltip="/give" style="margin-top:var(--space-2); color:var(--color-bright-blue); border-color:var(--color-bright-blue);">Give Today</a>
+  <section id="connect" class="pairing-01">
+    <div class="container">
+      <p class="eyebrow-label" style="text-align:center; margin-inline:auto;">Other Ways to Connect</p>
+      <h2 class="serif-heading" style="text-align:center;">More than one weekend</h2>
+      <p style="text-align:center; margin-inline:auto; max-width:56ch;">IF:Gathering doesn't end when the broadcast does — here's where to keep going.</p>
+      <div class="grid grid-3" style="margin-top: var(--space-4);">
+        <a class="connect-card" href="#" data-tooltip="/iftable">
+          <h3>IF:Table</h3>
+          <p>Conversation cards and a recipe box for gathering people around your own table.</p>
+        </a>
+        <a class="connect-card" href="#" data-tooltip="/digital-access">
+          <h3>IF: On Demand</h3>
+          <p>Watch past IF:Gatherings any time, with extended year-round access.</p>
+        </a>
+        <a class="connect-card" href="#" data-tooltip="/ifequip">
+          <h3>IF: Studies</h3>
+          <p>Scripture studies built for going deeper with your IF:Local, on your own schedule.</p>
+        </a>
       </div>
     </div>
   </section>
@@ -567,6 +640,8 @@
   <section id="faq" class="pairing-01">
     <div class="container" style="max-width:70ch;">
       <h2 class="serif-heading" style="text-align:center;">FAQ</h2>
+      <details class="faq-item"><summary>Is IF:Gathering free?</summary><p>Yes. The broadcast is completely free to watch, wherever you are.</p></details>
+      <details class="faq-item"><summary>How do I get tickets to the main IF:Gathering?</summary><p>There's no traditional ticket to buy — IF:Gathering is built to be experienced with people, not alone. Gather your own IF:Local or find one meeting near you, and watch together right where you are. If you'd rather be in the room, we'll share details on attending in person in Dallas as the date gets closer.</p></details>
       <details class="faq-item"><summary>Why is IF:Gathering two days again?</summary><p>We're returning to the original two-day format for 2027, after 2026's one-night event, IF:One Night — more room for teaching, worship, and community.</p></details>
       <details class="faq-item"><summary>What is an IF:Local?</summary><p>A small group — as few as 5 people — gathering year-round to study Scripture and disciple one another. IF:Locals meet in living rooms, churches, and even prisons.</p></details>
       <details class="faq-item"><summary>Do I need to be part of a church to attend?</summary><p>No — first-timers are welcome in person or online, whether or not you're already part of a church.</p></details>
@@ -578,7 +653,19 @@
 </main>
 
 <footer class="pairing-01">
-  <div class="container" style="padding-block: var(--space-5); display:flex; justify-content:center;">
+  <div class="container" style="padding-block: var(--space-5); display:flex; flex-wrap:wrap; justify-content:space-between; gap: var(--space-3); font-size:0.85rem;">
+    <div style="display:flex; gap: var(--space-4); flex-wrap:wrap;">
+      <a href="#" data-tooltip="/join" style="color:inherit; text-decoration:none;">Join</a>
+      <a href="#get-involved" style="color:inherit; text-decoration:none;">Host</a>
+      <a href="#" data-tooltip="/login" style="color:inherit; text-decoration:none;">Sign In</a>
+    </div>
+    <div style="display:flex; gap: var(--space-4); flex-wrap:wrap; opacity:0.75;">
+      <a href="#" data-tooltip="/who-we-are" style="color:inherit; text-decoration:none;">About</a>
+      <a href="#" data-tooltip="@ifgathering" style="color:inherit; text-decoration:none;">Facebook</a>
+      <a href="#" data-tooltip="@ifgathering" style="color:inherit; text-decoration:none;">Instagram</a>
+    </div>
+  </div>
+  <div class="container" style="padding-block: var(--space-4); display:flex; justify-content:center;">
     <img src="assets/gather-cluster-dark.svg" alt="Gather" style="height:36px; width:auto;">
   </div>
   <div class="container" style="padding-bottom: var(--space-4); display:flex; justify-content:center; align-items:center; gap: var(--space-4); flex-wrap:wrap;">
@@ -613,6 +700,45 @@
 <script src="js/sections-manifest.js"></script>
 <script src="js/review-mode.js"></script>
 <script src="js/nav-menu.js"></script>
+<script>
+  // Live countdown to the IF:Gathering 2027 broadcast start
+  (function () {
+    var target = new Date('2027-10-01T00:00:00Z').getTime();
+    var el = document.getElementById('hero-countdown');
+    if (!el) return;
+    function pad(n) { return String(n).padStart(2, '0'); }
+    function render() {
+      var diff = Math.max(0, target - Date.now());
+      el.querySelector('[data-unit="days"]').textContent = Math.floor(diff / 86400000);
+      el.querySelector('[data-unit="hours"]').textContent = pad(Math.floor((diff % 86400000) / 3600000));
+      el.querySelector('[data-unit="minutes"]').textContent = pad(Math.floor((diff % 3600000) / 60000));
+      el.querySelector('[data-unit="seconds"]').textContent = pad(Math.floor((diff % 60000) / 1000));
+    }
+    render();
+    setInterval(render, 1000);
+  })();
+</script>
+<script>
+  // What It Is — floating vertical placeholders parallax against the
+  // jumbo headline as the section scrolls past.
+  (function () {
+    var section = document.getElementById('what-it-is');
+    var floats = Array.prototype.slice.call(document.querySelectorAll('.why-float'));
+    if (!section || !floats.length) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    var speeds = [0.18, -0.12, 0.14, -0.2];
+    function onScroll() {
+      var rect = section.getBoundingClientRect();
+      var progress = window.innerHeight - rect.top;
+      floats.forEach(function (el, i) {
+        el.style.transform = 'translateY(' + (progress * speeds[i % speeds.length]) + 'px)';
+      });
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  })();
+</script>
 <script>
   // Leader cards: pagination (12 per page) + click opens a shared modal
   // populated from data-* attrs.
