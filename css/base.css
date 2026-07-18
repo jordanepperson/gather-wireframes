@@ -286,14 +286,14 @@ a:hover { text-decoration-thickness: 2px; }
   flex-shrink: 0;
   padding-block: 0.2rem;
   position: relative;
+  color: var(--color-off-white);
+  font-family: var(--font-primary);
+  font-size: 0.78rem;
+  font-weight: 700;
+  white-space: nowrap;
+  text-decoration: none;
 }
 .site-utility-bar .site-logos a:hover { opacity: 1; }
-.site-utility-bar .site-logos img { height: 16px; width: auto; max-width: none; flex-shrink: 0; }
-/* Gather Global's logo asset has extra empty space below the wordmark
-   (room for the circular "27" badge) that the other three logos don't
-   carry, so it optically sits high when all four are simply vertically
-   centered — nudge it down slightly to true up the row. */
-.site-utility-bar .site-logos img[src*="gather-27"] { transform: translateY(2px); }
 /* Current-page indicator: a little more breathing room top/bottom, full
    opacity (not dimmed like the other three), and a small dot underneath. */
 .site-utility-bar .site-logos a.current { opacity: 1; padding-block: 0.35rem; }
