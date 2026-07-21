@@ -281,7 +281,7 @@ a:hover { text-decoration-thickness: 2px; }
   align-items: center;
   gap: var(--space-4);
   padding: 0.6rem var(--space-3);
-  padding-top: max(1.25rem, env(safe-area-inset-top));
+  padding-top: calc(2rem + env(safe-area-inset-top, 0px));
   background: var(--color-dark-blue);
 }
 .gather-nav a {
