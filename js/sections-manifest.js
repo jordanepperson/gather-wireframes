@@ -26,6 +26,7 @@ window.GATHER_SECTIONS = {
       { id: 'leaders', label: 'Leaders / Locations' },
       { id: 'proof', label: 'Global Proof' },
       { id: 'get-involved', label: 'Get Involved' },
+      { id: 'what-hosts-get', label: 'What Hosts Get' },
       { id: 'hype', label: 'Art Moment' },
       { id: 'partners', label: 'Partners' },
       { id: 'stories', label: 'Global Stories' },

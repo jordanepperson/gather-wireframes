@@ -443,7 +443,7 @@
   /* Partners — sticky intro column, logos scroll past on the right */
   .partners-columns { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: var(--space-5); align-items: start; }
   .partners-sticky { position: sticky; top: 6rem; }
-  .partner-logos { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-3); align-content: start; }
+  .partner-logos { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-3); align-content: start; }
   .partner-logos div {
     padding: 0.9rem 1.1rem;
     background: rgba(255,250,240,0.05);
@@ -458,6 +458,15 @@
     align-items: center;
     justify-content: center;
     min-height: 64px;
+  }
+  /* Remaining partners, listed as plain text rather than placeholder
+     logo boxes — only the 4 above are meant to stand out. */
+  .partner-list-text {
+    margin-top: var(--space-3);
+    color: var(--color-off-white);
+    opacity: 0.6;
+    font-size: 0.85rem;
+    line-height: 1.6;
   }
   @media (max-width: 900px) {
     .partners-columns { grid-template-columns: 1fr; }
@@ -645,7 +654,7 @@
       <li><a href="#" data-tooltip="#the-event" style="color:var(--color-off-white);">Event</a></li>
       <li><a href="#" data-tooltip="#faq" style="color:var(--color-off-white);">FAQ</a></li>
     </ul>
-    <a class="btn" href="#" data-tooltip="/host">Host a Watch Party</a>
+    <a class="btn" href="#" data-tooltip="/host">Host a Gathering</a>
   </nav>
 </header>
 
@@ -655,7 +664,7 @@
     <div class="container" style="padding-block: var(--space-6);">
       <div class="grid grid-2" style="align-items:center;">
         <div>
-          <p class="accent" style="font-size:1.1rem;">Gather27 — 2027</p>
+          <p class="accent" style="font-size:1.1rem;">A Global Gathering</p>
           <h1 style="color: var(--color-bright-blue);">The Global Church, Gathering Like Never Before</h1>
           <p>Every believer. Every continent. Together across 24 hours.</p>
         </div>
@@ -689,7 +698,7 @@
           </div>
         </div>
       </div>
-      <a class="btn hero-info-bar-cta" href="#" data-tooltip="/host">Host a Watch Party</a>
+      <a class="btn hero-info-bar-cta" href="#" data-tooltip="/host">Host a Gathering</a>
     </div>
   </section>
 
@@ -780,7 +789,7 @@
           <div class="pillar-card-body">
             <h3>Commission</h3>
             <p>2.5 billion believers are sent to reach the 5.5 billion who don't yet know Jesus. Gather27 sends every watch party out with a clear next step.</p>
-            <a class="btn" href="#get-involved">Host a Watch Party</a>
+            <a class="btn" href="#get-involved">Host a Gathering</a>
           </div>
         </div>
       </div>
@@ -877,9 +886,9 @@
           <p class="content-note">Content note: a host welcoming people in at the door of a watch party, warm and candid.</p>
         </div>
         <div class="host-card-body">
-          <h3 style="color:var(--color-off-white);">Host a Watch Party</h3>
+          <h3 style="color:var(--color-off-white);">Host a Gathering</h3>
           <p style="color:var(--color-off-white);">Gather your church, campus, or living room around the broadcast. We give you everything you need to host: a simple guide, promotional materials, and a spot on the map so people can find you.</p>
-          <a class="btn" href="#" data-tooltip="/host" style="margin-top:var(--space-2);">Host a Watch Party</a>
+          <a class="btn" href="#" data-tooltip="/host" style="margin-top:var(--space-2);">Host a Gathering</a>
         </div>
       </div>
 
@@ -889,6 +898,35 @@
           <p>Gatherings are happening everywhere. Find people near you and be part of it.</p>
         </div>
         <a class="btn btn-outline" href="#" data-tooltip="/join" style="color:var(--color-off-white);">Find a Gathering</a>
+      </div>
+
+      <p style="text-align:center; margin-top:var(--space-2);">Can't gather in person? <a href="#" data-tooltip="/watch" style="color:var(--color-bright-blue); font-weight:700; text-decoration:underline;">Watch from Anywhere</a></p>
+    </div>
+  </section>
+
+  <section id="what-hosts-get" class="pairing-03">
+    <div class="container">
+      <p class="eyebrow-label" style="text-align:center; margin-inline:auto;">What Hosts Get</p>
+      <h2 style="text-align:center;">Everything you need, ready to go</h2>
+      <p style="text-align:center; margin-inline:auto; max-width:52ch;">Hosting is simple — we hand you the toolkit so you can focus on your people.</p>
+
+      <div class="how-it-works">
+        <div class="how-step">
+          <span class="how-step-number">1</span>
+          <div><h4>Host Guide</h4><p>A simple step-by-step guide for running your gathering, from setup to send-off.</p></div>
+        </div>
+        <div class="how-step">
+          <span class="how-step-number">2</span>
+          <div><h4>Promotional Materials</h4><p>Social graphics and a landing page, ready to share with your people.</p></div>
+        </div>
+        <div class="how-step">
+          <span class="how-step-number">3</span>
+          <div><h4>Worship Resources</h4><p>Full song list, lyrics, and multitracks so your team can lead worship together.</p></div>
+        </div>
+        <div class="how-step">
+          <span class="how-step-number">4</span>
+          <div><h4>A Spot on the Map</h4><p>Your gathering listed so people nearby can find and join you.</p></div>
+        </div>
       </div>
     </div>
   </section>
@@ -909,15 +947,11 @@
           <p>Behind Gather27 is a collaboration of ministries, partners, and leaders united around one vision: to gather the entire global Church for a day of prayer, worship, repentance, and commissioning.</p>
           <a class="btn" href="#" data-tooltip="/partner" style="margin-top: var(--space-2);">Become a Partner</a>
         </div>
-        <div class="partner-logos">
-          <div>IF:Gathering</div><div>YouVersion</div><div>Cru</div>
-          <div>Alpha</div><div>illumiNations</div><div>Jesus Film Project</div>
-          <div>24-7 Prayer</div><div>RightNow Media</div><div>World Evangelical Alliance</div>
-          <div>The Bible Project</div><div>Luis Palau Association</div><div>Wycliffe</div>
-          <div>Trinity Broadcasting Network</div><div>Convoy of Hope</div><div>Operation Mobilization</div>
-          <div>Arise Asia</div><div>Africa New Life</div><div>Living Water International</div>
-          <div>Tearfund</div><div>American Bible Society</div><div>Biblica</div>
-          <div>SIL</div><div>World Relief</div><div>Global Advance</div>
+        <div>
+          <div class="partner-logos">
+            <div>IF:Gathering</div><div>YouVersion</div><div>Alpha</div><div>RightNow Media</div>
+          </div>
+          <p class="partner-list-text">Cru, illumiNations, Jesus Film Project, 24-7 Prayer, World Evangelical Alliance, The Bible Project, Luis Palau Association, Wycliffe, Trinity Broadcasting Network, Convoy of Hope, Operation Mobilization, Arise Asia, Africa New Life, Living Water International, Tearfund, American Bible Society, Biblica, SIL, World Relief, Global Advance</p>
         </div>
       </div>
     </div>
@@ -1001,7 +1035,7 @@
       <details class="faq-item"><summary>What does hosting a watch party require?</summary><p>A space, a screen, and a few volunteers. We provide the broadcast, a host guide, and promotional materials.</p></details>
       <details class="faq-item"><summary>Is there a cost to host?</summary><p>No. Hosting a watch party is free. Optional add-ons are available for larger gatherings.</p></details>
       <details class="faq-item"><summary>What is a Gather Group?</summary><p>A Gather Group is a local gathering, in a church, a living room, on a campus, anywhere, organized by a host to bring their community into the broadcast together. Gather25 saw over 21,000 registered worldwide.</p></details>
-      <details class="faq-item"><summary>What happens after the broadcast?</summary><p>You'll receive a simple next-step guide for your specific gathering. Details are in your host toolkit.</p></details>
+      <details class="faq-item"><summary>What happens after the broadcast?</summary><p>You'll receive a simple next-step guide for your specific gathering. Details are in your <a href="#what-hosts-get" style="color:inherit;">host toolkit</a>.</p></details>
     </div>
   </section>
 
@@ -1011,7 +1045,7 @@
       <h2 style="max-width:16ch; margin-inline:auto;">This Is the Moment.</h2>
       <p style="max-width:52ch; margin-inline:auto; font-size:1.15rem;">This gathering happens in churches, schools, living rooms, and coffee shops through personal invites, not big ad campaigns. Be part of the Church gathering as one.</p>
       <div style="margin-top:var(--space-4);">
-        <a class="btn" href="#" data-tooltip="/host" style="background:var(--color-dark-blue);">Host a Watch Party</a>
+        <a class="btn" href="#" data-tooltip="/host" style="background:var(--color-dark-blue);">Host a Gathering</a>
       </div>
     </div>
   </section>
@@ -1077,7 +1111,7 @@
       <li><strong>The Image</strong>, with Matt Redman &amp; kaestrings</li>
       <li><strong>No Not One</strong>, with Elevation Rhythm &amp; Pambio</li>
     </ul>
-    <p style="font-size:0.85rem; opacity:0.7;">Full song list, lyrics, and multitracks available in the host toolkit.</p>
+    <p style="font-size:0.85rem; opacity:0.7;">Full song list, lyrics, and multitracks available in the <a href="#what-hosts-get" style="color:inherit;">host toolkit</a>.</p>
     <a class="btn btn-outline" href="#" data-tooltip="Gather Worship Page" style="margin-top:var(--space-2); color:var(--color-bright-blue); border-color:var(--color-bright-blue);">Listen</a>
   </div>
 </div>
