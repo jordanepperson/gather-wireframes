@@ -312,6 +312,42 @@ a:hover { text-decoration-thickness: 2px; }
   .site-utility-bar { overflow-x: auto; }
 }
 
+/* Real global ecosystem nav — ships as part of the actual site, unlike
+   .site-utility-bar above (that one's wireframe-review-only tooling: Home/
+   Notes/Voiceover, gone once this is delivered). Sits between the utility
+   bar and each page's own branded header. Deliberately neutral/dark so it
+   reads as "the ecosystem," not any one expression's own color pairing —
+   and deliberately plain text with an underline current-indicator (not the
+   utility bar's dot) so review tooling and real product don't look alike. */
+.gather-nav {
+  position: sticky;
+  top: 54px; /* sits just below .site-utility-bar's measured height */
+  z-index: 140;
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: 0.6rem var(--space-3);
+  background: var(--color-dark-blue);
+  border-bottom: 1px solid rgba(255,250,240,0.1);
+}
+.gather-nav a {
+  color: var(--color-off-white);
+  opacity: 0.55;
+  font-family: var(--font-primary);
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  padding-bottom: 0.3rem;
+  border-bottom: 2px solid transparent;
+  transition: opacity 0.15s ease;
+}
+.gather-nav a:hover { opacity: 0.85; }
+.gather-nav a.current { opacity: 1; border-bottom-color: var(--color-bright-blue); }
+@media (max-width: 500px) {
+  .gather-nav { overflow-x: auto; }
+}
+
 /* Shared notes modal — injected by js/notes-modal.js on every page that
    includes the script. One source of truth for content, so notes stay in
    sync across the whole site instead of being duplicated per page. */

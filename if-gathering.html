@@ -54,7 +54,7 @@
   /* Sticky header — single nav row, own established nav shape (not
      byte-identical to Everywhere/Cities), per the build-context doc's
      explicit navigation call-out for this page. */
-  .site-header { position: sticky; top: 48px; z-index: 100; background: rgba(255,250,240,0.92); backdrop-filter: blur(6px); border-bottom: 1px solid rgba(18,22,29,0.08); } /* sits just below the shared .site-utility-bar */
+  .site-header { position: sticky; top: 100px; z-index: 100; background: rgba(255,250,240,0.92); backdrop-filter: blur(6px); border-bottom: 1px solid rgba(18,22,29,0.08); } /* sits below the shared .site-utility-bar + .gather-nav */
 
   /* Mobile nav — 5 links + 2 buttons is more nav than any other page here,
      so at narrow widths the plain inline links get tucked behind a
@@ -462,6 +462,13 @@
     <a href="if-gathering.html" class="current">IF:Gathering</a>
   </div>
 </div>
+
+<nav class="gather-nav" aria-label="Gather ecosystem navigation">
+  <a href="gather-everywhere.html">Gather Everywhere</a>
+  <a href="gather-global.html">Gather Global</a>
+  <a href="gather-cities.html">Gather Cities</a>
+  <a href="if-gathering.html" class="current">IF:Gathering</a>
+</nav>
 
 <header class="site-header pairing-01">
   <nav class="site-nav container">
