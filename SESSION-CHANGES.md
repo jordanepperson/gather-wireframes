@@ -164,6 +164,26 @@ current-state sections (not its narrative history) updated too.
   item.
 - `gather-global.html`
 
+## Correction: globe should feature hosting highlights, not fixed hubs
+First pass only renamed the stat-callout caption. Client clarified: the
+globe itself should conceptually drop the "regional hub" framing (fixed,
+official relay-broadcast anchor points) in favor of "hosting highlights"
+— a handful of illustrative real-world locations, in the same spirit as
+the watch-party ticker beneath the globe. Swapped the 7 structural hub
+dots (Dallas/Auckland/Kuala Lumpur/Cluj/Kigali/London/Lima, each tagged
+by continent) for 7 cities pulled directly from the existing ticker data
+(London UK, Nairobi Kenya, Hong Kong, Geelong Australia, Lubbock Texas,
+Geneva Switzerland, Villa Nueva Guatemala) so the globe and ticker feel
+like one consistent picture rather than two disconnected data sets.
+Stat callout now reads "Hosting highlights from around the world."
+
+**Left untouched, flagged for a decision**: "regional hub(s)" still
+appears in this page's own prose elsewhere (the About paragraph, two FAQ
+answers, and the Pray section) — the ask was scoped to the globe/map
+specifically, so those weren't touched. Say the word if those should
+drop the "hub" framing too.
+- `gather-global.html`
+
 ## Correction: the gap needed was at the bottom of gather-nav, not the top
 Follow-up screenshot showed the real problem — `.gather-nav`'s links sat
 right up against the header's rounded top corner below, not the viewport
