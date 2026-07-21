@@ -210,6 +210,18 @@ color resolves correctly on both light (dark-blue-derived) and dark
 (off-white-derived) footers.
 - `css/base.css`
 
+## Client feedback: IF:Gathering CTA copy renames
+Renamed two phrases everywhere they appear on the page (button labels
+and headings alike, as substrings where they're part of a longer
+string):
+- "Host IF:" &rarr; "Host An IF:" (nav CTA, hero info-bar CTA, Get
+  Involved button — plus the "Host IF:Local" heading, which becomes
+  "Host An IF:Local").
+- "Find an IF:Local" &rarr; "Find An IF:" (Get Involved button, plus the
+  "Find an IF:Local Near You" heading, which becomes "Find An IF: Near
+  You").
+- `if-gathering.html`
+
 ## Client feedback: remove the "7 Hosting Highlights" stat card
 Removed the small floating stat card (`.globe-stat-edge`) that sat at
 the globe's edge showing the "7" number + "Hosting highlights from
