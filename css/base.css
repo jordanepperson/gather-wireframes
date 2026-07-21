@@ -335,6 +335,7 @@ a:hover { text-decoration-thickness: 2px; }
 }
 .gather-nav a:hover { opacity: 0.85; }
 .gather-nav a.current { opacity: 1; border-bottom-color: var(--color-bright-blue); }
+.gather-nav a.gather-nav-login { margin-left: auto; }
 @media (max-width: 500px) {
   .gather-nav { overflow-x: auto; }
 }
