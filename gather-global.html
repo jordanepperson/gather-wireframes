@@ -353,6 +353,29 @@
   }
   .how-step h4 { font-size: 0.95rem; margin: 0 0 0.15rem; }
   .how-step p { font-size: 0.78rem; opacity: 0.7; margin: 0; }
+
+  /* What Hosts Get — framed top/bottom to match, 2x2 grid of bordered cards */
+  .host-benefits-frame {
+    border-top: 1px solid rgba(255,250,240,0.15);
+    border-bottom: 1px solid rgba(255,250,240,0.15);
+    padding-block: var(--space-4);
+  }
+  .host-benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-3);
+    margin-top: var(--space-4);
+  }
+  .how-step.bordered-card {
+    max-width: none;
+    padding: var(--space-3);
+    border: 1px solid rgba(255,250,240,0.15);
+    border-radius: 1rem;
+  }
+  @media (max-width: 700px) {
+    .host-benefits-grid { grid-template-columns: 1fr; }
+  }
+
   .host-card {
     display: grid;
     grid-template-columns: 1.1fr 1fr;
@@ -463,11 +486,14 @@
      logo boxes — only the 4 above are meant to stand out. */
   .partner-list-text {
     margin-top: var(--space-3);
+    list-style: none;
+    padding: 0;
     color: var(--color-off-white);
     opacity: 0.6;
     font-size: 0.85rem;
-    line-height: 1.6;
   }
+  .partner-list-text li { padding-block: 0.25rem; }
+  .partner-list-text li + li { border-top: 1px solid rgba(255,250,240,0.08); }
   @media (max-width: 900px) {
     .partners-columns { grid-template-columns: 1fr; }
     .partners-sticky { position: static; }
@@ -900,30 +926,30 @@
         <a class="btn btn-outline" href="#" data-tooltip="/join" style="color:var(--color-off-white);">Find a Gathering</a>
       </div>
 
-      <p style="text-align:center; margin-top:var(--space-2);">Can't gather in person? <a href="#" data-tooltip="/watch" style="color:var(--color-bright-blue); font-weight:700; text-decoration:underline;">Watch from Anywhere</a></p>
+      <p style="text-align:center; margin-top:var(--space-2); margin-inline:auto;">Can't gather in person? <a href="#" data-tooltip="/watch" style="color:var(--color-bright-blue); font-weight:700; text-decoration:underline;">Watch from Anywhere</a></p>
     </div>
   </section>
 
   <section id="what-hosts-get" class="pairing-03">
-    <div class="container">
+    <div class="container host-benefits-frame">
       <p class="eyebrow-label" style="text-align:center; margin-inline:auto;">What Hosts Get</p>
       <h2 style="text-align:center;">Everything you need, ready to go</h2>
       <p style="text-align:center; margin-inline:auto; max-width:52ch;">Hosting is simple — we hand you the toolkit so you can focus on your people.</p>
 
-      <div class="how-it-works">
-        <div class="how-step">
+      <div class="host-benefits-grid">
+        <div class="how-step bordered-card">
           <span class="how-step-number">1</span>
           <div><h4>Host Guide</h4><p>A simple step-by-step guide for running your gathering, from setup to send-off.</p></div>
         </div>
-        <div class="how-step">
+        <div class="how-step bordered-card">
           <span class="how-step-number">2</span>
           <div><h4>Promotional Materials</h4><p>Social graphics and a landing page, ready to share with your people.</p></div>
         </div>
-        <div class="how-step">
+        <div class="how-step bordered-card">
           <span class="how-step-number">3</span>
           <div><h4>Worship Resources</h4><p>Full song list, lyrics, and multitracks so your team can lead worship together.</p></div>
         </div>
-        <div class="how-step">
+        <div class="how-step bordered-card">
           <span class="how-step-number">4</span>
           <div><h4>A Spot on the Map</h4><p>Your gathering listed so people nearby can find and join you.</p></div>
         </div>
@@ -951,7 +977,29 @@
           <div class="partner-logos">
             <div>IF:Gathering</div><div>YouVersion</div><div>Alpha</div><div>RightNow Media</div>
           </div>
-          <p class="partner-list-text">Cru, illumiNations, Jesus Film Project, 24-7 Prayer, World Evangelical Alliance, The Bible Project, Luis Palau Association, Wycliffe, Trinity Broadcasting Network, Convoy of Hope, Operation Mobilization, Arise Asia, Africa New Life, Living Water International, Tearfund, American Bible Society, Biblica, SIL, World Relief, Global Advance</p>
+          <ul class="partner-list-text">
+            <li>Cru</li>
+            <li>illumiNations</li>
+            <li>Jesus Film Project</li>
+            <li>24-7 Prayer</li>
+            <li>World Evangelical Alliance</li>
+            <li>The Bible Project</li>
+            <li>Luis Palau Association</li>
+            <li>Wycliffe</li>
+            <li>Trinity Broadcasting Network</li>
+            <li>Convoy of Hope</li>
+            <li>Operation Mobilization</li>
+            <li>Arise Asia</li>
+            <li>Africa New Life</li>
+            <li>Living Water International</li>
+            <li>Tearfund</li>
+            <li>American Bible Society</li>
+            <li>Biblica</li>
+            <li>SIL</li>
+            <li>World Relief</li>
+            <li>Global Advance</li>
+            <li>and more</li>
+          </ul>
         </div>
       </div>
     </div>
