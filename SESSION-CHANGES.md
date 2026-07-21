@@ -210,6 +210,19 @@ color resolves correctly on both light (dark-blue-derived) and dark
 (off-white-derived) footers.
 - `css/base.css`
 
+## Client feedback: resolve ticket contradiction, fix event toolbar label
+- Tickets to the live event are real. The FAQ answer for "How do I get
+  tickets to the main IF:Gathering?" previously said "There's no
+  traditional ticket to buy" — directly contradicting the "Get Tickets
+  Here" CTA elsewhere on the page. Rewrote the answer to lead with
+  ticket availability (linking to the same `/tickets` tooltip target as
+  the existing CTA) while still explaining that most people experience
+  IF:Gathering through an IF:Local instead.
+- Event toolbar's "Format" value changed from "Back to two days" to
+  "Two days" — the toolbar already followed Gather27's When/What/Format
+  pattern, this was just a copy fix.
+- `if-gathering.html`
+
 ## Client feedback: IF:Gathering CTA copy renames
 Renamed two phrases everywhere they appear on the page (button labels
 and headings alike, as substrings where they're part of a longer
