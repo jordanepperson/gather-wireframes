@@ -164,6 +164,20 @@ current-state sections (not its narrative history) updated too.
   item.
 - `gather-global.html`
 
+## Client feedback: email-capture opportunity in every footer
+Added a shared "Stay in the Loop" email-capture block (heading + short
+page-specific line + email input + Sign Up button) as the first element
+inside `<footer>` on all four sub-pages. Built as a new shared component
+(`.footer-email-capture`) in `css/base.css`, using the same `currentColor`
+trick as `.btn-outline` so the input border and button colors adapt
+automatically to each page's own pairing tokens — no per-page overrides
+needed. Confirmed this correctly picks up IF:Gathering's existing
+page-scoped `--btn-bg`/`--btn-text` override (light-blue/dark-blue,
+matching its "Host IF:" button) rather than the generic pairing-01
+default, which is expected, not a bug.
+- `css/base.css`, `gather-everywhere.html`, `gather-global.html`,
+  `gather-cities.html`, `if-gathering.html`
+
 ## Correction: globe should feature hosting highlights, not fixed hubs
 First pass only renamed the stat-callout caption. Client clarified: the
 globe itself should conceptually drop the "regional hub" framing (fixed,
