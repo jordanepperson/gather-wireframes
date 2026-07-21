@@ -98,6 +98,9 @@ a:hover { text-decoration-thickness: 2px; }
   align-items: center;
   justify-content: space-between;
   gap: var(--space-3);
+  padding: var(--space-4);
+  border: 1px solid color-mix(in srgb, currentColor 18%, transparent);
+  border-radius: 1.25rem;
 }
 .footer-email-capture-inner h3 { margin: 0; }
 .footer-email-capture-inner p { margin: 0.25rem 0 0; opacity: 0.8; }
