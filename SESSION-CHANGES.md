@@ -64,3 +64,16 @@ Follow-up round on the same nav work:
   widget; left as-is pending a decision on whether it's worth addressing.
 - `css/base.css`, `index.html`, `gather-everywhere.html`,
   `gather-global.html`, `gather-cities.html`, `if-gathering.html`
+
+## Client feedback: more breathing room above gather-nav
+Links felt cramped against the very top edge of the viewport. Added
+`padding-top: max(1.25rem, env(safe-area-inset-top))` to `.gather-nav`
+(up from the plain 0.6rem it shared with its other sides) — the `max()`
+also covers real device notches/safe areas, not just a flat rem value.
+
+This changed `.gather-nav`'s rendered height, so Gather Cities' hero
+full-viewport-height calc needed a third tuning pass: `calc(100vh -
+118px)` &rarr; `calc(100vh - 128px)`, re-measured live (within 0.4px of
+exact). Gather Global/IF:Gathering needed no change since their sticky
+headers already sit at `top: 0`, independent of `.gather-nav`'s height.
+- `css/base.css`, `gather-cities.html`
