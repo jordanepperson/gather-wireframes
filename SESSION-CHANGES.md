@@ -223,6 +223,28 @@ color resolves correctly on both light (dark-blue-derived) and dark
   pattern, this was just a copy fix.
 - `if-gathering.html`
 
+## Client feedback: remove "watch party"/"Gather Group" from headings & copy
+Follow-up on the button-language rule below: extended it to heading and
+paragraph copy too. Audited every remaining instance of both phrases on
+`gather-everywhere.html` and `gather-global.html` (the only two pages
+that had any) and rewrote each to use "gathering" instead — a story-card
+heading, several content-notes, a Commission-pillar paragraph, a
+how-it-works step, four FAQ questions/answers (including "What is a
+Gather Group?" &rarr; "What is a gathering?", since that FAQ existed
+specifically to define the now-retired term), and a stat-strip label
+("Gather Groups registered" &rarr; "Gatherings registered").
+
+**Deliberately left as-is, flagged for a decision**: the watch-party
+ticker's 15 data entries (`gather-global.html`'s `ITEMS` array, e.g.
+"Chayah hosted a Church Gather Group") still use "Gather Group" —
+that's a distinct multi-item content pattern modeled directly on
+gather25.com's real ticker, not a heading or paragraph, and rewriting
+all 15 entries is a bigger content decision than this pass's word
+substitutions. Say the word if you'd like those reworded too (and what
+term to use in each — "gathering" would work, but some entries read
+oddly with a straight swap, e.g. "hosted a Church gathering").
+- `gather-everywhere.html`, `gather-global.html`
+
 ## Client feedback: retire "Join"/"watch party"/"Gather Group" as button language
 Rule going forward: avoid "watch party," "Gather Group," and "Join" as
 button/CTA labels since they create confusion — "Join" can still appear
