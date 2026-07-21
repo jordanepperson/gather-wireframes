@@ -223,6 +223,24 @@ color resolves correctly on both light (dark-blue-derived) and dark
   pattern, this was just a copy fix.
 - `if-gathering.html`
 
+## Client feedback: add a What Hosts Get section to IF:Gathering
+Added the same "What Hosts Get" pattern built for Gather27 — eyebrow,
+heading, and a 2x2 grid of bordered cards (Host Guide, IF:Studies,
+Promotional Materials, A Spot on the Map) — right after the "Fire up
+the group chat" (Get Involved) section, framed top/bottom to match.
+
+CSS classes (`.how-step`, `.how-step-number`, `.host-benefits-frame`,
+`.host-benefits-grid`, `.bordered-card`) are duplicated page-scoped in
+IF:Gathering's own `<style>` block rather than shared, matching this
+codebase's existing convention (Gather27's own version lives the same
+way, page-scoped, not in `css/base.css`). Border colors adapted for
+this page's light background (`rgba(18,22,29,0.12)` vs Gather27's
+`rgba(255,250,240,0.15)`) — verified via computed styles. Card content
+is IF:Local-specific (studies/discipleship framing) rather than a copy
+of Gather27's watch-party framing. `js/sections-manifest.js` updated
+with the new section entry.
+- `if-gathering.html`, `js/sections-manifest.js`
+
 ## Client feedback: IF:Gathering CTA copy renames
 Renamed two phrases everywhere they appear on the page (button labels
 and headings alike, as substrings where they're part of a longer
