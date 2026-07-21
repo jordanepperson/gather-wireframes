@@ -873,7 +873,7 @@
         </div>
         <div class="globe-stat-edge">
           <div class="globe-stat-number">7</div>
-          <div class="globe-stat-label">Hosting highlights anchoring the relay broadcast</div>
+          <div class="globe-stat-label">Hosting highlights from around the world</div>
         </div>
       </div>
     </div>
@@ -1304,14 +1304,17 @@
     var countriesLayer = svg.append('g');
     var dotsLayer = svg.append('g');
 
+    // Illustrative hosting highlights, not an official structural list —
+    // pulled from the same real-flavored cities used in the watch-party
+    // ticker below, so the two feel like one consistent picture.
     var DOTS = [
-      { name: 'Dallas, TX (North America)', coords: [-96.80, 32.78] },
-      { name: 'Auckland (Oceania)', coords: [174.76, -36.85] },
-      { name: 'Kuala Lumpur (Asia)', coords: [101.69, 3.14] },
-      { name: 'Cluj (Eastern Europe)', coords: [23.60, 46.77] },
-      { name: 'Kigali (Africa)', coords: [30.06, -1.95] },
-      { name: 'London (Western Europe)', coords: [-0.13, 51.51] },
-      { name: 'Lima (South America)', coords: [-77.03, -12.05] }
+      { name: 'London, UK', coords: [-0.13, 51.51] },
+      { name: 'Nairobi, Kenya', coords: [36.82, -1.29] },
+      { name: 'Hong Kong', coords: [114.17, 22.32] },
+      { name: 'Geelong, Australia', coords: [144.36, -38.15] },
+      { name: 'Lubbock, Texas, USA', coords: [-101.85, 33.58] },
+      { name: 'Geneva, Switzerland', coords: [6.14, 46.20] },
+      { name: 'Villa Nueva, Guatemala', coords: [-90.59, 14.53] }
     ];
 
     d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json').then(function (world) {
