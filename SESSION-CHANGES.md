@@ -223,6 +223,23 @@ color resolves correctly on both light (dark-blue-derived) and dark
   pattern, this was just a copy fix.
 - `if-gathering.html`
 
+## Client feedback: clean up header CTAs, rebuild Partners as 2-col + accordion
+Follow-up on the round below:
+- **Header**: removed the Pray and Partner outline buttons entirely —
+  back to just Give. Added Pray to the hamburger dropdown's existing
+  "Partner" group instead (now Pray, Give, Contact Us).
+- **Partners section rebuilt** into a 2-column layout — sticky left
+  intro (eyebrow/heading/paragraph + Become a Partner and new **Pray
+  for Gather** secondary CTA) and a right column — same
+  `.partners-columns`/`.partners-sticky` pattern already used on
+  Gather27's own Partners section. The three content blocks from the
+  previous pass (Partnership Levels, The Partner Toolkit, Ways to Help)
+  are now collapsed into `<details class="faq-item">` accordion items
+  in the right column instead of always-visible stacked grids, with the
+  logo wall underneath. Verified the grid ratio, sticky behavior,
+  accordion expand, and mobile single-column collapse.
+- `gather-everywhere.html`
+
 ## Client feedback: Gather Everywhere — top-of-page CTAs + expanded Partners
 **Header quick-links**: added Pray and Partner as outline buttons flanking
 the existing Give button (nav order: Pray, Give, Partner). Both new
