@@ -223,6 +223,46 @@ color resolves correctly on both light (dark-blue-derived) and dark
   pattern, this was just a copy fix.
 - `if-gathering.html`
 
+## Client feedback: footer restructure — Support the Movement, section headings, trust badges
+Rebuilt the second footer row (previously two ad-hoc wrapping link rows
+with no labels) into a shared 3-column `.footer-links-grid`, each column
+with its own small-caps heading, on all four pages:
+- Everywhere/Cities: **Explore** (Our Story/Contact/Careers), **Follow**
+  (socials), new **Support the Movement**.
+- Gather27: **Get Involved** (Host/Find a Gathering/Partner), **Follow**,
+  new **Support the Movement**.
+- IF:Gathering: **Get Involved** (Find a Gathering/Host/Sign In),
+  **Follow**, new **Support the Movement**.
+
+**Support the Movement** (new, all four pages): Pray + Give buttons,
+plus three trust-badge placeholders (ECFA, Candid, Excellence in
+Giving) positioned right below them. Gather27's Pray button wires up
+to its existing real `modal-pray` dialog (`data-modal-open`) instead of
+a placeholder, since that page already has genuine prayer-request
+content — the other three pages use a placeholder `/pray` tooltip like
+everywhere else on the site.
+
+**Important flag on the trust badges**: ECFA, Candid, and Excellence
+in Giving accreditation seals are real third-party marks with their
+own usage/licensing requirements, and I have no way to confirm this
+client's actual verification-profile URLs for any of them. Rather than
+fabricate artwork or guess at real-looking links (which could
+misrepresent an accreditation status in a client-facing deliverable),
+each badge is a clearly-flagged dashed-border placeholder (matching
+the existing partner-logo convention) with a `data-tooltip` annotation
+and a `content-note` caption spelling out that real approved artwork +
+verified links are still needed from Whiteboard/the client. Each has an
+accessible `aria-label` describing its real intended meaning so it's
+future-proof once real assets are swapped in.
+
+Shared CSS (`.footer-links-grid`, `.footer-link-cluster`,
+`.footer-cluster-heading`, `.footer-support-buttons`,
+`.footer-trust-badges`, `.badge-placeholder`) added to `css/base.css`
+so all four pages stay visually consistent and any future page gets
+this for free.
+- `css/base.css`, `gather-everywhere.html`, `gather-global.html`,
+  `gather-cities.html`, `if-gathering.html`
+
 ## Client feedback: remove "watch party"/"Gather Group" from headings & copy
 Follow-up on the button-language rule below: extended it to heading and
 paragraph copy too. Audited every remaining instance of both phrases on
