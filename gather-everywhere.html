@@ -18,6 +18,14 @@
     margin-bottom: var(--space-2);
   }
 
+  /* Header's secondary quick-links (Pray, Partner) — hide below 700px
+     alongside the hamburger's own link list, same convention used on
+     IF:Gathering's nav, so only the primary Give CTA + hamburger stay
+     visible on narrow viewports. */
+  @media (max-width: 700px) {
+    .nav-secondary-cta { display: none; }
+  }
+
   /* Full-width rotating globe (real map data via d3-geo) + edge stat */
   .world-map-band {
     width: 100vw;
@@ -109,6 +117,67 @@
     font-family: var(--font-primary);
   }
 
+  /* Partnership levels — 3 simple tier cards */
+  .partner-tiers {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-3);
+    margin-top: var(--space-4);
+    text-align: left;
+  }
+  .partner-tier {
+    padding: var(--space-3);
+    border: 1px solid rgba(18,22,29,0.12);
+    border-radius: 1rem;
+  }
+  .partner-tier h4 { font-size: 1.05rem; margin: 0 0 0.35rem; }
+  .partner-tier p { font-size: 0.85rem; opacity: 0.75; margin: 0; }
+  @media (max-width: 700px) {
+    .partner-tiers { grid-template-columns: 1fr; }
+  }
+
+  /* Partner toolkit — reuses the same numbered-step + bordered-card
+     pattern as Gather27's/IF:Gathering's "What Hosts Get" sections. */
+  .how-step { display: flex; align-items: flex-start; gap: 0.65rem; text-align: left; }
+  .how-step-number {
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    width: 1.6rem; height: 1.6rem;
+    margin-top: 0.1rem;
+    border-radius: 50%;
+    background: var(--color-bright-blue);
+    color: var(--color-off-white);
+    font-size: 0.78rem;
+    font-weight: 700;
+    font-family: var(--font-primary);
+  }
+  .how-step h4 { font-size: 0.95rem; margin: 0 0 0.15rem; }
+  .how-step p { font-size: 0.78rem; opacity: 0.7; margin: 0; }
+  .partner-toolkit-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-3);
+    margin-top: var(--space-4);
+  }
+  .partner-toolkit-grid .how-step.bordered-card {
+    padding: var(--space-3);
+    border: 1px solid rgba(18,22,29,0.12);
+    border-radius: 1rem;
+  }
+  @media (max-width: 700px) {
+    .partner-toolkit-grid { grid-template-columns: 1fr; }
+  }
+
+  /* Ways to help — simple numbered row, distinct from the toolkit cards */
+  .partner-ways {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-4) var(--space-5);
+    margin-top: var(--space-4);
+  }
+  .partner-ways .how-step { max-width: 220px; }
+
   .nav-menu { position: relative; }
   .nav-menu-toggle {
     width: 2.75rem;
@@ -160,6 +229,7 @@
 
   /* Hero bleed image */
   .hero-image {
+    position: relative;
     width: calc(100vw - 3rem);
     margin-left: calc(50% - 50vw + 1.5rem);
     min-height: 560px;
@@ -176,6 +246,43 @@
   .hero-content { padding-block: var(--space-6); }
   @media (max-width: 700px) {
     .hero-image { min-height: 460px; }
+  }
+
+  /* Floating "Upcoming Gathering" card — a direct route to the nearest
+     real event, positioned absolute so it doesn't interfere with
+     .hero-image's own flex-centering of .hero-content. */
+  .hero-upcoming-card {
+    position: absolute;
+    right: var(--space-3);
+    bottom: var(--space-3);
+    max-width: 250px;
+    background: var(--color-off-white);
+    color: var(--color-dark-blue);
+    border-radius: 1rem;
+    padding: var(--space-3) var(--space-4);
+    box-shadow: 0 12px 32px rgba(18,22,29,0.28);
+    text-align: left;
+  }
+  .hero-upcoming-eyebrow {
+    font-family: var(--font-primary);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-bright-blue);
+    margin: 0 0 0.25rem;
+  }
+  .hero-upcoming-name { font-size: 1.1rem; margin: 0 0 0.15rem; }
+  .hero-upcoming-meta { font-size: 0.8rem; opacity: 0.7; margin: 0 0 0.75rem; }
+  .hero-upcoming-cta {
+    display: inline-block;
+    padding: 0.45rem 0.9rem;
+    font-size: 0.78rem;
+    border-color: var(--color-dark-blue);
+    color: var(--color-dark-blue);
+  }
+  @media (max-width: 700px) {
+    .hero-upcoming-card { right: var(--space-2); bottom: var(--space-2); max-width: 220px; }
   }
 
   /* Visible content notes on placeholder media — for whoever sources the real
@@ -444,7 +551,9 @@
   <nav class="site-nav container">
     <a href="index.html"><img class="logo" src="assets/gather-dark.svg" alt="Gather"></a>
     <div style="display:flex; align-items:center; gap: 0.5rem;">
+      <a class="btn btn-outline nav-secondary-cta" href="#" data-tooltip="/pray" style="color:var(--color-dark-blue); border-color:var(--color-dark-blue);">Pray</a>
       <a class="btn" href="#" data-tooltip="/give">Give</a>
+      <a class="btn btn-outline nav-secondary-cta" href="#" data-tooltip="/partners" style="color:var(--color-dark-blue); border-color:var(--color-dark-blue);">Partner</a>
       <div class="nav-menu">
         <button type="button" class="nav-menu-toggle" id="nav-menu-toggle" aria-expanded="false" aria-controls="nav-menu-panel" aria-label="Open menu">
           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 6H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M3 12H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M3 18H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
@@ -483,6 +592,13 @@
         <div style="margin-top: var(--space-4);">
           <a class="btn" href="#expressions" style="background: var(--color-off-white); color: var(--color-dark-blue);">Gather With Us</a>
         </div>
+      </div>
+
+      <div class="hero-upcoming-card">
+        <p class="hero-upcoming-eyebrow">Upcoming Gathering</p>
+        <h3 class="hero-upcoming-name">Gather · Brooklyn</h3>
+        <p class="hero-upcoming-meta">September 12 · 4 PM</p>
+        <a class="btn btn-outline hero-upcoming-cta" href="gather-cities.html">See Details</a>
       </div>
     </div>
   </section>
@@ -684,6 +800,72 @@
     <div class="container" style="text-align:center;">
       <p class="eyebrow-label" style="text-align:center; margin-inline:auto;">Partners</p>
       <h2>Gather convenes.<br>Our partners equip and send.</h2>
+      <p style="max-width:60ch; margin-inline:auto;">Partnership means joining Gather as more than a donor — walking alongside the movement as we equip local churches, broadcast to the world, and disciple the next generation. Partners are how Gather keeps convening without ever slowing down to fund itself.</p>
+    </div>
+
+    <div class="container">
+      <p class="eyebrow-label" style="text-align:center; margin-inline:auto;">Partnership Levels</p>
+      <div class="partner-tiers">
+        <div class="partner-tier">
+          <h4>Founding Partner</h4>
+          <p>Multi-year partners who help shape Gather's long-term direction, with a seat at the table for major strategic decisions.</p>
+        </div>
+        <div class="partner-tier">
+          <h4>Growth Partner</h4>
+          <p>Annual partners who fund a specific initiative or expression, from Gather27 to Gather Cities activations.</p>
+        </div>
+        <div class="partner-tier">
+          <h4>Community Partner</h4>
+          <p>Partners who give what they can, when they can, and help spread the word within their own networks.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <p class="eyebrow-label" style="text-align:center; margin-inline:auto;">The Partner Toolkit</p>
+      <div class="partner-toolkit-grid">
+        <div class="how-step bordered-card">
+          <span class="how-step-number">1</span>
+          <div><h4>Partner Portal</h4><p>A single dashboard for reporting, assets, and updates across every expression.</p></div>
+        </div>
+        <div class="how-step bordered-card">
+          <span class="how-step-number">2</span>
+          <div><h4>Co-Branded Assets</h4><p>Ready-made graphics and templates so your organization can tell the Gather story in your own voice.</p></div>
+        </div>
+        <div class="how-step bordered-card">
+          <span class="how-step-number">3</span>
+          <div><h4>Impact Reporting</h4><p>Regular updates on where your partnership is making a difference, from broadcast reach to city activations.</p></div>
+        </div>
+        <div class="how-step bordered-card">
+          <span class="how-step-number">4</span>
+          <div><h4>Direct Access</h4><p>A standing line to the Gather team for questions, ideas, and collaboration.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container" style="text-align:center;">
+      <p class="eyebrow-label" style="text-align:center; margin-inline:auto;">Ways to Help</p>
+      <div class="partner-ways">
+        <div class="how-step">
+          <span class="how-step-number">1</span>
+          <div><h4>Give Financially</h4><p>One-time or recurring gifts that fund the movement's day-to-day work.</p></div>
+        </div>
+        <div class="how-step">
+          <span class="how-step-number">2</span>
+          <div><h4>Provide In-Kind Support</h4><p>Media, production, legal, or logistics expertise donated in place of cash.</p></div>
+        </div>
+        <div class="how-step">
+          <span class="how-step-number">3</span>
+          <div><h4>Mobilize Your Network</h4><p>Introduce Gather to your own community, congregation, or company.</p></div>
+        </div>
+        <div class="how-step">
+          <span class="how-step-number">4</span>
+          <div><h4>Pray</h4><p>Cover the movement in prayer as it grows into new cities and countries.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container" style="text-align:center;">
       <div class="partner-logos" style="justify-content:center; margin-top: var(--space-3);">
         <div>Partner Logo</div><div>Partner Logo</div><div>Partner Logo</div><div>Partner Logo</div><div>Partner Logo</div>
       </div>
