@@ -112,6 +112,38 @@ current-state sections (not its narrative history) updated too.
   `gather-cities.html`, `if-gathering.html`, `css/base.css`,
   `css/tokens.css`, `js/sections-manifest.js`, `js/notes-modal.js`
 
+## Follow-up: revert Gather27's social handles, note naming decision
+- Reverted the `@gather27` social handle placeholders back to
+  `@gatherglobal` on Gather27's own footer — the one deliberate
+  exception to the rename, per explicit client direction.
+- Added a "Naming decided" note to `ONBOARDING.md`'s brand ecosystem
+  section flagging Gather27 as final, so a future session doesn't
+  mistake earlier "Gather Global" history in the logs as license to
+  reintroduce it live.
+- `gather-global.html`, `ONBOARDING.md`
+
+## Client feedback: Gather27 page content updates
+- Hero eyebrow: "Gather27 — 2027" &rarr; "A Global Gathering".
+- Every "Host a Watch Party" CTA (nav, hero info-bar, Commission pillar,
+  host-card heading + button, closing CTA — 6 instances) renamed to
+  "Host a Gathering."
+- Take Part section: added a "Watch from Anywhere" tertiary CTA
+  (`data-tooltip="/watch"`) under the Find a Gathering banner.
+- New **What Hosts Get** section, right after Take Part: Host Guide,
+  Promotional Materials, Worship Resources, A Spot on the Map — reusing
+  the existing `.how-it-works`/`.how-step` pattern. The two existing
+  "host toolkit" mentions (FAQ, worship-song caption) now link to this
+  section (`#what-hosts-get`) instead of dangling as plain text.
+  `js/sections-manifest.js` updated to match.
+- Partners section restructured: asked first, since none of the 24
+  partners were actually rendered as logo images (all identical
+  dashed-border placeholder boxes) and no real logo files exist in
+  `assets/` for YouVersion/Alpha/RightNow Media. Per Jordan's answer,
+  kept the same placeholder-box treatment for just the 4 called out
+  (IF:Gathering, YouVersion, Alpha, RightNow Media) and moved the
+  remaining 20 partners into a plain comma-separated text line below.
+- `gather-global.html`, `js/sections-manifest.js`
+
 ## Correction: the gap needed was at the bottom of gather-nav, not the top
 Follow-up screenshot showed the real problem — `.gather-nav`'s links sat
 right up against the header's rounded top corner below, not the viewport
