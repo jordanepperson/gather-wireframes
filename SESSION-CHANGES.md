@@ -198,6 +198,18 @@ specifically, so those weren't touched. Say the word if those should
 drop the "hub" framing too.
 - `gather-global.html`
 
+## Client feedback: wrap the footer email-capture in a bordered card
+Wrapped `.footer-email-capture-inner` in a soft-bordered card (padding,
+1.25rem radius, and a translucent border via `color-mix(in srgb,
+currentColor 18%, transparent)`) — first use of `color-mix()` in this
+codebase, chosen specifically because a flat `currentColor` border
+would've been too heavy/high-contrast against each page's own
+background; the translucency needed to adapt across all four pairing
+color schemes without per-page overrides. Verified computed border
+color resolves correctly on both light (dark-blue-derived) and dark
+(off-white-derived) footers.
+- `css/base.css`
+
 ## Client feedback: remove the "7 Hosting Highlights" stat card
 Removed the small floating stat card (`.globe-stat-edge`) that sat at
 the globe's edge showing the "7" number + "Hosting highlights from
