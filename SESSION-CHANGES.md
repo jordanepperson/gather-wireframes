@@ -223,6 +223,28 @@ color resolves correctly on both light (dark-blue-derived) and dark
   pattern, this was just a copy fix.
 - `if-gathering.html`
 
+## Client feedback: retire "Join"/"watch party"/"Gather Group" as button language
+Rule going forward: avoid "watch party," "Gather Group," and "Join" as
+button/CTA labels since they create confusion — "Join" can still appear
+naturally in supporting copy (headings, FAQ answers, prose).
+
+Audited every instance of all three phrases site-wide first. "Watch
+party" and "Gather Group" never actually labeled a real button (only
+headings, content-notes, FAQ Q&A, and ticker data) — already compliant,
+nothing to change. "Join" labeled exactly two real buttons, both footer
+nav links with `data-tooltip="/join"` (if-gathering.html, gather-global.html)
+— renamed both to "Find a Gathering", matching the label Gather27's own
+Get Involved section already uses for the same `/join` destination.
+Left "Join" as-is everywhere else (gather-global.html's "Join Leaders,
+Teachers..." section heading, IF:Gathering's "find and join you" prose,
+etc.) since those are supporting copy, not buttons.
+
+This directly resolves the Notes modal's own outstanding question
+("'Join' vs. 'Find': which verb should we standardize on site-wide?")
+— removed that bullet now that it's answered (Outstanding Questions:
+4 items &rarr; 3).
+- `if-gathering.html`, `gather-global.html`, `js/notes-modal.js`
+
 ## Client feedback: add Host Login to the global nav bar
 Added a "Host Login" link to the right side of the shared `.gather-nav`
 bar on all four pages, while the four expression links stay grouped on
