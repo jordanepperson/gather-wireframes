@@ -144,6 +144,26 @@ current-state sections (not its narrative history) updated too.
   remaining 20 partners into a plain comma-separated text line below.
 - `gather-global.html`, `js/sections-manifest.js`
 
+## Client feedback: refine the new Gather27 sections
+- **Watch from Anywhere**: found and fixed a real centering bug while
+  looking into this — the CTA paragraph inherits the site's global
+  `p { max-width: 60ch }` rule, which shrinks its own box narrower than
+  the container, so `text-align: center` was only centering the text
+  within an off-center box (the same "text-align + margin-inline:auto"
+  gotcha documented for eyebrow labels elsewhere on the site). Added
+  `margin-inline: auto` to actually center the box itself — verified the
+  text's bounding box now sits exactly centered in its container.
+- **What Hosts Get**: converted the 4 items from a free-flowing row into
+  a proper 2x2 grid (`.host-benefits-grid`), each wrapped in a bordered
+  card (`.bordered-card`: 1px border, rounded corners, padding). Framed
+  the whole section with matching top and bottom divider lines
+  (`.host-benefits-frame`) so it reads as bookended.
+- **Partners**: converted the plain-text partner list from one
+  comma-separated paragraph into a vertical list (one name per line,
+  thin dividers between rows), with "and more" appended as the final
+  item.
+- `gather-global.html`
+
 ## Correction: the gap needed was at the bottom of gather-nav, not the top
 Follow-up screenshot showed the real problem — `.gather-nav`'s links sat
 right up against the header's rounded top corner below, not the viewport
