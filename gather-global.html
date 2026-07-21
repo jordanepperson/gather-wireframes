@@ -278,21 +278,8 @@
   .globe-ring { position: absolute; border-radius: 50%; border: 2px solid var(--color-bright-blue); }
   .globe-ring.r1 { inset: 6%; opacity: 0.5; }
   .globe-ring.r2 { inset: -6%; opacity: 0.25; }
-  .globe-stat-edge {
-    position: absolute; right: -6%; bottom: 2%;
-    background: var(--color-off-white);
-    border-radius: 1.25rem;
-    padding: 1rem 1.25rem;
-    box-shadow: 0 10px 30px rgba(18,22,29,0.18);
-    text-align: left; max-width: 190px;
-  }
-  .globe-stat-number { font-family: var(--font-primary); font-weight: 700; font-size: 2rem; color: var(--color-bright-blue); line-height: 1; }
-  .globe-stat-label { margin-top: 0.3rem; font-size: 0.78rem; color: var(--color-dark-blue); }
   @media (max-width: 700px) {
     .globe-wrap { width: min(84vw, 340px); }
-    .globe-stat-edge { right: -2%; padding: 0.75rem 1rem; max-width: 150px; }
-    .globe-stat-number { font-size: 1.5rem; }
-    .globe-stat-label { font-size: 0.7rem; }
   }
 
   /* Watch-party ticker — floating rounded bar, inset from the viewport edges */
@@ -870,10 +857,6 @@
         <div class="globe-rings">
           <span class="globe-ring r1"></span>
           <span class="globe-ring r2"></span>
-        </div>
-        <div class="globe-stat-edge">
-          <div class="globe-stat-number">7</div>
-          <div class="globe-stat-label">Hosting highlights from around the world</div>
         </div>
       </div>
     </div>
