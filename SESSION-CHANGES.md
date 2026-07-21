@@ -223,6 +223,12 @@ color resolves correctly on both light (dark-blue-derived) and dark
   pattern, this was just a copy fix.
 - `if-gathering.html`
 
+## Client feedback: swap Give/Pray button order
+Support the Movement's two buttons now read Give, then Pray (was Pray,
+then Give) on all four pages.
+- `gather-everywhere.html`, `gather-global.html`, `gather-cities.html`,
+  `if-gathering.html`
+
 ## Client feedback: footer restructure — Support the Movement, section headings, trust badges
 Rebuilt the second footer row (previously two ad-hoc wrapping link rows
 with no labels) into a shared 3-column `.footer-links-grid`, each column
