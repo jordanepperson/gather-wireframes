@@ -81,6 +81,37 @@ change since their sticky headers already sit at `top: 0`, independent
 of `.gather-nav`'s height.
 - `css/base.css`, `gather-cities.html`
 
+## Client feedback: rename "Gather Global" to "Gather27" everywhere
+Bulk renamed every mention of "Gather Global" to "Gather27" across all
+live site files (index, all four sub-pages, shared CSS/JS) — nav links,
+headings, alt text, tag pills, FAQ copy, section labels, `<title>` tags.
+Also renamed the placeholder social handles (`@gatherglobal` &rarr;
+`@gather27`) on Gather Global's own footer for consistency.
+
+Two spots needed manual fixes after the mechanical rename, since a blind
+replace would have made them nonsensical:
+- Gather Global's footer disclaimer read "Gather27 and Gather Global are
+  part of Gather..." (two names for the same expression) &rarr; became a
+  duplicate "Gather27 and Gather27" — fixed to the singular "Gather27 is
+  part of Gather...", matching the pattern already used on IF:Gathering's
+  footer.
+- The Notes modal's Outstanding Questions had "Gather Global vs Gather27:
+  what is the final naming hierarchy?" — this instruction directly
+  resolves that question, so a blind rename would've produced "Gather27
+  vs Gather27." Removed the bullet outright rather than leave it broken
+  (Outstanding Questions: 5 items &rarr; 4).
+
+**Left untouched, flagged for a decision**: this rename did not touch
+`ONBOARDING.md` or `SESSION-CHANGES.md` itself — both are historical/
+reference logs describing what was true *at the time of writing* (e.g.
+past commits, past session states), and rewriting "Gather Global" to
+"Gather27" retroactively in those would misrepresent when the naming
+actually changed. Say the word if you'd like `ONBOARDING.md`'s
+current-state sections (not its narrative history) updated too.
+- `index.html`, `gather-everywhere.html`, `gather-global.html`,
+  `gather-cities.html`, `if-gathering.html`, `css/base.css`,
+  `css/tokens.css`, `js/sections-manifest.js`, `js/notes-modal.js`
+
 ## Correction: the gap needed was at the bottom of gather-nav, not the top
 Follow-up screenshot showed the real problem — `.gather-nav`'s links sat
 right up against the header's rounded top corner below, not the viewport
