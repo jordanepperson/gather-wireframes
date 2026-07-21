@@ -29,3 +29,38 @@ are two sticky bars instead of one:
   proportions as before.
 - `css/base.css`, `gather-everywhere.html`, `gather-global.html`,
   `gather-cities.html`, `if-gathering.html`
+
+## Client feedback: remove wireframe utility bar, gather-nav becomes non-sticky
+Follow-up round on the same nav work:
+- Removed `.site-utility-bar` entirely (all 4 sub-pages) — its sibling-page
+  logos were already superseded by `.gather-nav`, and Home/Notes needed a
+  new home anyway.
+- Home + Notes now live in a new `.corner-cluster`: fixed to the bottom-left
+  corner, tight 8px gap, both buttons standardized to the same 36px height.
+- Voiceover button removed outright — both the copy that lived in the old
+  utility bar and the one on the index page (`index.html`'s "Watch Voice
+  Over (27 min)" link is gone).
+- `.gather-nav` is no longer sticky — it now scrolls away with the page.
+- New "layer" effect: each page's own header (`.page-top-layer`) gets a
+  negative top margin + rounded top corners, so it visually sits as a card
+  on top of `.gather-nav`'s dark band, revealing a sliver of that band's
+  color peeking through the two top corners. Gather Global's header
+  background is nearly the same dark as the band, so it also gets an
+  explicit 1px border (top/left/right) to make the rounded edge visible —
+  the other three pages' off-white headers already contrast enough on
+  their own.
+- Reverted Gather Global's `.sticky-nav` and IF:Gathering's `.site-header`
+  sticky `top` offset back to `0` (no longer any sticky bar above them to
+  clear, since `.gather-nav` isn't sticky anymore).
+- Re-tuned Gather Cities' `.hero-top` full-viewport-height calc from
+  `calc(100vh - 143px)` down to `calc(100vh - 118px)`, measured live —
+  the header's negative-margin overlap with `.gather-nav` changes the
+  actual in-flow height above the hero, so the constant needed a second
+  correction pass (verified to within 0.1px of the exact viewport height).
+- Known trade-off, flagged rather than "fixed": since `.corner-cluster` is
+  `position: fixed`, it can overlap real page content depending on scroll
+  position — confirmed on IF:Gathering's mobile view, where it briefly
+  sits over part of the hero-info-bar. Inherent to any fixed corner
+  widget; left as-is pending a decision on whether it's worth addressing.
+- `css/base.css`, `index.html`, `gather-everywhere.html`,
+  `gather-global.html`, `gather-cities.html`, `if-gathering.html`
