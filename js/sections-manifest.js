@@ -54,6 +54,7 @@ window.GATHER_SECTIONS = {
       { id: 'hero', label: 'Hero' },
       { id: 'what-it-is', label: 'What It Is' },
       { id: 'get-involved', label: 'Get Involved' },
+      { id: 'what-hosts-get', label: 'What Hosts Get' },
       { id: 'leaders', label: 'Leaders' },
       { id: 'proof', label: 'Stories' },
       { id: 'connect', label: 'Other Ways to Connect' },

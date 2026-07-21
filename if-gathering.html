@@ -291,6 +291,45 @@
   .attend-tier p { margin-inline: auto; font-size: 0.9rem; opacity: 0.8; }
   .attend-tier .attend-link { color: var(--color-dark-blue); font-weight: 700; text-decoration: underline; }
 
+  /* What Hosts Get — same pattern as Gather27's: framed top/bottom to
+     match, 2x2 grid of bordered cards. Light-background border colors
+     here since this page is pairing-01, unlike Gather27's dark bg. */
+  .how-step { display: flex; align-items: flex-start; gap: 0.65rem; max-width: 240px; text-align: left; }
+  .how-step-number {
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    width: 1.6rem; height: 1.6rem;
+    margin-top: 0.1rem;
+    border-radius: 50%;
+    background: var(--color-bright-blue);
+    color: var(--color-off-white);
+    font-size: 0.78rem;
+    font-weight: 700;
+    font-family: var(--font-primary);
+  }
+  .how-step h4 { font-size: 0.95rem; margin: 0 0 0.15rem; }
+  .how-step p { font-size: 0.78rem; opacity: 0.7; margin: 0; }
+  .host-benefits-frame {
+    border-top: 1px solid rgba(18,22,29,0.12);
+    border-bottom: 1px solid rgba(18,22,29,0.12);
+    padding-block: var(--space-4);
+  }
+  .host-benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-3);
+    margin-top: var(--space-4);
+  }
+  .how-step.bordered-card {
+    max-width: none;
+    padding: var(--space-3);
+    border: 1px solid rgba(18,22,29,0.12);
+    border-radius: 1rem;
+  }
+  @media (max-width: 700px) {
+    .host-benefits-grid { grid-template-columns: 1fr; }
+  }
+
   .leader-card { text-align:center; background:none; border:none; font:inherit; color:inherit; padding:0; cursor:pointer; }
   .leader-card .avatar {
     width: 88px; height: 88px; border-radius:50%;
@@ -579,6 +618,33 @@
 
         <div class="attend-tier">
           <p>Want to join us in Dallas? <a href="#" class="attend-link" data-tooltip="/tickets">Get Tickets Here</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="what-hosts-get" class="pairing-01">
+    <div class="container host-benefits-frame">
+      <p class="eyebrow-label" style="text-align:center; margin-inline:auto;">What Hosts Get</p>
+      <h2 class="serif-heading" style="text-align:center;">Everything you need, ready to go</h2>
+      <p style="text-align:center; margin-inline:auto; max-width:52ch;">Hosting is simple — we hand you the toolkit so you can focus on your people.</p>
+
+      <div class="host-benefits-grid">
+        <div class="how-step bordered-card">
+          <span class="how-step-number">1</span>
+          <div><h4>Host Guide</h4><p>A simple step-by-step guide for leading your IF:Local, from your first gathering to your last.</p></div>
+        </div>
+        <div class="how-step bordered-card">
+          <span class="how-step-number">2</span>
+          <div><h4>IF:Studies</h4><p>Guided studies to walk your group through Scripture together, session by session.</p></div>
+        </div>
+        <div class="how-step bordered-card">
+          <span class="how-step-number">3</span>
+          <div><h4>Promotional Materials</h4><p>Invite graphics and a simple sign-up page, ready to share with your people.</p></div>
+        </div>
+        <div class="how-step bordered-card">
+          <span class="how-step-number">4</span>
+          <div><h4>A Spot on the Map</h4><p>Your IF:Local listed so people nearby can find and join you.</p></div>
         </div>
       </div>
     </div>
