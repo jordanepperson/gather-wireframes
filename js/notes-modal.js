@@ -38,7 +38,6 @@
         '<strong>Host Hub:</strong> Is there a single, consolidated "host" hub across expressions, or does each expression keep its own separate hosting flow? (per Matt\'s audit)',
         '<strong>Sub-Brands:</strong> Where do Everybody Everywhere and Gather Worship fit into the ecosystem?',
         '<strong>Gather Cities Pitch:</strong> What\'s the value pitch to churches for Gather Cities? What do pastors get out of hosting?',
-        '<strong>"Join" vs. "Find":</strong> which verb should we standardize on site-wide?',
       ],
     },
     {
