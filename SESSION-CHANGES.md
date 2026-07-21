@@ -223,6 +223,16 @@ color resolves correctly on both light (dark-blue-derived) and dark
   pattern, this was just a copy fix.
 - `if-gathering.html`
 
+## Client feedback: add Host Login to the global nav bar
+Added a "Host Login" link to the right side of the shared `.gather-nav`
+bar on all four pages, while the four expression links stay grouped on
+the left (`margin-left: auto` on the new `.gather-nav-login` link).
+Placeholder `href="#"` with a `/host-login` tooltip, consistent with
+the site's tooltip-only-placeholder-links convention. Verified via
+layout measurements and screenshots on all four pages.
+- `css/base.css`, `gather-everywhere.html`, `gather-global.html`,
+  `gather-cities.html`, `if-gathering.html`
+
 ## Client feedback: add a What Hosts Get section to IF:Gathering
 Added the same "What Hosts Get" pattern built for Gather27 — eyebrow,
 heading, and a 2x2 grid of bordered cards (Host Guide, IF:Studies,
