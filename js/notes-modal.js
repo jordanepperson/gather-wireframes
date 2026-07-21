@@ -10,7 +10,7 @@
         '<strong>Copy Disclaimer:</strong> All wireframes have been planned and pored over by the Whiteboard team. Headlines have been lightly drafted for clarity of intent, and tone of voice. Paragraph messaging has been Claude Generated as directional placeholder. All messaging is meant to be directional for copywriting and editing by Jersey Road.',
         '<strong>Subpages:</strong> These landing pages aren\'t meant to hold everything themselves. This approach assumes some necessary sub-pages, outlined below.',
         '<strong>Content Flow:</strong> The content flow, per our discussion and Matt\'s audit, is to clearly answer: what is it, what does it mean for me, what\'s the action I need to take. Roughly in that order. It creates a flow from understanding &rarr; meaning &rarr; action. With a central, focused CTA per page.',
-        '<strong>Nav:</strong> Reminder that Gather Everywhere &amp; Gather Cities will be on the same domain. They will share a navigation. IF:Gathering &amp; Gather Global retain their own navigation. However, in the interest of establishing clear relational lines between each brand expression, we are recommending a consistent branded watermark to go in each footer that shows all the brand expressions in symphony. Each will route to their respective pages.',
+        '<strong>Nav:</strong> Reminder that Gather Everywhere &amp; Gather Cities will be on the same domain. They will share a navigation. IF:Gathering &amp; Gather27 retain their own navigation. However, in the interest of establishing clear relational lines between each brand expression, we are recommending a consistent branded watermark to go in each footer that shows all the brand expressions in symphony. Each will route to their respective pages.',
       ],
     },
     {
@@ -25,7 +25,7 @@
     {
       page: 'Strategy Considerations',
       items: [
-        '<strong>Gather Everywhere Ministry Pages:</strong> Let\'s talk about the trade offs for having ministry subpages on Gather Everywhere vs linking directly out to Gather Global, IF:Gathering, and Jennie Allen.',
+        '<strong>Gather Everywhere Ministry Pages:</strong> Let\'s talk about the trade offs for having ministry subpages on Gather Everywhere vs linking directly out to Gather27, IF:Gathering, and Jennie Allen.',
         '<strong>IF:Gathering Media:</strong> Let\'s bias toward IF:Local content specifically as the primary expression of the event. The broadcast is the product, but the local environment is the experience.',
         '<strong>CTA Hierarchy:</strong> Gather Everywhere is now partner- and donor-focused, so Give CTAs move to Gather Everywhere, and group CTAs move to their respective events so both sit in context with their respective audiences.',
         '<strong>Jennie Allen Positioning:</strong> The most recent brand guides we received moved Jennie Allen Ministries as an adjacent brand. Let\'s talk about whether the current treatment of Jennie\'s intro on Gather Everywhere, and her position in the footer watermark solve for that new relationship.',
@@ -35,7 +35,6 @@
     {
       page: 'Outstanding Questions',
       items: [
-        '<strong>Gather Global vs Gather27:</strong> what is the final naming hierarchy?',
         '<strong>Host Hub:</strong> Is there a single, consolidated "host" hub across expressions, or does each expression keep its own separate hosting flow? (per Matt\'s audit)',
         '<strong>Sub-Brands:</strong> Where do Everybody Everywhere and Gather Worship fit into the ecosystem?',
         '<strong>Gather Cities Pitch:</strong> What\'s the value pitch to churches for Gather Cities? What do pastors get out of hosting?',
@@ -47,7 +46,7 @@
       items: [
         '<strong>Gather Everywhere:</strong> /our-story, /careers, /give, /our-partners, /contact, /jennie-allen, plus possible ministry landers.',
         '<strong>Gather Cities:</strong> none planned — self-contained as a single lander.',
-        '<strong>Gather Global:</strong> /host, /join, /partner, plus an external link to Gather Worship.',
+        '<strong>Gather27:</strong> /host, /join, /partner, plus an external link to Gather Worship.',
         '<strong>IF:Gathering:</strong> /host, /join, /attend (or /tickets?), /on-demand.',
       ],
     },

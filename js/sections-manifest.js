@@ -17,7 +17,7 @@ window.GATHER_SECTIONS = {
     ],
   },
   'gather-global': {
-    label: 'Gather Global (Gather27)',
+    label: 'Gather27',
     file: 'gather-global.html',
     sections: [
       { id: 'hero', label: 'Hero' },
