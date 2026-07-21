@@ -54,7 +54,7 @@
   /* Sticky header — single nav row, own established nav shape (not
      byte-identical to Everywhere/Cities), per the build-context doc's
      explicit navigation call-out for this page. */
-  .site-header { position: sticky; top: 100px; z-index: 100; background: rgba(255,250,240,0.92); backdrop-filter: blur(6px); border-bottom: 1px solid rgba(18,22,29,0.08); } /* sits below the shared .site-utility-bar + .gather-nav */
+  .site-header { position: sticky; top: 0; z-index: 100; background: rgba(255,250,240,0.92); backdrop-filter: blur(6px); border-bottom: 1px solid rgba(18,22,29,0.08); } /* .gather-nav above it is no longer sticky, so this pins to the real viewport top */
 
   /* Mobile nav — 5 links + 2 buttons is more nav than any other page here,
      so at narrow widths the plain inline links get tucked behind a
@@ -447,20 +447,11 @@
 </head>
 <body data-page="if-gathering">
 
-<div class="site-utility-bar">
-  <div class="site-utility-bar-start">
-    <a href="index.html" class="home-link" aria-label="Back to index">
-      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 11L12 3L21 11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 10V20H19V10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </a>
-    <button type="button" class="notes-btn" data-open-notes>Notes</button>
-    <a href="https://supercut.ai/share/whiteboard/Hytho3Ky4T9nLHWlD0bpGq" class="voiceover-btn" id="voiceover-link" target="_blank" rel="noopener">Voiceover</a>
-  </div>
-  <div class="site-logos">
-    <a href="gather-everywhere.html">Gather Everywhere</a>
-    <a href="gather-global.html">Gather Global</a>
-    <a href="gather-cities.html">Gather Cities</a>
-    <a href="if-gathering.html" class="current">IF:Gathering</a>
-  </div>
+<div class="corner-cluster">
+  <a href="index.html" class="home-link" aria-label="Back to index">
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 11L12 3L21 11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 10V20H19V10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </a>
+  <button type="button" class="notes-btn" data-open-notes>Notes</button>
 </div>
 
 <nav class="gather-nav" aria-label="Gather ecosystem navigation">
@@ -470,7 +461,7 @@
   <a href="if-gathering.html" class="current">IF:Gathering</a>
 </nav>
 
-<header class="site-header pairing-01">
+<header class="site-header pairing-01 page-top-layer">
   <nav class="site-nav container">
     <img src="assets/if-gathering-dark.svg" alt="IF:Gathering" style="height:24px; width:auto;">
     <ul class="links">

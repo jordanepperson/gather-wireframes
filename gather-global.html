@@ -57,12 +57,16 @@
 
   .sticky-nav {
     position: sticky;
-    top: 100px; /* sits below the shared .site-utility-bar + .gather-nav */
+    top: 0; /* .gather-nav above it is no longer sticky, so this pins to the real viewport top */
     z-index: 100;
     backdrop-filter: blur(6px);
     background: rgba(18,22,29,0.9);
   }
   .sticky-nav .site-nav { border-bottom: 1px solid rgba(255,250,240,0.1); }
+  /* .page-top-layer's rounded-corner "peek" over .gather-nav's dark band
+     is invisible here otherwise — this header's own background is nearly
+     the same dark as the band, so the corner reveal needs a visible edge. */
+  .sticky-nav.page-top-layer { border: 1px solid rgba(255,250,240,0.18); border-bottom: none; }
 
   /* Hero info bar — floating, inset from the viewport edge */
   .hero-info-bar {
@@ -604,20 +608,11 @@
 </head>
 <body data-page="gather-global">
 
-<div class="site-utility-bar">
-  <div class="site-utility-bar-start">
-    <a href="index.html" class="home-link" aria-label="Back to index">
-      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 11L12 3L21 11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 10V20H19V10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </a>
-    <button type="button" class="notes-btn" data-open-notes>Notes</button>
-    <a href="https://supercut.ai/share/whiteboard/Hytho3Ky4T9nLHWlD0bpGq" class="voiceover-btn" id="voiceover-link" target="_blank" rel="noopener">Voiceover</a>
-  </div>
-  <div class="site-logos">
-    <a href="gather-everywhere.html">Gather Everywhere</a>
-    <a href="gather-global.html" class="current">Gather Global</a>
-    <a href="gather-cities.html">Gather Cities</a>
-    <a href="if-gathering.html">IF:Gathering</a>
-  </div>
+<div class="corner-cluster">
+  <a href="index.html" class="home-link" aria-label="Back to index">
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 11L12 3L21 11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 10V20H19V10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </a>
+  <button type="button" class="notes-btn" data-open-notes>Notes</button>
 </div>
 
 <nav class="gather-nav" aria-label="Gather ecosystem navigation">
@@ -627,7 +622,7 @@
   <a href="if-gathering.html">IF:Gathering</a>
 </nav>
 
-<header class="sticky-nav">
+<header class="sticky-nav page-top-layer">
   <div class="lang-bar">
     <div class="container lang-bar-inner" style="color: var(--color-off-white);">
       <span aria-hidden="true" style="font-size:0.85rem;">🌐</span>

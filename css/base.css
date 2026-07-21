@@ -219,116 +219,69 @@ a:hover { text-decoration-thickness: 2px; }
   border-radius: 0.5rem;
 }
 
-/* Shared top utility bar — every sub-page's replacement for the old
-   floating back-to-index button: a home icon, a Notes button (opens the
-   shared notes modal, see js/notes-modal.js), and small logo links to
-   the other three expressions. Deliberately page-agnostic (dark, neutral)
-   since it sits above each page's own branded/colored header. */
-.site-utility-bar {
-  position: sticky;
-  top: 0;
+/* Floating Home + Notes cluster — bottom-left corner, all four sub-pages.
+   Replaces the old .site-utility-bar (wireframe-review-only chrome: a full
+   sticky strip with Home/Notes/Voiceover + sibling-page logos). The logos
+   role is now covered by the real .gather-nav below; Voiceover is dropped
+   entirely; Home + Notes move here as a tight floating pair instead. */
+.corner-cluster {
+  position: fixed;
+  left: var(--space-3);
+  bottom: var(--space-3);
   z-index: 150;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: var(--space-3);
-  padding: 0.65rem var(--space-3);
-  background: var(--color-dark-blue);
-  border-bottom: 1px solid rgba(255,250,240,0.15);
+  gap: 8px;
 }
-.site-utility-bar-start { display: flex; align-items: center; gap: var(--space-2); flex-shrink: 0; }
-.site-utility-bar .home-link {
+.corner-cluster .home-link {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 2rem;
-  height: 2rem;
+  width: 2.25rem;
+  height: 2.25rem;
   border-radius: 50%;
   background: var(--color-bright-blue);
   color: var(--color-off-white);
   opacity: 0.9;
   transition: opacity 0.15s ease;
   flex-shrink: 0;
+  box-shadow: 0 4px 16px rgba(18,22,29,0.25);
 }
-.site-utility-bar .home-link:hover { opacity: 1; }
+.corner-cluster .home-link:hover { opacity: 1; }
 /* max-width:none overrides base.css's blanket `img, svg { max-width:100% }`
    — that percentage can't resolve cleanly against a flex item's own
    indeterminate width and was collapsing this icon's width to 0 (height,
    the cross-axis dimension, rendered fine — only width broke). */
-.site-utility-bar .home-link svg { width: 1rem; height: 1rem; max-width: none; flex-shrink: 0; }
-.site-utility-bar .notes-btn,
-.site-utility-bar .voiceover-btn {
+.corner-cluster .home-link svg { width: 1rem; height: 1rem; max-width: none; flex-shrink: 0; }
+.corner-cluster .notes-btn {
+  display: inline-flex;
+  align-items: center;
+  height: 2.25rem;
   background: var(--color-bright-blue);
   color: var(--color-off-white);
   border: none;
   border-radius: 999px;
-  padding: 0.35rem 0.9rem;
+  padding-inline: 1rem;
   font-size: 0.78rem;
   font-weight: 700;
   font-family: var(--font-primary);
   cursor: pointer;
-  flex-shrink: 0;
   white-space: nowrap;
-  text-decoration: none;
-  display: inline-block;
-}
-.site-utility-bar .voiceover-btn {
-  background: transparent;
-  border: 1px solid rgba(255,250,240,0.4);
-  color: var(--color-off-white);
-}
-.site-utility-bar .site-logos { display: flex; align-items: center; gap: var(--space-4); flex-shrink: 0; }
-.site-utility-bar .site-logos a {
-  display: flex;
-  align-items: center;
-  opacity: 0.7;
-  transition: opacity 0.15s ease;
-  flex-shrink: 0;
-  padding-block: 0.2rem;
-  position: relative;
-  color: var(--color-off-white);
-  font-family: var(--font-primary);
-  font-size: 0.78rem;
-  font-weight: 700;
-  white-space: nowrap;
-  text-decoration: none;
-}
-.site-utility-bar .site-logos a:hover { opacity: 1; }
-/* Current-page indicator: a little more breathing room top/bottom, full
-   opacity (not dimmed like the other three), and a small dot underneath. */
-.site-utility-bar .site-logos a.current { opacity: 1; padding-block: 0.35rem; }
-.site-utility-bar .site-logos a.current::after {
-  content: "";
-  position: absolute;
-  bottom: -2px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: var(--color-off-white);
-}
-@media (max-width: 500px) {
-  .site-utility-bar { overflow-x: auto; }
+  box-shadow: 0 4px 16px rgba(18,22,29,0.25);
 }
 
-/* Real global ecosystem nav — ships as part of the actual site, unlike
-   .site-utility-bar above (that one's wireframe-review-only tooling: Home/
-   Notes/Voiceover, gone once this is delivered). Sits between the utility
-   bar and each page's own branded header. Deliberately neutral/dark so it
-   reads as "the ecosystem," not any one expression's own color pairing —
-   and deliberately plain text with an underline current-indicator (not the
-   utility bar's dot) so review tooling and real product don't look alike. */
+/* Real global ecosystem nav — ships as part of the actual site. Sits
+   between the floating corner cluster's page and each page's own branded
+   header (see .page-top-layer below). Deliberately neutral/dark so it
+   reads as "the ecosystem," not any one expression's own color pairing.
+   Not sticky — scrolls away with the page, on purpose, so its dark band
+   can double as the "layer underneath" the rounded header sitting on it. */
 .gather-nav {
-  position: sticky;
-  top: 54px; /* sits just below .site-utility-bar's measured height */
-  z-index: 140;
   display: flex;
   align-items: center;
   gap: var(--space-4);
   padding: 0.6rem var(--space-3);
   background: var(--color-dark-blue);
-  border-bottom: 1px solid rgba(255,250,240,0.1);
 }
 .gather-nav a {
   color: var(--color-off-white);
@@ -346,6 +299,20 @@ a:hover { text-decoration-thickness: 2px; }
 .gather-nav a.current { opacity: 1; border-bottom-color: var(--color-bright-blue); }
 @media (max-width: 500px) {
   .gather-nav { overflow-x: auto; }
+}
+
+/* Each page's own header sits as a rounded "layer" on top of .gather-nav's
+   band: a negative top margin pulls it up to overlap the band, and rounded
+   top corners leave a sliver of the band's dark color peeking through at
+   the two top corners — reads as the header floating on the ecosystem nav
+   underneath it. (Gather Global adds its own border on top of this, since
+   its header background is nearly the same dark as the band and the
+   corner reveal wouldn't otherwise be visible — see its own <style>.) */
+.page-top-layer {
+  position: relative;
+  margin-top: -1.5rem;
+  border-top-left-radius: 1.5rem;
+  border-top-right-radius: 1.5rem;
 }
 
 /* Shared notes modal — injected by js/notes-modal.js on every page that
