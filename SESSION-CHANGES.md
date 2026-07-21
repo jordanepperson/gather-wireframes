@@ -184,6 +184,15 @@ specifically, so those weren't touched. Say the word if those should
 drop the "hub" framing too.
 - `gather-global.html`
 
+## Client feedback: remove the "7 Hosting Highlights" stat card
+Removed the small floating stat card (`.globe-stat-edge`) that sat at
+the globe's edge showing the "7" number + "Hosting highlights from
+around the world" label. Deleted the markup and its now-dead CSS
+(`.globe-stat-edge`, `.globe-stat-number`, `.globe-stat-label` — none
+used elsewhere in this file). The globe itself and its 7 hosting-
+highlight dots/labels are unaffected.
+- `gather-global.html`
+
 ## Correction: the gap needed was at the bottom of gather-nav, not the top
 Follow-up screenshot showed the real problem — `.gather-nav`'s links sat
 right up against the header's rounded top corner below, not the viewport
