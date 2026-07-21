@@ -66,14 +66,17 @@ Follow-up round on the same nav work:
   `gather-global.html`, `gather-cities.html`, `if-gathering.html`
 
 ## Client feedback: more breathing room above gather-nav
-Links felt cramped against the very top edge of the viewport. Added
-`padding-top: max(1.25rem, env(safe-area-inset-top))` to `.gather-nav`
-(up from the plain 0.6rem it shared with its other sides) — the `max()`
-also covers real device notches/safe areas, not just a flat rem value.
+Links felt cramped against the very top edge of the viewport. First
+pass added `padding-top: max(1.25rem, env(safe-area-inset-top))` to
+`.gather-nav` (20px) — still looked cramped in a follow-up screenshot,
+so bumped it again to `calc(2rem + env(safe-area-inset-top, 0px))`
+(32px), which reads as a clearly visible gap now.
 
-This changed `.gather-nav`'s rendered height, so Gather Cities' hero
-full-viewport-height calc needed a third tuning pass: `calc(100vh -
-118px)` &rarr; `calc(100vh - 128px)`, re-measured live (within 0.4px of
-exact). Gather Global/IF:Gathering needed no change since their sticky
-headers already sit at `top: 0`, independent of `.gather-nav`'s height.
+Each height change cascaded into Gather Cities' hero full-viewport-height
+calc, since `.gather-nav` isn't sticky and its height is part of the
+in-flow space above the hero — this went through two more tuning passes
+this round (`118px` &rarr; `128px` &rarr; `140px`), each re-measured live
+and landing within 0.4px of exact. Gather Global/IF:Gathering needed no
+change since their sticky headers already sit at `top: 0`, independent
+of `.gather-nav`'s height.
 - `css/base.css`, `gather-cities.html`
