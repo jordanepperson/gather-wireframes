@@ -80,3 +80,16 @@ and landing within 0.4px of exact. Gather Global/IF:Gathering needed no
 change since their sticky headers already sit at `top: 0`, independent
 of `.gather-nav`'s height.
 - `css/base.css`, `gather-cities.html`
+
+## Correction: the gap needed was at the bottom of gather-nav, not the top
+Follow-up screenshot showed the real problem — `.gather-nav`'s links sat
+right up against the header's rounded top corner below, not the viewport
+edge above. The two earlier top-padding passes were fixing the wrong
+side. Added `padding-bottom: 2rem` to `.gather-nav` (previously the
+shorthand's plain 0.6rem) so there's a clear dark band visible between
+the links and the header card's rounded edge, regardless of the header's
+-1.5rem overlap eating into it.
+
+Cascaded into a fourth tuning pass on Gather Cities' hero calc (`140px`
+&rarr; `163px`), re-measured live and landing within 0.3px of exact.
+- `css/base.css`, `gather-cities.html`
