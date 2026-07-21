@@ -223,6 +223,45 @@ color resolves correctly on both light (dark-blue-derived) and dark
   pattern, this was just a copy fix.
 - `if-gathering.html`
 
+## Client feedback: Gather Everywhere — top-of-page CTAs + expanded Partners
+**Header quick-links**: added Pray and Partner as outline buttons flanking
+the existing Give button (nav order: Pray, Give, Partner). Both new
+buttons hide below 700px alongside the hamburger's link list (same
+convention as IF:Gathering's nav), so only Give + hamburger stay visible
+on mobile.
+
+**Floating "Upcoming Gathering" hero card**: a direct route to the
+nearest real event across the ecosystem — Gather Cities' Brooklyn
+activation (Sept 12, 4 PM), the one confirmed real near-term date
+already established elsewhere in this codebase, linking through to
+`gather-cities.html`. Positioned absolute within `.hero-image` (so it
+doesn't interfere with the image's own flex-centering of the headline).
+Caught and fixed a real collision during verification: the card's
+initial bottom-left placement overlapped the fixed Home/Notes
+corner-cluster (both anchor to the same screen corner) — moved it to
+bottom-right instead, at both desktop and mobile breakpoints, since the
+corner-cluster is always bottom-left.
+
+**Partners section overhaul** — was just a logo wall + one CTA, now
+explains:
+- *What partnership means* — new intro paragraph under the existing
+  heading.
+- *Partnership levels* — 3 tier cards (Founding/Growth/Community
+  Partner), directional copy pending real tier structure from the client.
+- *The partner toolkit* — 4 bordered cards (Partner Portal, Co-Branded
+  Assets, Impact Reporting, Direct Access), reusing the same
+  numbered-card pattern as Gather27's/IF:Gathering's "What Hosts Get"
+  sections (page-scoped CSS copy, not shared, matching that existing
+  precedent).
+- *Ways to help* — 4-item numbered row (Give Financially, Provide
+  In-Kind Support, Mobilize Your Network, Pray), visually distinct from
+  the toolkit cards (no borders) so "what partners get" and "what
+  partners can do" don't blur together.
+
+Existing partner-logo wall and "Become a Partner" CTA kept as-is at the
+end of the section.
+- `gather-everywhere.html`
+
 ## Client feedback: swap Give/Pray button order
 Support the Movement's two buttons now read Give, then Pray (was Pray,
 then Give) on all four pages.
