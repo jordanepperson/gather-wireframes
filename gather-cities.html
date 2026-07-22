@@ -298,18 +298,6 @@
   .how-step h4 { margin: 0; font-size: 1.2rem; }
   .how-step p { font-size: 0.92rem; opacity: 0.9; margin: 0; }
 
-  /* Readiness form — asks a few qualifying questions before "Start the
-     Conversation," rather than a bare inquiry form. */
-  .readiness-form { text-align: left; margin-top: var(--space-6); }
-  .readiness-form .field-label {
-    display: block;
-    font-size: 0.8rem;
-    font-weight: 600;
-    opacity: 0.85;
-    margin-bottom: 0.35rem;
-  }
-  .readiness-form .field-group { margin-bottom: var(--space-3); }
-
   /* Feature block — content now shows Dallas (swapped from Brooklyn); the
      .brooklyn-feature class name was left as-is to avoid a purely
      cosmetic rename across the file. Date/venue are TBD placeholders
@@ -375,52 +363,6 @@
     display: block;
   }
   .proof-stat p { margin-top: var(--space-2); }
-
-  /* Cities-in-Action reel (documentary/grassroots take on the Moments-reel pattern) */
-  .reel-banner {
-    display: inline-flex; align-items: center; gap: 0.5rem;
-    font-size: 0.75rem; font-weight: 600;
-    background: var(--color-light-blue); color: var(--color-dark-blue);
-    border-radius: 999px; padding: 0.35rem 0.9rem;
-    margin-bottom: var(--space-2);
-  }
-  .reel-wrap { position: relative; margin-top: var(--space-4); }
-  .reel-row {
-    display: flex; gap: var(--space-3);
-    overflow-x: auto;
-    padding-bottom: var(--space-2);
-    scroll-snap-type: x proximity;
-    scrollbar-width: none;
-  }
-  .reel-row::-webkit-scrollbar { display: none; }
-  .reel-card { position: relative; flex: 0 0 auto; width: 210px; aspect-ratio: 9/16; border-radius: 1.25rem; overflow: hidden; scroll-snap-align: start; }
-  .reel-media { position: absolute; inset: 0; display: flex; align-items: flex-start; padding: var(--space-2); background: linear-gradient(160deg, var(--color-dark-blue), var(--color-bright-blue) 75%); }
-  .reel-card:nth-child(2) .reel-media { background: linear-gradient(200deg, var(--color-bright-blue), var(--color-dark-blue) 130%); }
-  .reel-card:nth-child(3) .reel-media { background: linear-gradient(160deg, var(--color-light-blue), var(--color-bright-blue) 70%); }
-  .reel-card:nth-child(4) .reel-media { background: linear-gradient(200deg, var(--color-dark-blue), var(--color-bright-blue) 130%); }
-  .reel-card:nth-child(5) .reel-media { background: linear-gradient(160deg, var(--color-light-blue), var(--color-bright-blue) 70%); }
-  .reel-card:nth-child(6) .reel-media { background: linear-gradient(140deg, var(--color-dark-blue), var(--color-bright-blue) 85%); }
-  .reel-media .content-note { max-width: 100%; }
-  .reel-play {
-    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-    width: 3rem; height: 3rem; border-radius: 50%;
-    background: rgba(255,250,240,0.92); color: var(--color-bright-blue);
-    display: flex; align-items: center; justify-content: center; padding-left: 2px;
-  }
-  .reel-caption { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; padding: var(--space-3); background: linear-gradient(to top, rgba(18,22,29,0.92) 30%, transparent); }
-  .reel-caption .tag-pill { display: inline-block; font-family: var(--font-primary); font-size: 0.62rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; padding: 0.22rem 0.55rem; border-radius: 999px; background: var(--color-off-white); color: var(--color-dark-blue); margin-bottom: 0.5rem; }
-  .reel-caption h3 { font-family: var(--font-secondary); font-style: normal; font-weight: 400; font-size: 0.95rem; line-height: 1.25; margin: 0; color: var(--color-off-white); }
-  @media (max-width: 700px) { .reel-card { width: 165px; } }
-  .reel-nav {
-    position: absolute; top: 50%; transform: translateY(-50%);
-    width: 2.4rem; height: 2.4rem; border-radius: 50%; border: none;
-    background: var(--color-dark-blue); color: var(--color-off-white);
-    cursor: pointer; display: flex; align-items: center; justify-content: center;
-    box-shadow: 0 4px 14px rgba(18,22,29,0.3); z-index: 5;
-  }
-  .reel-nav.prev { left: -0.75rem; }
-  .reel-nav.next { right: -0.75rem; }
-  @media (max-width: 700px) { .reel-nav.prev { left: 0.25rem; } .reel-nav.next { right: 0.25rem; } }
 
   /* Big closing CTA band — bright blue now, continuous with the footer
      right below it; heading/inputs re-tuned for that lighter background */
@@ -657,35 +599,12 @@
           </div>
         </div>
 
-        <form class="cta-form readiness-form">
-          <div class="field-group">
-            <input type="text" placeholder="Church name">
-          </div>
-          <div class="field-group">
-            <input type="text" placeholder="City">
-          </div>
-          <div class="field-group">
-            <input type="email" placeholder="Email">
-          </div>
-          <div class="field-group">
-            <span class="field-label">Which pastors or churches are already relationally connected in your city?</span>
-            <textarea rows="2" placeholder="A few names or churches you already know"></textarea>
-          </div>
-          <div class="field-group">
-            <span class="field-label">What's your hosting capacity: space, team, and expected turnout?</span>
-            <input type="text" placeholder="e.g. a 300-seat sanctuary, a volunteer team of 10">
-          </div>
-          <div class="field-group">
-            <span class="field-label">Will this be led by your church alone, or co-hosted with others?</span>
-            <input type="text" placeholder="Solo, or which churches you'd co-host with">
-          </div>
-          <div class="field-group">
-            <span class="field-label">What's your plan for connecting people back to a local church afterward?</span>
-            <textarea rows="2" placeholder="How you'll follow up with first-time guests"></textarea>
-          </div>
-          <button type="button" class="btn" style="width:100%;">Start the Conversation</button>
-        </form>
-        <a class="btn btn-outline" href="#" data-tooltip="/share-with-pastor" style="width:100%; box-sizing:border-box; max-width:480px; margin:var(--space-2) auto 0; display:block; color:var(--color-off-white); border-color:var(--color-off-white);">Or, share this with your pastor</a>
+        <p style="margin-inline:auto; max-width:52ch; margin-top:var(--space-5); opacity:0.9;">Before we jump on a call, we'll ask a few honest questions about the relationships you already have in your city, what you're able to host, and how you'll follow up afterward. It helps us understand where you're starting from, and how we can help well.</p>
+
+        <div style="max-width:480px; margin-inline:auto; margin-top:var(--space-4);">
+          <a class="btn" href="#" data-tooltip="/start-the-conversation" style="width:100%; box-sizing:border-box; display:block;">Start the Conversation</a>
+          <a class="btn btn-outline" href="#" data-tooltip="/share-with-pastor" style="width:100%; box-sizing:border-box; margin-top:var(--space-2); display:block; color:var(--color-off-white); border-color:var(--color-off-white);">Or, share this with your pastor</a>
+        </div>
       </div>
     </div>
   </section>
@@ -712,44 +631,6 @@
         </div>
       </div>
 
-      <span class="reel-banner" style="margin-top: var(--space-5);">A look at what Gather Cities nights can look like</span>
-
-      <div class="reel-wrap">
-        <button type="button" class="reel-nav prev" id="reel-prev" aria-label="Previous">
-          <svg viewBox="0 0 24 24" width="16" height="16"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-        <div class="reel-row" id="reel-row">
-          <div class="reel-card">
-            <div class="reel-media"><p class="content-note">Content note: vertical clip, a pastor walking the empty room before doors open, pointing out where the prayer stations will go.</p></div>
-            <div class="reel-play" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></div>
-            <div class="reel-caption"><span class="tag-pill">Downtown Church</span><h3>Every detail led by a local pastor.</h3></div>
-          </div>
-          <div class="reel-card">
-            <div class="reel-media"><p class="content-note">Content note: vertical clip, college students stringing up lights in a rented hall.</p></div>
-            <div class="reel-play" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></div>
-            <div class="reel-caption"><span class="tag-pill">Campus Ministry</span><h3>A campus turns a hall into a gathering place.</h3></div>
-          </div>
-          <div class="reel-card">
-            <div class="reel-media"><p class="content-note">Content note: vertical clip, two churches from different denominations praying together backstage.</p></div>
-            <div class="reel-play" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></div>
-            <div class="reel-caption"><span class="tag-pill">Multi-Church Host</span><h3>Different churches, one night.</h3></div>
-          </div>
-          <div class="reel-card">
-            <div class="reel-media"><p class="content-note">Content note: vertical clip, a modest crowd in a small-town fellowship hall, warm and unpolished.</p></div>
-            <div class="reel-play" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></div>
-            <div class="reel-caption"><span class="tag-pill">Small Town</span><h3>Small towns gather too.</h3></div>
-          </div>
-          <div class="reel-card">
-            <div class="reel-media"><p class="content-note">Content note: vertical clip, a city skyline at dusk, waiting for its own Gather Cities night.</p></div>
-            <div class="reel-play" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></div>
-            <div class="reel-caption"><span class="tag-pill">Your City?</span><h3>Is your city next?</h3></div>
-          </div>
-        </div>
-        <button type="button" class="reel-nav next" id="reel-next" aria-label="Next">
-          <svg viewBox="0 0 24 24" width="16" height="16"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-      </div>
-
       <div class="proof-stat">
         <span class="stat-number">21,000+</span>
         <p>people already gathered with us at Gather25, worldwide. Gather Cities is how that same movement takes root, city by city.</p>
@@ -772,19 +653,16 @@
     <div class="container" style="text-align:center; max-width:640px;">
       <div class="gather-lockup" style="justify-content:center; margin-inline:auto;" aria-hidden="true"><span>Gather</span><span class="dot"></span><span>Dallas</span></div>
       <h2 style="max-width:18ch; margin-inline:auto;">The church, gathering everywhere</h2>
-      <p style="margin-inline:auto;">Every Gather Cities activation starts with one conversation. Tell us about your church, and let's start building toward your night.</p>
+      <p style="margin-inline:auto;">Every Gather Cities activation starts with one conversation. Let's start building toward your night.</p>
       <div class="cta-video">
         <div class="play-button" aria-hidden="true">
           <svg viewBox="0 0 24 24" width="20" height="20"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
         </div>
         <p class="content-note">Content note: a short, direct-to-camera clip, Jennie or a Gather Cities pastor personally encouraging the pastor watching to reach out and inquire.</p>
       </div>
-      <form class="cta-form">
-        <input type="text" placeholder="Church name">
-        <input type="text" placeholder="City">
-        <input type="email" placeholder="Email">
-        <button type="button" class="btn" style="width:100%;">Submit</button>
-      </form>
+      <div class="cta-form">
+        <a class="btn" href="#" data-tooltip="/start-the-conversation" style="width:100%; box-sizing:border-box; display:block;">Start the Conversation</a>
+      </div>
     </div>
   </section>
 
@@ -924,21 +802,6 @@
       rotation = (rotation + stepDegrees) % 360;
       render();
     }, 2200);
-  })();
-</script>
-<script>
-  (function () {
-    var row = document.getElementById('reel-row');
-    var prev = document.getElementById('reel-prev');
-    var next = document.getElementById('reel-next');
-    if (!row || !prev || !next) return;
-    function scrollByCard(dir) {
-      var card = row.querySelector('.reel-card');
-      var amount = card ? card.getBoundingClientRect().width + 24 : 240;
-      row.scrollBy({ left: dir * amount, behavior: 'auto' });
-    }
-    prev.addEventListener('click', function () { scrollByCard(-1); });
-    next.addEventListener('click', function () { scrollByCard(1); });
   })();
 </script>
 <script>
