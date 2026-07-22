@@ -229,12 +229,49 @@
   .why-float-4 { right: 11%; bottom: 0%; background: linear-gradient(200deg, var(--color-bright-blue), var(--color-dark-blue) 130%); }
   @media (max-width: 900px) { .why-float { display: none; } }
 
+  /* What This Is Not — a plain reassurance list for skeptical pastors */
+  .not-this-list {
+    list-style: none;
+    padding: 0;
+    margin: var(--space-4) auto 0;
+    max-width: 480px;
+    text-align: left;
+  }
+  .not-this-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding-block: 0.7rem;
+    border-bottom: 1px solid rgba(18,22,29,0.1);
+    font-size: 1.05rem;
+  }
+  .not-this-list li:last-child { border-bottom: none; }
+  .not-this-list .x-mark {
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    width: 1.4rem; height: 1.4rem;
+    margin-top: 0.15rem;
+    border-radius: 50%;
+    background: rgba(18,22,29,0.08);
+    color: var(--color-dark-blue);
+    font-size: 0.8rem;
+    font-weight: 700;
+    font-family: var(--font-primary);
+  }
+
   /* How it works — an inset rounded blue card (not full-bleed), white text,
      each step its own card inside it with an illustrative icon */
   .how-it-works-band { --heading: var(--color-off-white); border-radius: 1.5rem; padding: var(--space-8) var(--space-5); }
+  .central-message {
+    font-family: var(--font-secondary);
+    font-style: italic;
+    font-size: clamp(1.4rem, 2.6vw, 1.9rem);
+    max-width: 32ch;
+    margin: var(--space-4) auto 0;
+  }
   .how-it-works {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: var(--space-4);
     margin-top: var(--space-6);
     text-align: left;
@@ -261,7 +298,22 @@
   .how-step h4 { margin: 0; font-size: 1.2rem; }
   .how-step p { font-size: 0.92rem; opacity: 0.9; margin: 0; }
 
-  /* Brooklyn feature block — the one confirmed, dated activation */
+  /* Readiness form — asks a few qualifying questions before "Start the
+     Conversation," rather than a bare inquiry form. */
+  .readiness-form { text-align: left; margin-top: var(--space-6); }
+  .readiness-form .field-label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    opacity: 0.85;
+    margin-bottom: 0.35rem;
+  }
+  .readiness-form .field-group { margin-bottom: var(--space-3); }
+
+  /* Feature block — content now shows Dallas (swapped from Brooklyn); the
+     .brooklyn-feature class name was left as-is to avoid a purely
+     cosmetic rename across the file. Date/venue are TBD placeholders
+     per client direction, not yet a confirmed activation. */
   .brooklyn-feature {
     display: grid;
     grid-template-columns: 1.1fr 1fr;
@@ -283,7 +335,7 @@
     background: linear-gradient(150deg, var(--color-bright-blue), var(--color-dark-blue) 75%);
   }
   /* Gather + dot + city wordmark lockup, reconstructed in CSS to match
-     the hero's real logo asset since no "Gather Brooklyn" mark exists */
+     the hero's real logo asset since no "Gather [City]" mark exists */
   .gather-lockup {
     display: flex; align-items: center; gap: 0.5rem;
     font-family: var(--font-primary); font-weight: 600; font-size: 1.05rem;
@@ -304,26 +356,25 @@
   .brooklyn-feature-meta .label { display: block; font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--color-light-blue); opacity: 0.8; margin-bottom: 0.2rem; }
   .brooklyn-feature-meta .value { color: var(--color-off-white); font-weight: 600; }
 
-  /* Queue ticker — hypothetical cities lining up behind Brooklyn */
-  .queue-caption { font-size: 0.8rem; opacity: 0.65; margin-top: var(--space-4); text-align: center; }
-  .queue-ticker-wrap {
-    overflow: hidden;
-    margin-top: var(--space-2);
+  /* Real proof callout — deliberately limited to what's actually true
+     right now (Gather25's reach), not fabricated momentum. More cities
+     and confirmed pastors get added here as commitments come in. */
+  .proof-stat {
+    margin-top: var(--space-5);
     border-radius: 1.5rem;
     background: var(--color-light-blue);
-    padding-block: var(--space-2);
+    padding: var(--space-5);
+    max-width: 640px;
+    margin-inline: auto;
   }
-  .queue-ticker-track { display: flex; gap: var(--space-3); width: max-content; animation: queue-ticker-scroll 34s linear infinite; }
-  .queue-ticker-item {
-    display: flex; align-items: center; gap: 0.5rem;
-    white-space: nowrap; font-size: 0.82rem;
-    background: var(--color-off-white); color: var(--color-dark-blue);
-    border-radius: 999px; padding: 0.5rem 1.1rem;
+  .proof-stat .stat-number {
+    font-family: var(--font-secondary);
+    font-style: italic;
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    color: var(--color-dark-blue);
+    display: block;
   }
-  .queue-ticker-item .city { font-weight: 700; }
-  .queue-ticker-item .status { opacity: 0.6; font-size: 0.75rem; }
-  @keyframes queue-ticker-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-  @media (prefers-reduced-motion: reduce) { .queue-ticker-track { animation: none; overflow-x: auto; } }
+  .proof-stat p { margin-top: var(--space-2); }
 
   /* Cities-in-Action reel (documentary/grassroots take on the Moments-reel pattern) */
   .reel-banner {
@@ -484,7 +535,7 @@
           <h1 style="max-width:20ch;">The local church, gathering the world's cities</h1>
           <p style="max-width:52ch;">Be part of a movement building toward 1,000 activated cities by 2030, one church-led gathering at a time.</p>
           <div style="margin-top: var(--space-4);">
-            <a class="btn" href="#" data-tooltip="#host-inquiry">Host an Event</a>
+            <a class="btn" href="#" data-tooltip="/start-the-conversation">Start the Conversation</a>
           </div>
         </div>
       </div>
@@ -535,7 +586,7 @@
       <div>
         <p class="eyebrow-label">A New Gather Initiative</p>
         <h2>One church. One city. One night.</h2>
-        <p>Gather Cities is a night your church leads for your city: worship, prayer, and shared hope for what God is doing right where you are. You bring the people. We bring the playbook. The first cities are already stepping up, months ahead of Gather27.</p>
+        <p>Gather Cities is a night your church leads for your city: worship, prayer, and shared hope for what God is doing right where you are. Local pastors lead. Gather supports. The fruit stays in the city. The first cities are already stepping up.</p>
       </div>
       <div class="jennie-video">
         <div class="play-button" aria-hidden="true">
@@ -555,35 +606,86 @@
       <div class="jumbo-wrap" style="text-align:center;">
         <p class="eyebrow-label" style="margin-inline:auto;">One City at a Time</p>
         <h2 class="jumbo-headline accent">This is just the beginning</h2>
-        <p style="margin-inline:auto; max-width:60ch;">Bringing Gather to your city connects your congregation to a global rhythm of prayer, worship, and mobilization already moving through homes and churches everywhere. This is the on-ramp toward hosting Gather27 in 2027, not a one-off event that stands on its own. Every city that gathers now is a city ready to gather with the world at Gather27.</p>
+        <p style="margin-inline:auto; max-width:60ch;">When local pastors lead their churches to gather their city, something happens that outlasts a single night: people reconnect to a local church, congregations find fresh unity, and a city gets to see what happens when the Church shows up together. If revival is already happening where you are, we'd love to help you gather your city around it.</p>
       </div>
+    </div>
+  </section>
+
+  <section id="not-this" class="pairing-01">
+    <div class="container" style="text-align:center;">
+      <p class="eyebrow-label" style="margin-inline:auto;">Let's Be Clear</p>
+      <h2 style="max-width:20ch; margin-inline:auto;">What Gather Cities is not</h2>
+      <p style="margin-inline:auto; max-width:56ch;">Pastors have seen plenty of programs come and go. Before you say yes, here's what Gather Cities won't ask you to be.</p>
+      <ul class="not-this-list">
+        <li><span class="x-mark">&times;</span> A new church</li>
+        <li><span class="x-mark">&times;</span> A Jennie Allen tour stop</li>
+        <li><span class="x-mark">&times;</span> A watch party</li>
+        <li><span class="x-mark">&times;</span> An event dropped into your city from the outside</li>
+        <li><span class="x-mark">&times;</span> An ongoing ministry that competes with local churches</li>
+      </ul>
+      <p style="margin-inline:auto; max-width:56ch; margin-top:var(--space-4);">It's a night your own church leads, for people you already know how to reach.</p>
     </div>
   </section>
 
   <section id="how-it-works" class="pairing-01">
     <div class="container">
       <div class="how-it-works-band pairing-02" style="text-align:center;">
-        <p class="eyebrow-label" style="margin-inline:auto; color:var(--color-off-white);">Host Applications Now Open</p>
+        <p class="eyebrow-label" style="margin-inline:auto; color:var(--color-off-white);">How Gather Cities Works</p>
         <h2>Bring Gather to your city</h2>
-        <p style="margin-inline:auto; max-width:56ch;">We'd love for your church to be part of this. Here's exactly what it looks like to bring Gather to your city, from your first hello to the night itself.</p>
+        <p class="central-message">Local pastors lead. Gather supports. The fruit stays in the city.</p>
+        <p style="margin-inline:auto; max-width:56ch; margin-top:var(--space-3);">If revival is happening where you are, let us help.</p>
         <div class="how-it-works">
           <div class="how-step">
             <span class="how-step-number">1</span>
-            <h4>Reach Out</h4>
-            <p>Fill out a two-minute form telling us about your church and your city. That's the whole ask to get started.</p>
+            <h4>Pastors Lead</h4>
+            <p>Local pastors lead and shape the gathering, from the first idea to the night itself.</p>
           </div>
           <div class="how-step">
             <span class="how-step-number">2</span>
-            <h4>We'll get you set up</h4>
-            <p>We'll hop on a call to confirm it's a good fit, then send the full playbook: run-of-show, promotional assets, and a real person to call with questions.</p>
+            <h4>Gather Supports</h4>
+            <p>We provide the framework, content, tools, and production support behind the scenes.</p>
           </div>
           <div class="how-step">
             <span class="how-step-number">3</span>
-            <h4>Host Your Night</h4>
-            <p>Your church leads from the stage. We stay close with support before, during, and after.</p>
+            <h4>Churches Invite</h4>
+            <p>Churches invite their own communities together for one shared night.</p>
+          </div>
+          <div class="how-step">
+            <span class="how-step-number">4</span>
+            <h4>People Stay Connected</h4>
+            <p>Everyone who comes is connected back to a local church afterward.</p>
           </div>
         </div>
-        <a class="btn" href="#" data-tooltip="#host-inquiry" style="margin-top: var(--space-6); display:inline-block;">Host an Event</a>
+
+        <form class="cta-form readiness-form">
+          <div class="field-group">
+            <input type="text" placeholder="Church name">
+          </div>
+          <div class="field-group">
+            <input type="text" placeholder="City">
+          </div>
+          <div class="field-group">
+            <input type="email" placeholder="Email">
+          </div>
+          <div class="field-group">
+            <span class="field-label">Which pastors or churches are already relationally connected in your city?</span>
+            <textarea rows="2" placeholder="A few names or churches you already know"></textarea>
+          </div>
+          <div class="field-group">
+            <span class="field-label">What's your hosting capacity: space, team, and expected turnout?</span>
+            <input type="text" placeholder="e.g. a 300-seat sanctuary, a volunteer team of 10">
+          </div>
+          <div class="field-group">
+            <span class="field-label">Will this be led by your church alone, or co-hosted with others?</span>
+            <input type="text" placeholder="Solo, or which churches you'd co-host with">
+          </div>
+          <div class="field-group">
+            <span class="field-label">What's your plan for connecting people back to a local church afterward?</span>
+            <textarea rows="2" placeholder="How you'll follow up with first-time guests"></textarea>
+          </div>
+          <button type="button" class="btn" style="width:100%;">Start the Conversation</button>
+        </form>
+        <a class="btn btn-outline" href="#" data-tooltip="/share-with-pastor" style="width:100%; box-sizing:border-box; max-width:480px; margin:var(--space-2) auto 0; display:block; color:var(--color-off-white); border-color:var(--color-off-white);">Or, share this with your pastor</a>
       </div>
     </div>
   </section>
@@ -591,26 +693,26 @@
   <section id="proof" class="pairing-01">
     <div class="container" style="text-align:center;">
       <p class="eyebrow-label" style="margin-inline:auto;">Cities In Action</p>
-      <h2 style="max-width:26ch; margin-inline:auto;">First Launch: Brooklyn</h2>
+      <h2 style="max-width:26ch; margin-inline:auto;">Featured City: Dallas</h2>
 
       <div class="brooklyn-feature">
         <div class="brooklyn-feature-media">
-          <p class="content-note">Content note: handheld footage of the Brooklyn host church preparing the room, chairs and a stage taking shape.</p>
+          <p class="content-note">Content note: handheld footage of a Dallas host church preparing the room, chairs and a stage taking shape.</p>
         </div>
         <div class="brooklyn-feature-body">
-          <div class="gather-lockup" aria-hidden="true"><span>Gather</span><span class="dot"></span><span>Brooklyn</span></div>
-          <span class="tag">First Confirmed Activation</span>
-          <h3>Brooklyn, New York City</h3>
-          <p>A dozen churches across Brooklyn are co-hosting one night of worship, prayer, and vision for what God is doing in the city, the first Gather Cities activation on the calendar.</p>
+          <div class="gather-lockup" aria-hidden="true"><span>Gather</span><span class="dot"></span><span>Dallas</span></div>
+          <span class="tag">Flagship City</span>
+          <h3>Dallas, Texas</h3>
+          <p>Churches across Dallas are coming together to lead one night of worship, prayer, and vision for what God is doing in the city. It's the first Gather Cities activation taking shape.</p>
           <div class="brooklyn-feature-meta">
-            <div><span class="label">Date</span><span class="value">September 12</span></div>
-            <div><span class="label">Time</span><span class="value">4 PM</span></div>
+            <div><span class="label">Date</span><span class="value">To Be Confirmed</span></div>
+            <div><span class="label">Venue</span><span class="value">To Be Confirmed</span></div>
             <div><span class="label">Format</span><span class="value">In-Person</span></div>
           </div>
         </div>
       </div>
 
-      <span class="reel-banner" style="margin-top: var(--space-5);">More cities are getting ready behind Brooklyn</span>
+      <span class="reel-banner" style="margin-top: var(--space-5);">A look at what Gather Cities nights can look like</span>
 
       <div class="reel-wrap">
         <button type="button" class="reel-nav prev" id="reel-prev" aria-label="Previous">
@@ -648,8 +750,10 @@
         </button>
       </div>
 
-      <div class="queue-ticker-wrap" aria-label="Cities in the queue">
-        <div class="queue-ticker-track" id="queue-ticker-track"></div>
+      <div class="proof-stat">
+        <span class="stat-number">21,000+</span>
+        <p>people already gathered with us at Gather25, worldwide. Gather Cities is how that same movement takes root, city by city.</p>
+        <p class="content-note">Content note: as pastors and cities confirm, they'll be named here alongside Dallas.</p>
       </div>
     </div>
   </section>
@@ -660,13 +764,13 @@
       <details class="faq-item"><summary>What is Gather Cities?</summary><p>A local night of worship, prayer, and vision for your city, led by your own church. It's part of a bigger movement building toward 1,000 activated cities by 2030.</p></details>
       <details class="faq-item"><summary>How do churches play a role?</summary><p>Your church leads 80 to 90 percent of the night: the space, the people, the promotion, the pastor on the stage. Gather provides the playbook, promotional assets, and a real person to call with questions.</p></details>
       <details class="faq-item"><summary>Is there a cost?</summary><p>No fee to partner. Your church covers its own local event costs.</p></details>
-      <details class="faq-item"><summary>How is this different than Gather27?</summary><p>Gather Cities happens locally, on your own timeline, building momentum in your city right now. Gather27 is the global broadcast in 2027 that every Gather Cities activation is building toward.</p></details>
+      <details class="faq-item"><summary>How is this different than Gather27?</summary><p>Gather Cities is its own thing: a night your own church leads for your city, on your own timeline. Gather27 is a separate global broadcast in 2027. Some cities that gather now may also take part in Gather27 later, but Gather Cities isn't a lead-up event or a promotional stop for it.</p></details>
     </div>
   </section>
 
   <section id="cta" class="pairing-02">
     <div class="container" style="text-align:center; max-width:640px;">
-      <div class="gather-lockup" style="justify-content:center; margin-inline:auto;" aria-hidden="true"><span>Gather</span><span class="dot"></span><span id="cta-city-rotator">Brooklyn</span></div>
+      <div class="gather-lockup" style="justify-content:center; margin-inline:auto;" aria-hidden="true"><span>Gather</span><span class="dot"></span><span>Dallas</span></div>
       <h2 style="max-width:18ch; margin-inline:auto;">The church, gathering everywhere</h2>
       <p style="margin-inline:auto;">Every Gather Cities activation starts with one conversation. Tell us about your church, and let's start building toward your night.</p>
       <div class="cta-video">
@@ -856,49 +960,6 @@
     }
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
-  })();
-</script>
-<script>
-  // Queue ticker — hypothetical cities lining up behind Brooklyn.
-  (function () {
-    var track = document.getElementById('queue-ticker-track');
-    if (!track) return;
-    var ITEMS = [
-      'Nashville, TN',
-      'Denver, CO',
-      'Phoenix, AZ',
-      'Charlotte, NC',
-      'Portland, OR',
-      'Kansas City, MO',
-      'Tampa, FL',
-      'Columbus, OH'
-    ];
-    function renderItem(city) {
-      var span = document.createElement('span');
-      span.className = 'queue-ticker-item';
-      span.innerHTML = '<span class="city">' + city + '</span><span class="status">Coming Soon</span>';
-      return span;
-    }
-    ITEMS.concat(ITEMS).forEach(function (d) { track.appendChild(renderItem(d)); });
-  })();
-</script>
-<script>
-  // Closing CTA's "Gather · [City]" lockup — crossfades through cities,
-  // Brooklyn first since it's the one confirmed activation.
-  (function () {
-    var el = document.getElementById('cta-city-rotator');
-    if (!el) return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    var cities = ['Brooklyn', 'Nashville', 'Denver', 'Phoenix', 'Charlotte', 'Portland', 'Kansas City', 'Tampa', 'Columbus'];
-    var i = 0;
-    setInterval(function () {
-      i = (i + 1) % cities.length;
-      el.style.opacity = 0;
-      setTimeout(function () {
-        el.textContent = cities[i];
-        el.style.opacity = 1;
-      }, 300);
-    }, 2200);
   })();
 </script>
 <script>

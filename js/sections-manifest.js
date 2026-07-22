@@ -41,6 +41,7 @@ window.GATHER_SECTIONS = {
       { id: 'hero', label: 'Hero' },
       { id: 'what-it-is', label: 'What It Is' },
       { id: 'why', label: 'Why Bring It Here' },
+      { id: 'not-this', label: 'What This Is Not' },
       { id: 'how-it-works', label: 'How It Works' },
       { id: 'proof', label: 'Proof' },
       { id: 'faq', label: 'FAQ' },
