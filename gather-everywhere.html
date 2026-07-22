@@ -171,14 +171,7 @@
   }
   .partner-ways .how-step { max-width: 220px; }
 
-  /* Partners — 2-column layout (sticky intro + accordion), same pattern
-     as Gather27's own Partners section. */
-  .partners-columns { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: var(--space-5); align-items: start; }
-  .partners-sticky { position: sticky; top: 6rem; }
-  @media (max-width: 900px) {
-    .partners-columns { grid-template-columns: 1fr; }
-    .partners-sticky { position: static; }
-  }
+  .partner-accordion { margin-top: var(--space-4); }
   .partner-accordion .faq-item { border-bottom: 1px solid rgba(18,22,29,0.15); padding-block: var(--space-3); }
   .partner-accordion .faq-item summary { cursor: pointer; font-weight: 600; }
   .partner-accordion .faq-item > *:not(summary) { margin-top: var(--space-3); }
@@ -805,19 +798,11 @@
 
   <section id="partners" class="pairing-04">
     <div class="container">
-      <div class="partners-columns">
-        <div class="partners-sticky">
-          <p class="eyebrow-label">Partners</p>
-          <h2>Gather convenes.<br>Our partners equip and send.</h2>
-          <p>Partnership means joining Gather as more than a donor — walking alongside the movement as we equip local churches, broadcast to the world, and disciple the next generation. Partners are how Gather keeps convening without ever slowing down to fund itself.</p>
-          <div style="display:flex; gap:0.75rem; flex-wrap:wrap; margin-top:var(--space-2);">
-            <a class="btn" href="#" data-tooltip="/partner">Become a Partner</a>
-            <a class="btn btn-outline" href="#" data-tooltip="/pray" style="color:var(--color-dark-blue); border-color:var(--color-dark-blue);">Pray for Gather</a>
-          </div>
-        </div>
+      <p class="eyebrow-label">Partners</p>
+      <h2>Gather convenes.<br>Our partners equip and send.</h2>
+      <p>Partners walk alongside Gather as we equip local churches, broadcast to the world, and disciple the next generation. It's how we keep convening without slowing down to fund ourselves.</p>
 
-        <div>
-          <div class="partner-accordion">
+      <div class="partner-accordion">
             <details class="faq-item">
               <summary>Partnership Levels</summary>
               <div class="partner-tiers">
@@ -877,12 +862,15 @@
                 </div>
               </div>
             </details>
-          </div>
+      </div>
 
-          <div class="partner-logos" style="margin-top: var(--space-4);">
-            <div>Partner Logo</div><div>Partner Logo</div><div>Partner Logo</div><div>Partner Logo</div><div>Partner Logo</div>
-          </div>
-        </div>
+      <div style="display:flex; gap:0.75rem; flex-wrap:wrap; margin-top:var(--space-4);">
+        <a class="btn" href="#" data-tooltip="/partner">Become a Partner</a>
+        <a class="btn btn-outline" href="#" data-tooltip="/pray" style="color:var(--color-dark-blue); border-color:var(--color-dark-blue);">Pray for Gather</a>
+      </div>
+
+      <div class="partner-logos" style="margin-top: var(--space-5);">
+        <div>Partner Logo</div><div>Partner Logo</div><div>Partner Logo</div><div>Partner Logo</div><div>Partner Logo</div>
       </div>
     </div>
   </section>
