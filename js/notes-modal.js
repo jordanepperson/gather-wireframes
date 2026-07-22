@@ -11,6 +11,7 @@
         '<strong>Email Capture:</strong> Added an email-capture block to every site.',
         '<strong>Global Footer:</strong> Added Pray and Give buttons to every footer, plus ECFA, Candid, and Excellence in Giving trust badges.',
         '<strong>CTA Language:</strong> Standardized to one consistent set of actions everywhere: "Host a Gathering," "Host an IF," "Find a Gathering," "Find an IF," "Watch from Anywhere." Retired "watch party," "Gather Group," and "Join" as button language, replacing every "Join" with "Find a Gathering."',
+        '<strong>FAQ:</strong> Each event page now answers "How is this free?" and routes people to the giving page.',
       ],
     },
     {
