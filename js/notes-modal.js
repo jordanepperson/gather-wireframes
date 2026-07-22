@@ -5,48 +5,67 @@
 (function () {
   var NOTES = [
     {
-      page: 'General',
+      page: 'Global Updates',
       items: [
-        '<strong>Copy Disclaimer:</strong> All wireframes have been planned and pored over by the Whiteboard team. Headlines have been lightly drafted for clarity of intent, and tone of voice. Paragraph messaging has been Claude Generated as directional placeholder. All messaging is meant to be directional for copywriting and editing by Jersey Road.',
-        '<strong>Subpages:</strong> These landing pages aren\'t meant to hold everything themselves. This approach assumes some necessary sub-pages, outlined below.',
-        '<strong>Content Flow:</strong> The content flow, per our discussion and Matt\'s audit, is to clearly answer: what is it, what does it mean for me, what\'s the action I need to take. Roughly in that order. It creates a flow from understanding &rarr; meaning &rarr; action. With a central, focused CTA per page.',
-        '<strong>Nav:</strong> Reminder that Gather Everywhere &amp; Gather Cities will be on the same domain. They will share a navigation. IF:Gathering &amp; Gather27 retain their own navigation. However, in the interest of establishing clear relational lines between each brand expression, we are recommending a consistent branded watermark to go in each footer that shows all the brand expressions in symphony. Each will route to their respective pages.',
+        '<strong>Global Nav:</strong> Added a Gather bar above every site that shows all four expressions and highlights the current one, plus a "Host Login" link on the right.',
+        '<strong>Email Capture:</strong> Added an email-capture block to every site.',
+        '<strong>Global Footer:</strong> Added Pray and Give buttons to every footer, plus ECFA, Candid, and Excellence in Giving trust badges.',
+        '<strong>CTA Language:</strong> Standardized to one consistent set of actions everywhere: "Host a Gathering," "Host an IF," "Find a Gathering," "Find an IF," "Watch from Anywhere." Retired "watch party," "Gather Group," and "Join" as button language, replacing every "Join" with "Find a Gathering."',
       ],
     },
     {
-      page: 'Jobs To Be Done',
+      page: 'Gather Everywhere',
       items: [
-        '<strong>Gather Everywhere:</strong> become a partner / donate',
-        '<strong>Gather27:</strong> host a watch party / join a watch party',
-        '<strong>IF:Gathering:</strong> host an IF:Local / join an IF:Local / attend the gathering',
-        '<strong>Gather Cities:</strong> bring gather to your church',
+        '<strong>Pray / Give / Partner:</strong> Added clear paths to all three near the top of the page.',
+        '<strong>Upcoming Gathering:</strong> Added a direct route to the latest Gathering.',
+        '<strong>Partners:</strong> Rebuilt the Partners section to be more robust.',
       ],
     },
     {
-      page: 'Strategy Considerations',
+      page: 'Gather27',
       items: [
-        '<strong>Gather Everywhere Ministry Pages:</strong> Let\'s talk about the trade offs for having ministry subpages on Gather Everywhere vs linking directly out to Gather27, IF:Gathering, and Jennie Allen.',
-        '<strong>IF:Gathering Media:</strong> Let\'s bias toward IF:Local content specifically as the primary expression of the event. The broadcast is the product, but the local environment is the experience.',
-        '<strong>CTA Hierarchy:</strong> Gather Everywhere is now partner- and donor-focused, so Give CTAs move to Gather Everywhere, and group CTAs move to their respective events so both sit in context with their respective audiences.',
-        '<strong>Jennie Allen Positioning:</strong> The most recent brand guides we received moved Jennie Allen Ministries as an adjacent brand. Let\'s talk about whether the current treatment of Jennie\'s intro on Gather Everywhere, and her position in the footer watermark solve for that new relationship.',
-        '<strong>Event Content Cycles:</strong> A possible "content cycle" pattern worth exploring: Host/Join &rarr; In Case You Missed It &rarr; Watch On Demand. Let\'s talk about how you all handle this now.',
+        '<strong>Naming:</strong> Renamed to "Gather27" everywhere on the site.',
+        '<strong>Main CTA:</strong> Updated to "Host a Gathering."',
+        '<strong>Watch:</strong> Added a /watch path.',
+        '<strong>What Hosts Get:</strong> Added a new section.',
+        '<strong>Globe:</strong> Changed from fixed regional hubs to hosting highlights.',
+        '<strong>Partners:</strong> Updated the Partners section.',
       ],
     },
     {
-      page: 'Outstanding Questions',
+      page: 'IF:Gathering',
       items: [
-        '<strong>Host Hub:</strong> Is there a single, consolidated "host" hub across expressions, or does each expression keep its own separate hosting flow? (per Matt\'s audit)',
-        '<strong>Sub-Brands:</strong> Where do Everybody Everywhere and Gather Worship fit into the ecosystem?',
-        '<strong>Gather Cities Pitch:</strong> What\'s the value pitch to churches for Gather Cities? What do pastors get out of hosting?',
+        '<strong>CTAs:</strong> Updated to "Host An IF:," with "Find An IF:" for people who want to attend.',
+        '<strong>Tickets:</strong> Removed the contradiction between "Get Tickets" and "no traditional ticket to buy."',
+        '<strong>Event Toolbar:</strong> Updated to say "Two days."',
+        '<strong>What Hosts Get:</strong> Added a new section.',
       ],
     },
     {
-      page: 'Planned Sub-Pages (reference)',
+      page: 'Gather Cities',
       items: [
-        '<strong>Gather Everywhere:</strong> /our-story, /careers, /give, /our-partners, /contact, /jennie-allen, plus possible ministry landers.',
-        '<strong>Gather Cities:</strong> none planned — self-contained as a single lander.',
-        '<strong>Gather27:</strong> /host, /join, /partner, plus an external link to Gather Worship.',
-        '<strong>IF:Gathering:</strong> /host, /join, /attend (or /tickets?), /on-demand.',
+        '<strong>Messaging:</strong> Updated with pastor- and city-focused messaging.',
+        '<strong>CTA:</strong> Updated to "Start the Conversation."',
+        '<strong>What This Is Not:</strong> Added a new section.',
+        '<strong>Dallas:</strong> Added a Dallas event pathway.',
+        '<strong>Social Proof:</strong> Trimmed the section down.',
+      ],
+    },
+    {
+      page: 'Notes for Design',
+      items: [
+        '<strong>Global Cohesiveness:</strong> Our main feedback is that these should not feel like four separate websites. They should feel like one connected movement with several clear ways in. The three most important outcomes: make the movement feel connected, give every visitor a clear next step, and capture that next step so we can invite people from watching, to attending, to hosting.',
+      ],
+    },
+    {
+      page: 'Notes for Dev',
+      items: [
+        '<strong>HubSpot &amp; Follow-up:</strong> Every action should be captured and source-tagged in HubSpot, including host registrations, Finder activity, RSVPs and tickets, watch registrations, giving, partner inquiries, prayer signups, Cities conversations, IF subscriptions, and story submissions. Every form should identify whether the person plans to host, attend, or watch alone, and that answer should guide the follow-up they receive.',
+        '<strong>Give Page:</strong> Should support both one-time and monthly gifts.',
+        '<strong>Sunsetting Everybody Everywhere:</strong> Should remain connected to giving and generosity language rather than becoming a separate website destination.',
+        '<strong>Stories Farming:</strong> Should use one shared submission process with a clear internal owner.',
+        '<strong>Site States:</strong> Each event page should have three planned states: Before (watch, attend, and host), During (watch live), After (watch on demand).',
+        '<strong>Gather Cities:</strong> Needs a dedicated Dallas event page, including the gathering, the leaders\' event, participating churches, and free ticketed registration. Dates and venues stay placeholders until confirmed.',
       ],
     },
   ];
