@@ -450,10 +450,77 @@
   .leader-modal-socials a { color: var(--color-bright-blue); text-decoration: none; }
   .leader-modal-socials .none { opacity: 0.6; font-style: italic; }
 
-  /* Partners — sticky intro column, logos scroll past on the right */
-  .partners-columns { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: var(--space-5); align-items: start; }
-  .partners-sticky { position: sticky; top: 6rem; }
-  .partner-logos { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-3); align-content: start; }
+  /* Partners — text/accordion column on the left, logos sticky on the right */
+  .partners-columns { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: var(--space-5); align-items: start; }
+  .partners-logos-col { position: sticky; top: 6rem; }
+  .partner-logos { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-3); align-content: start; }
+
+  /* Partnership levels — 3 simple tier cards */
+  .partner-tiers {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-3);
+    margin-top: var(--space-4);
+    text-align: left;
+  }
+  .partner-tier {
+    padding: var(--space-3);
+    border: 1px solid rgba(255,250,240,0.15);
+    border-radius: 1rem;
+  }
+  .partner-tier h4 { font-size: 1.05rem; margin: 0 0 0.35rem; color: var(--color-off-white); }
+  .partner-tier p { font-size: 0.85rem; opacity: 0.7; margin: 0; color: var(--color-off-white); }
+  @media (max-width: 700px) {
+    .partner-tiers { grid-template-columns: 1fr; }
+  }
+
+  /* Partner toolkit — reuses the same numbered-step + bordered-card
+     pattern as this page's own "What Hosts Get" section. */
+  .partner-toolkit-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-3);
+    margin-top: var(--space-4);
+  }
+  .partner-toolkit-grid .how-step.bordered-card {
+    padding: var(--space-3);
+    border: 1px solid rgba(255,250,240,0.15);
+    border-radius: 1rem;
+  }
+  .partner-toolkit-grid .how-step h4,
+  .partner-ways .how-step h4 { color: var(--color-off-white); }
+  .partner-toolkit-grid .how-step p,
+  .partner-ways .how-step p { color: var(--color-off-white); }
+  @media (max-width: 700px) {
+    .partner-toolkit-grid { grid-template-columns: 1fr; }
+  }
+
+  /* Ways to help — simple numbered row, distinct from the toolkit cards */
+  .partner-ways {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: var(--space-3) var(--space-4);
+    margin-top: var(--space-3);
+  }
+  .partner-ways .how-step { max-width: 220px; }
+  .partner-ways-pray-link {
+    background: none; border: none; padding: 0; margin-top: 0.35rem;
+    color: var(--color-bright-blue); text-decoration: underline;
+    cursor: pointer; font-size: 0.78rem; font-family: inherit;
+  }
+
+  .partner-accordion { margin-top: var(--space-4); }
+  .partner-accordion .faq-item { border-bottom: 1px solid rgba(255,250,240,0.15); padding-block: var(--space-3); }
+  .partner-accordion .faq-item summary { cursor: pointer; font-weight: 600; }
+  .partner-accordion .faq-item > *:not(summary) { margin-top: var(--space-3); }
+  .partner-accordion .partner-tiers,
+  .partner-accordion .partner-toolkit-grid,
+  .partner-accordion .partner-ways { margin-top: var(--space-3); }
+  @media (max-width: 900px) {
+    .partners-columns { grid-template-columns: 1fr; }
+    .partners-logos-col { position: static; }
+  }
   .partner-logos div {
     padding: 0.9rem 1.1rem;
     background: rgba(255,250,240,0.05);
@@ -481,11 +548,6 @@
   }
   .partner-list-text li { padding-block: 0.25rem; }
   .partner-list-text li + li { border-top: 1px solid rgba(255,250,240,0.08); }
-  @media (max-width: 900px) {
-    .partners-columns { grid-template-columns: 1fr; }
-    .partners-sticky { position: static; }
-    .partner-logos { grid-template-columns: repeat(2, 1fr); }
-  }
 
   /* Global Stories */
   /* Global Stories, styled as vertical-video "Moments" (passion2027.com pattern):
@@ -951,13 +1013,80 @@
   <section id="partners" class="pairing-03">
     <div class="container">
       <div class="partners-columns">
-        <div class="partners-sticky">
+        <div>
           <p class="eyebrow-label">Partners</p>
           <h2>Our Partners in Gathering the Global Church</h2>
-          <p>Behind Gather27 is a collaboration of ministries, partners, and leaders united around one vision: to gather the entire global Church for a day of prayer, worship, repentance, and commissioning.</p>
-          <a class="btn" href="#" data-tooltip="/partner" style="margin-top: var(--space-2);">Become a Partner</a>
+          <p>Behind Gather27 is a collaboration of ministries and leaders united around one vision: gathering the global Church for a day of prayer, worship, repentance, and commissioning.</p>
+
+          <div class="partner-accordion">
+            <details class="faq-item">
+              <summary>Partnership Levels</summary>
+              <div class="partner-tiers">
+                <div class="partner-tier">
+                  <h4>Broadcast Partner</h4>
+                  <p>Organizations who help fund and produce the 24-hour broadcast itself, from production to global distribution.</p>
+                </div>
+                <div class="partner-tier">
+                  <h4>Regional Partner</h4>
+                  <p>Ministries who help coordinate hosting and mobilization within their own region as the broadcast follows the sun.</p>
+                </div>
+                <div class="partner-tier">
+                  <h4>Community Partner</h4>
+                  <p>Churches and leaders who help spread the word and rally local gatherings around the broadcast.</p>
+                </div>
+              </div>
+            </details>
+            <details class="faq-item">
+              <summary>The Partner Toolkit</summary>
+              <div class="partner-toolkit-grid">
+                <div class="how-step bordered-card">
+                  <span class="how-step-number">1</span>
+                  <div><h4>Partner Portal</h4><p>A single dashboard for reporting, assets, and updates leading up to the broadcast.</p></div>
+                </div>
+                <div class="how-step bordered-card">
+                  <span class="how-step-number">2</span>
+                  <div><h4>Co-Branded Assets</h4><p>Ready-made graphics and templates so your organization can promote Gather27 in your own voice.</p></div>
+                </div>
+                <div class="how-step bordered-card">
+                  <span class="how-step-number">3</span>
+                  <div><h4>Broadcast Access</h4><p>Early access to streaming details and regional hub schedules as they're announced.</p></div>
+                </div>
+                <div class="how-step bordered-card">
+                  <span class="how-step-number">4</span>
+                  <div><h4>Direct Access</h4><p>A standing line to the Gather27 team for questions, ideas, and collaboration.</p></div>
+                </div>
+              </div>
+            </details>
+            <details class="faq-item">
+              <summary>Ways to Help</summary>
+              <div class="partner-ways">
+                <div class="how-step">
+                  <span class="how-step-number">1</span>
+                  <div><h4>Give Financially</h4><p>One-time or recurring gifts that help fund the broadcast and its global reach.</p></div>
+                </div>
+                <div class="how-step">
+                  <span class="how-step-number">2</span>
+                  <div><h4>Provide In-Kind Support</h4><p>Media, production, translation, or logistics expertise donated in place of cash.</p></div>
+                </div>
+                <div class="how-step">
+                  <span class="how-step-number">3</span>
+                  <div><h4>Mobilize Your Network</h4><p>Introduce Gather27 to your own church, denomination, or ministry network.</p></div>
+                </div>
+                <div class="how-step">
+                  <span class="how-step-number">4</span>
+                  <div>
+                    <h4>Pray</h4>
+                    <p>Cover the broadcast in prayer as it moves from region to region.</p>
+                    <button type="button" class="partner-ways-pray-link" data-modal-open="modal-pray">See what we're praying for</button>
+                  </div>
+                </div>
+              </div>
+            </details>
+          </div>
+
+          <a class="btn" href="#" data-tooltip="/partner" style="margin-top: var(--space-4);">Become a Partner</a>
         </div>
-        <div>
+        <div class="partners-logos-col">
           <div class="partner-logos">
             <div>IF:Gathering</div><div>YouVersion</div><div>Alpha</div><div>RightNow Media</div>
           </div>
